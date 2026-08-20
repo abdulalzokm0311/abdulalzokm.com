@@ -24,6 +24,10 @@ export type Metric = {
  */
 export type ProjectTheme = {
   accent?: string;
+  /** Three stops for the case study title block. All three must be set. */
+  gradientFrom?: string;
+  gradientVia?: string;
+  gradientTo?: string;
   accentDeep?: string;
   surface?: string;
   surfaceDeep?: string;
@@ -33,7 +37,7 @@ export type ProjectTheme = {
   rule?: string;
 };
 
-const THEME_VARS: Record<keyof ProjectTheme, string> = {
+const THEME_VARS: Partial<Record<keyof ProjectTheme, string>> = {
   accent: "--color-accent",
   accentDeep: "--color-accent-deep",
   surface: "--color-surface",
@@ -64,6 +68,19 @@ export function themeToCssText(theme: ProjectTheme): string {
       return value && HEX.test(value) ? `${variable}:${value};` : "";
     })
     .join("");
+}
+
+/**
+ * The case study title block's background. Returns undefined unless all three
+ * stops are present and valid, in which case the block falls back to the flat
+ * themed surface.
+ */
+export function heroGradient(theme: ProjectTheme): string | undefined {
+  const { gradientFrom, gradientVia, gradientTo } = theme;
+  const stops = [gradientFrom, gradientVia, gradientTo];
+  if (!stops.every((stop) => stop && HEX.test(stop))) return undefined;
+
+  return `linear-gradient(158deg, ${gradientFrom} 0%, ${gradientVia} 46%, ${gradientTo} 100%)`;
 }
 
 /** One row of the measured task results table on a case study. */

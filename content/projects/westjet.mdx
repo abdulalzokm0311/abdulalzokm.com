@@ -37,9 +37,15 @@ tasksNote: "Course project, so there are no live business metrics. The numbers a
 # as small text, so accent and muted are one step darker. Everything else is
 # their exact colour.
 theme:
+  # Title block gradient. The darkest stop is capped so the accent and body
+  # text sitting on it still clear WCAG AA.
+  gradientFrom: "#F4FBFA"
+  gradientVia: "#DCEFED"
+  gradientTo: "#C3E2DE"
   accent: "#016B68"
   accentDeep: "#154E55"
-  surface: "#EAF5F4"
+  # Matches gradientFrom so the nav bar meets the title block seamlessly.
+  surface: "#F4FBFA"
   surfaceDeep: "#D8ECEA"
   ink: "#152D32"
   inkSoft: "#40595D"

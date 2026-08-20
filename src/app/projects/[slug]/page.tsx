@@ -10,6 +10,7 @@ import {
   getAdjacentProjects,
   getAllProjects,
   getProject,
+  heroGradient,
   themeToCssText,
 } from "@/lib/projects";
 
@@ -54,6 +55,7 @@ export default async function CaseStudyPage({ params }: Params) {
 
   const { next } = getAdjacentProjects(slug);
   const themeCss = themeToCssText(project.theme);
+  const gradient = heroGradient(project.theme);
 
   return (
     <article>
@@ -64,11 +66,12 @@ export default async function CaseStudyPage({ params }: Params) {
       ) : null}
       {/* Title block. Carries the hero tint so the study opens on a surface
           rather than starting cold on white. */}
-      <header className="bg-surface">
+      {/* Falls back to the flat themed surface when a study sets no stops. */}
+      <header className="bg-surface" style={{ backgroundImage: gradient }}>
         <div className="shell py-16 md:py-24">
           <Link
             href="/projects"
-            className="eyebrow inline-flex items-center gap-2 text-muted transition-colors hover:text-accent"
+            className="eyebrow inline-flex items-center gap-2 text-ink-soft transition-colors hover:text-accent"
           >
             <Icon name="arrow" className="h-3.5 w-3.5 rotate-180" />
             All case studies
@@ -77,7 +80,7 @@ export default async function CaseStudyPage({ params }: Params) {
           <p className="eyebrow mt-10 text-accent">
             {project.client || project.shortTitle}
             {project.year ? (
-              <span className="text-muted"> / {project.year}</span>
+              <span className="text-ink-soft"> / {project.year}</span>
             ) : null}
           </p>
 

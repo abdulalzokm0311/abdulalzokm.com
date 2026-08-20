@@ -124,7 +124,17 @@ export function Decision({
   );
 }
 
-/** What a round of testing surfaced, in a participant's own words. */
+/**
+ * What a round of testing surfaced.
+ *
+ * The learning leads. The change sits directly under the title at reading
+ * scale, because that is the thing worth carrying away. The observation and
+ * the verbatim quotes follow underneath at a smaller size, as the evidence
+ * backing it up rather than as the headline.
+ *
+ * No tinted container anywhere: scale, position and a single rule carry the
+ * hierarchy instead.
+ */
 export function Finding({
   index,
   title,
@@ -139,35 +149,37 @@ export function Finding({
   changed: string;
 }) {
   return (
-    <section className="my-16 border-t border-rule pt-8">
+    <section className="my-20 border-t border-rule pt-8">
       <div className="flex items-baseline gap-4">
         <span className="eyebrow text-accent">{index}</span>
         <h3 className="text-card">{title}</h3>
       </div>
 
-      <div className="mt-6 grid gap-10 md:grid-cols-12">
-        <div className="md:col-span-5">
-          <p className="text-sm">{observation}</p>
+      {/* The learning. */}
+      <p className="eyebrow mt-8 text-accent">What changed</p>
+      <p className="mt-4 max-w-3xl text-[1.375rem] leading-snug text-ink">
+        {changed}
+      </p>
+
+      {/* The evidence behind it, deliberately quieter. */}
+      <div className="mt-10 grid gap-x-10 gap-y-8 border-t border-rule pt-8 md:grid-cols-12">
+        <div className="md:col-span-4">
+          <p className="eyebrow text-muted">What we saw</p>
+          <p className="mt-3 text-sm">{observation}</p>
         </div>
 
-        <div className="md:col-span-7">
-          {quotes.map((quote) => (
-            <blockquote
-              key={quote.who}
-              className="mb-6 border-l-2 border-accent pl-5 last:mb-0"
-            >
-              <p className="text-sub text-ink">{quote.text}</p>
-              <cite className="eyebrow mt-3 block not-italic text-muted">
-                {quote.who}
-              </cite>
-            </blockquote>
-          ))}
+        <div className="md:col-span-7 md:col-start-6">
+          <ul className="space-y-5">
+            {quotes.map((quote) => (
+              <li key={quote.who}>
+                <p className="text-sm italic text-ink-soft">
+                  &ldquo;{quote.text}&rdquo;
+                </p>
+                <p className="eyebrow mt-2 text-muted">{quote.who}</p>
+              </li>
+            ))}
+          </ul>
         </div>
-      </div>
-
-      <div className="mt-8 bg-surface p-6">
-        <p className="eyebrow text-accent">What changed</p>
-        <p className="mt-3 text-sm text-ink">{changed}</p>
       </div>
     </section>
   );
