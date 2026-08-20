@@ -9,11 +9,16 @@ const contactItems = [
   { icon: "pin" as const, label: site.location, href: undefined },
 ];
 
+/**
+ * Full bleed and full screen. The tint runs edge to edge rather than sitting
+ * inside a rounded panel, so the first screen reads as the page itself rather
+ * than as a card placed on it.
+ */
 export function Hero() {
   return (
-    <section className="shell pb-14 pt-4 md:pb-20 md:pt-6">
-      <Reveal immediate y={16}>
-        <div className="rounded-hero bg-surface px-5 py-16 text-center sm:px-10 md:py-24">
+    <section className="bg-surface">
+      <div className="shell flex min-h-[calc(100dvh-4rem)] flex-col justify-center py-16 text-center md:min-h-[calc(100dvh-5rem)] md:py-20">
+        <Reveal immediate y={16}>
           <p className="text-sub text-ink">Welcome, I&rsquo;m Abdul</p>
 
           <div className="mt-6 flex justify-center">
@@ -23,8 +28,10 @@ export function Hero() {
           <div className="mt-6">
             <RotatingHeadline phrases={headlines} />
           </div>
+        </Reveal>
 
-          <div className="mx-auto mt-14 max-w-2xl border-t border-rule pt-8">
+        <Reveal immediate delay={0.15}>
+          <div className="mx-auto mt-16 max-w-2xl border-t border-rule pt-8">
             <p className="eyebrow text-muted">Get in touch</p>
 
             <ul className="mt-5 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-8">
@@ -51,8 +58,8 @@ export function Hero() {
               ))}
             </ul>
           </div>
-        </div>
-      </Reveal>
+        </Reveal>
+      </div>
     </section>
   );
 }

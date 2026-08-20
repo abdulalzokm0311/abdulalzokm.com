@@ -22,7 +22,7 @@ export default function HomePage() {
       <Hero />
 
       {/* ---------------------------------------------------------------- */}
-      <section id="work" className="shell scroll-mt-24">
+      <section id="work" className="shell scroll-mt-24 pt-24 md:pt-32">
         <Reveal>
           <SectionHeading
             icon="cases"
