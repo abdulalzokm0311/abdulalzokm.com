@@ -14,6 +14,58 @@ export type Metric = {
   label: string;
 };
 
+/**
+ * Per case study colour overrides, so a study can carry the brand of the
+ * product it is about. Every key maps onto one of the design system's CSS
+ * variables, so setting them on the article re-themes the whole template
+ * without touching a single component.
+ *
+ * Anything left unset falls back to the site's own palette.
+ */
+export type ProjectTheme = {
+  accent?: string;
+  accentDeep?: string;
+  surface?: string;
+  surfaceDeep?: string;
+  ink?: string;
+  inkSoft?: string;
+  muted?: string;
+  rule?: string;
+};
+
+const THEME_VARS: Record<keyof ProjectTheme, string> = {
+  accent: "--color-accent",
+  accentDeep: "--color-accent-deep",
+  surface: "--color-surface",
+  surfaceDeep: "--color-surface-deep",
+  ink: "--color-ink",
+  inkSoft: "--color-ink-soft",
+  muted: "--color-muted",
+  rule: "--color-rule",
+};
+
+/** Only plain hex colours are allowed through, since this ends up in a
+ *  stylesheet. Anything else is dropped rather than escaped. */
+const HEX = /^#[0-9a-fA-F]{3,8}$/;
+
+/**
+ * Turn a project's theme into a `:root` declaration block.
+ *
+ * It targets the root rather than a wrapper element so the header and footer
+ * pick the theme up too. A case study reading half in the product's colours
+ * and half in the site's looks like a bug, not like art direction. The rule
+ * is unlayered, so it wins over the layered `@theme` defaults, and it is
+ * removed when the route unmounts.
+ */
+export function themeToCssText(theme: ProjectTheme): string {
+  return Object.entries(THEME_VARS)
+    .map(([key, variable]) => {
+      const value = theme[key as keyof ProjectTheme];
+      return value && HEX.test(value) ? `${variable}:${value};` : "";
+    })
+    .join("");
+}
+
 /** One row of the measured task results table on a case study. */
 export type TaskResult = {
   task: string;
@@ -38,6 +90,7 @@ export type ProjectMeta = {
   tasks: TaskResult[];
   /** Caveat printed under the results table. */
   tasksNote: string;
+  theme: ProjectTheme;
   order: number;
   year: string;
   summary: string;
@@ -75,6 +128,7 @@ function parseFile(filename: string): Project {
     context: String(data.context ?? ""),
     tasks: (data.tasks as TaskResult[]) ?? [],
     tasksNote: String(data.tasksNote ?? ""),
+    theme: (data.theme as ProjectTheme) ?? {},
     order: Number(data.order ?? 999),
     year: String(data.year ?? ""),
     summary: String(data.summary ?? ""),

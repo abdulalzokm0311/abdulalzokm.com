@@ -6,7 +6,12 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { Icon } from "@/components/Icon";
 import { ImageSlot } from "@/components/ImageSlot";
 import { mdxComponents } from "@/components/case-study/mdx";
-import { getAdjacentProjects, getAllProjects, getProject } from "@/lib/projects";
+import {
+  getAdjacentProjects,
+  getAllProjects,
+  getProject,
+  themeToCssText,
+} from "@/lib/projects";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -48,9 +53,15 @@ export default async function CaseStudyPage({ params }: Params) {
   if (!project) notFound();
 
   const { next } = getAdjacentProjects(slug);
+  const themeCss = themeToCssText(project.theme);
 
   return (
     <article>
+      {/* Re-points the design system's variables at the product's palette for
+          the duration of this route, header and footer included. */}
+      {themeCss ? (
+        <style dangerouslySetInnerHTML={{ __html: `:root{${themeCss}}` }} />
+      ) : null}
       {/* Title block. Carries the hero tint so the study opens on a surface
           rather than starting cold on white. */}
       <header className="bg-surface">
