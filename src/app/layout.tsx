@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Instrument_Serif, Inter, JetBrains_Mono } from "next/font/google";
+import { Afacad, Rubik } from "next/font/google";
 
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -8,26 +8,20 @@ import { site } from "@/content/site";
 
 import "./globals.css";
 
-/* Display serif. Instrument Serif ships a single weight, which is the point:
-   it keeps the display voice consistent everywhere it appears. */
-const instrumentSerif = Instrument_Serif({
+/* Headings. Afacad is a warm humanist face that holds up at 56px in the hero
+   and at 20px on a card, which is why it carries every heading on the site. */
+const afacad = Afacad({
   subsets: ["latin"],
-  weight: "400",
-  variable: "--font-instrument-serif",
+  variable: "--font-afacad",
   display: "swap",
 });
 
-const inter = Inter({
+/* Everything else. Rubik runs light (300) as body copy and steps up to 500
+   for eyebrows, tags and UI. */
+const rubik = Rubik({
   subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-/* Mono carries the drafting-set annotation voice: section labels, metrics,
-   dates, anything that reads like a callout on a drawing. */
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
+  weight: ["300", "400", "500"],
+  variable: "--font-rubik",
   display: "swap",
 });
 
@@ -70,7 +64,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#faf7f2",
+  themeColor: "#ffffff",
   colorScheme: "light",
 };
 
@@ -82,9 +76,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${instrumentSerif.variable} ${inter.variable} ${jetbrainsMono.variable}`}
+      className={`${afacad.variable} ${rubik.variable}`}
     >
-      <body className="min-h-dvh bg-paper text-ink antialiased">
+      <body className="min-h-dvh bg-paper antialiased">
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-sm focus:bg-ink focus:px-4 focus:py-2 focus:text-paper"

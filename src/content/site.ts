@@ -45,5 +45,18 @@ export const tools = [
   "Illustrator",
 ] as const;
 
-/** Feeds the greeting ticker under the hero. */
+/** Feeds the greeting ticker. */
 export const greetings = ["HI", "BONJOUR"] as const;
+
+/**
+ * The hero headline cycles through these. The first one is the fallback shown
+ * when motion is reduced, so keep the strongest line first.
+ * TODO (Abdul): reword these in your own voice, they set the tone of the site.
+ */
+export const headlines = [
+  "I am a product designer",
+  "I think like an architect",
+  "I turn complex flows into clear ones",
+  "I have 5+ years of design thinking experience",
+  "I am available for hire",
+] as const;

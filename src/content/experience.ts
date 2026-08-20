@@ -1,67 +1,46 @@
-/**
- * TODO (Abdul): the `summary` and `highlights` lines below are deliberately
- * plain placeholders written from your role titles alone. Replace them with
- * your real resume bullets. Everything else (titles, orgs, dates) is correct.
- */
+/** Roles and copy carried over from the live Framer site. */
 
 export type Role = {
   company: string;
   title: string;
   start: string;
-  end: string | "Present";
+  end: string;
   location?: string;
   summary: string;
-  highlights: string[];
 };
 
 export const experience: Role[] = [
   {
-    company: "RBC",
+    company: "RBC Royal Bank of Canada",
     title: "Product Designer",
     start: "Jan 2026",
     end: "Present",
     location: "Toronto, ON",
     summary:
-      "Designing product experiences inside one of Canada's largest banks, working across research, interaction design and design systems.",
-    highlights: [
-      "TODO: replace with a real highlight from this role.",
-      "TODO: replace with a real highlight from this role.",
-    ],
+      "Designed high-traffic public pages across RBC.com for 5M+ monthly visitors, led end-to-end design of a 10-page Partnership Hub, and shipped an award-winning rewards page that grew organic Share of Voice by 12%.",
   },
   {
     company: "Passafund",
     title: "UI/UX Designer",
-    start: "2025",
-    end: "2025",
+    start: "Jan 2025",
+    end: "Aug 2025",
     summary:
-      "Designed a personality assessment feature for a peer-to-peer lending startup, helping lenders judge borrower trustworthiness beyond the credit score.",
-    highlights: [
-      "Defined three assessment goals and mapped them to an end-to-end flow.",
-      "TODO: replace with a real highlight from this role.",
-    ],
+      "Led the design of Passafund's loan application and personality assessment features, improving usability and engagement. Developed a streamlined user flow that reduced completion time and enhanced user retention within the first six months.",
   },
   {
     company: "Cita Marketplace",
     title: "UI/UX Designer",
-    start: "2024",
-    end: "2024",
+    start: "May 2024",
+    end: "Aug 2024",
     summary:
-      "Worked on marketplace interface and experience design, from early exploration through to handoff.",
-    highlights: [
-      "TODO: replace with a real highlight from this role.",
-      "TODO: replace with a real highlight from this role.",
-    ],
+      "Redesigned the platform to improve navigation and buyer-seller interactions. Introduced intuitive layout changes and refined visual hierarchy, resulting in faster user task completion and increased engagement across key features.",
   },
   {
     company: "Matthew House",
     title: "Designer",
-    start: "2023",
-    end: "2024",
+    start: "Sep 2023",
+    end: "Mar 2024",
     summary:
-      "Design work supporting a Toronto non-profit, spanning visual and communication design.",
-    highlights: [
-      "TODO: replace with a real highlight from this role.",
-      "TODO: replace with a real highlight from this role.",
-    ],
+      "Developed visual materials and spatial layouts to enhance community spaces for refugee housing. Collaborated with staff to create user-centered designs that improved comfort, accessibility, and overall resident experience.",
   },
 ];

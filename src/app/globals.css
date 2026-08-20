@@ -3,51 +3,54 @@
 /* ---------------------------------------------------------------------------
    Design tokens. This is the whole visual system in one place.
    Change a value here and it propagates everywhere. Tailwind v4 turns each
-   token into a utility automatically: --color-ink becomes text-ink, bg-ink, etc.
+   token into a utility automatically: --color-ink becomes text-ink, bg-ink,
+   --radius-card becomes rounded-card, and so on.
    --------------------------------------------------------------------------- */
 @theme {
-  /* Surfaces and ink. Warm cream paper, near-black ink. */
-  --color-paper: #faf7f2;
-  --color-paper-alt: #f3efe7;
-  --color-ink: #141312;
-  --color-ink-soft: #4a453e;
-  --color-muted: #8a8378;
-  --color-rule: #e3ddd2;
+  /* Surfaces. The page is white; content sits on soft tinted blocks. */
+  --color-paper: #ffffff;
+  --color-surface: #f4f1f1;
+  --color-surface-deep: #ebe6e6;
 
-  /* Redline oxide. Architects mark up drawings in this colour.
-     Used sparingly: focus rings, active states, the odd underline. */
-  --color-accent: #9a4a2f;
+  /* Ink. */
+  --color-ink: #121212;
+  --color-ink-soft: #505050;
+  --color-muted: #757575;
+  --color-rule: #e6e1e1;
 
-  /* Typefaces. The --font-* vars on the right are injected by next/font
-     in src/app/layout.tsx. */
-  --font-display: var(--font-instrument-serif), ui-serif, Georgia, serif;
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
+  /* The brand red, carried over from the Framer site. This is the site's
+     voice: eyebrows, tags, metrics, icons, the footer. */
+  --color-accent: #8a1212;
+  --color-accent-deep: #5e0c0c;
+  --color-accent-pale: #ecd9d9;
 
-  /* Fluid type scale. Sizes interpolate with the viewport, so there are
-     almost no per-breakpoint font-size overrides anywhere in the codebase. */
-  --text-display: clamp(3rem, 12.5vw, 11rem);
-  --text-display--line-height: 0.88;
-  --text-display--letter-spacing: -0.03em;
+  /* Typefaces, injected by next/font in src/app/layout.tsx.
+     Afacad carries every heading. Rubik carries everything else. */
+  --font-display: var(--font-afacad), ui-serif, Georgia, serif;
+  --font-sans: var(--font-rubik), ui-sans-serif, system-ui, -apple-system, sans-serif;
 
-  --text-h1: clamp(2.25rem, 5.5vw, 4.25rem);
-  --text-h1--line-height: 1.02;
-  --text-h1--letter-spacing: -0.025em;
+  /* Corner radii. Soft, generous, consistent. */
+  --radius-card: 1.5rem;
+  --radius-block: 2.5rem;
+  --radius-hero: 4rem;
 
-  --text-h2: clamp(1.875rem, 3.8vw, 3rem);
-  --text-h2--line-height: 1.06;
-  --text-h2--letter-spacing: -0.02em;
+  /* Type scale. Fluid, so there are almost no per-breakpoint font-size
+     overrides anywhere in the codebase. */
+  --text-hero: clamp(2.25rem, 5vw, 3.5rem);
+  --text-hero--line-height: 1.15;
 
-  --text-h3: clamp(1.375rem, 2.2vw, 1.875rem);
-  --text-h3--line-height: 1.15;
-  --text-h3--letter-spacing: -0.015em;
+  --text-section: clamp(1.75rem, 3.2vw, 2.375rem);
+  --text-section--line-height: 1.2;
 
-  --text-lead: clamp(1.0625rem, 1.5vw, 1.375rem);
-  --text-lead--line-height: 1.5;
+  --text-card: clamp(1.5rem, 2.6vw, 2.125rem);
+  --text-card--line-height: 1.2;
 
-  --text-label: 0.6875rem;
-  --text-label--line-height: 1;
-  --text-label--letter-spacing: 0.14em;
+  --text-sub: 1.25rem;
+  --text-sub--line-height: 1.35;
+
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--line-height: 1;
+  --text-eyebrow--letter-spacing: 0.1em;
 
   /* Marquee tickers. Duration is overridden per-instance via --marquee-duration. */
   --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
@@ -74,32 +77,36 @@
 
   body {
     background-color: var(--color-paper);
-    color: var(--color-ink);
+    color: var(--color-ink-soft);
     font-family: var(--font-sans);
-    font-size: 1.0625rem;
-    line-height: 1.6;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+  }
+
+  /* Headings sit in Afacad at medium weight, sentence case. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    color: var(--color-ink);
+    line-height: 1.2;
   }
 
   /* Visible, high contrast, and consistent. Never remove this. */
   :focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 3px;
-    border-radius: 2px;
+    border-radius: 4px;
   }
 
   ::selection {
-    background-color: var(--color-ink);
+    background-color: var(--color-accent);
     color: var(--color-paper);
-  }
-
-  /* Headings default to the display serif; body copy stays in the grotesk. */
-  h1,
-  h2,
-  h3 {
-    font-family: var(--font-display);
-    font-weight: 400;
   }
 
   hr {
@@ -112,29 +119,25 @@
    Two utilities used often enough to earn a name.
    --------------------------------------------------------------------------- */
 @utility shell {
-  /* The page gutter. Every section sits inside one of these. */
+  /* The page column. Every section sits inside one of these. */
   width: 100%;
-  max-width: 82rem;
+  max-width: 75rem; /* 1200px */
   margin-inline: auto;
-  padding-inline: 1.5rem;
+  padding-inline: 1.25rem;
 
   @media (width >= 48rem) {
-    padding-inline: 2.5rem;
-  }
-
-  @media (width >= 80rem) {
-    padding-inline: 4rem;
+    padding-inline: 2rem;
   }
 }
 
-@utility label {
-  /* Small mono annotation, the drafting-set voice of the design system. */
-  font-family: var(--font-mono);
-  font-size: var(--text-label);
-  letter-spacing: var(--text-label--letter-spacing);
+@utility eyebrow {
+  /* Small uppercase label above a heading, or on a tag chip. */
+  font-family: var(--font-sans);
+  font-size: var(--text-eyebrow);
+  font-weight: 500;
+  letter-spacing: var(--text-eyebrow--letter-spacing);
   line-height: 1;
   text-transform: uppercase;
-  color: var(--color-muted);
 }
 
 /* ---------------------------------------------------------------------------

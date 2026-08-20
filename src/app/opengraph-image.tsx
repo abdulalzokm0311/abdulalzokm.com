@@ -24,8 +24,8 @@ export default function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          backgroundColor: "#faf7f2",
-          color: "#141312",
+          backgroundColor: "#ffffff",
+          color: "#121212",
           padding: "72px",
           fontFamily: "sans-serif",
         }}
@@ -37,7 +37,7 @@ export default function OpengraphImage() {
             fontSize: 22,
             letterSpacing: "0.14em",
             textTransform: "uppercase",
-            color: "#8a8378",
+            color: "#757575",
           }}
         >
           <span>{site.role}</span>
@@ -47,10 +47,9 @@ export default function OpengraphImage() {
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div
             style={{
-              fontSize: 148,
-              lineHeight: 0.9,
-              letterSpacing: "-0.03em",
-              textTransform: "uppercase",
+              fontSize: 132,
+              lineHeight: 1,
+              letterSpacing: "-0.02em",
               display: "flex",
               flexDirection: "column",
             }}
@@ -62,13 +61,13 @@ export default function OpengraphImage() {
             style={{
               height: 6,
               width: 180,
-              backgroundColor: "#9a4a2f",
+              backgroundColor: "#8a1212",
               marginTop: 40,
             }}
           />
         </div>
 
-        <div style={{ display: "flex", fontSize: 28, color: "#4a453e" }}>
+        <div style={{ display: "flex", fontSize: 28, color: "#505050" }}>
           Blending creativity and strategy to design products people love.
         </div>
       </div>

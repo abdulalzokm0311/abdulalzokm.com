@@ -59,14 +59,14 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 bg-paper/85 backdrop-blur-md transition-colors duration-300",
+        "sticky top-0 z-50 bg-paper/90 backdrop-blur-md transition-colors duration-300",
         scrolled ? "border-b border-rule" : "border-b border-transparent",
       )}
     >
       <div className="shell flex h-16 items-center justify-between gap-6 md:h-20">
         <Link
           href="/"
-          className="font-mono text-label uppercase tracking-[0.14em] text-ink transition-opacity hover:opacity-60"
+          className="font-display text-2xl leading-none text-ink transition-colors hover:text-accent"
         >
           {site.name}
         </Link>
@@ -80,15 +80,17 @@ export function SiteHeader() {
                   href={item.href}
                   aria-current={isActive(pathname, item.href) ? "page" : undefined}
                   className={cn(
-                    "relative py-1 text-sm transition-colors hover:text-ink",
-                    isActive(pathname, item.href) ? "text-ink" : "text-ink-soft",
+                    "relative py-1 text-sm transition-colors hover:text-accent",
+                    isActive(pathname, item.href)
+                      ? "text-accent"
+                      : "text-ink-soft",
                   )}
                 >
                   {item.label}
                   {isActive(pathname, item.href) ? (
                     <span
                       aria-hidden
-                      className="absolute -bottom-0.5 left-0 h-px w-full bg-accent"
+                      className="absolute -bottom-1 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-accent"
                     />
                   ) : null}
                 </Link>
@@ -103,7 +105,7 @@ export function SiteHeader() {
                   href={item.href}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="group inline-flex items-center gap-1 text-sm text-ink-soft transition-colors hover:text-ink"
+                  className="group inline-flex items-center gap-1 text-sm text-ink-soft transition-colors hover:text-accent"
                 >
                   {item.label}
                   <span
@@ -126,7 +128,7 @@ export function SiteHeader() {
           onClick={() => setOpen((value) => !value)}
           aria-expanded={open}
           aria-controls="mobile-menu"
-          className="label -mr-2 p-2 text-ink md:hidden"
+          className="eyebrow -mr-2 p-2 text-ink md:hidden"
         >
           {open ? "Close" : "Menu"}
         </button>
@@ -154,9 +156,9 @@ export function SiteHeader() {
                       aria-current={
                         isActive(pathname, item.href) ? "page" : undefined
                       }
-                      className="flex items-baseline gap-4 py-4 font-display text-h3"
+                      className="flex items-baseline gap-4 py-4 font-display text-3xl"
                     >
-                      <span className="label w-6 shrink-0">
+                      <span className="eyebrow w-6 shrink-0 text-muted">
                         {String(index + 1).padStart(2, "0")}
                       </span>
                       <span

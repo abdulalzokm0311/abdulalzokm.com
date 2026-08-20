@@ -16,6 +16,8 @@ type ImageSlotProps = {
   sizes?: string;
   /** Only for the largest above-the-fold image on a page. */
   priority?: boolean;
+  /** Drop the descriptive text in the placeholder. For slots too small to fit it. */
+  compact?: boolean;
   className?: string;
 };
 
@@ -32,6 +34,7 @@ export function ImageSlot({
   aspect = "16/9",
   sizes = "100vw",
   priority = false,
+  compact = false,
   className,
 }: ImageSlotProps) {
   if (!src) {
@@ -39,7 +42,7 @@ export function ImageSlot({
       <div
         style={{ aspectRatio: aspect }}
         className={cn(
-          "relative flex w-full items-center justify-center overflow-hidden rounded-sm border border-dashed border-rule bg-paper-alt p-6",
+          "relative flex w-full items-center justify-center overflow-hidden rounded-card border border-dashed border-rule bg-surface-deep p-3 sm:p-6",
           className,
         )}
       >
@@ -53,10 +56,12 @@ export function ImageSlot({
           }}
         />
         <span className="relative max-w-sm text-center">
-          <span className="label block text-accent">Image slot</span>
-          <span className="mt-2 block font-mono text-xs leading-relaxed text-ink-soft">
-            {alt}
-          </span>
+          <span className="eyebrow block text-accent">Image slot</span>
+          {compact ? null : (
+            <span className="mt-2 block text-xs leading-relaxed text-ink-soft">
+              {alt}
+            </span>
+          )}
         </span>
       </div>
     );
@@ -66,7 +71,7 @@ export function ImageSlot({
     <div
       style={{ aspectRatio: aspect }}
       className={cn(
-        "relative w-full overflow-hidden rounded-sm bg-paper-alt",
+        "relative w-full overflow-hidden rounded-card bg-surface-deep",
         className,
       )}
     >
