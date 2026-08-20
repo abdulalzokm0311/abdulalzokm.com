@@ -14,10 +14,30 @@ export type Metric = {
   label: string;
 };
 
+/** One row of the measured task results table on a case study. */
+export type TaskResult = {
+  task: string;
+  result: string;
+  /** Optional qualifier, e.g. "partial". Rendered quieter than the result. */
+  note?: string;
+};
+
 export type ProjectMeta = {
   slug: string;
+  /** Card title on the home grid and index. */
   title: string;
+  /** The case study page's own title. Falls back to `title`. */
+  headline: string;
   shortTitle: string;
+  /** Who the work was for. */
+  client: string;
+  /** Who else was on it. Empty string for solo work. */
+  team: string;
+  /** Where the work happened: a course, a company, a client engagement. */
+  context: string;
+  tasks: TaskResult[];
+  /** Caveat printed under the results table. */
+  tasksNote: string;
   order: number;
   year: string;
   summary: string;
@@ -48,7 +68,13 @@ function parseFile(filename: string): Project {
   return {
     slug,
     title: String(data.title ?? slug),
+    headline: String(data.headline ?? data.title ?? slug),
     shortTitle: String(data.shortTitle ?? data.title ?? slug),
+    client: String(data.client ?? ""),
+    team: String(data.team ?? ""),
+    context: String(data.context ?? ""),
+    tasks: (data.tasks as TaskResult[]) ?? [],
+    tasksNote: String(data.tasksNote ?? ""),
     order: Number(data.order ?? 999),
     year: String(data.year ?? ""),
     summary: String(data.summary ?? ""),
