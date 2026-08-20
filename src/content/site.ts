@@ -1,0 +1,49 @@
+/**
+ * Single source of truth for identity, nav and links.
+ * Change it here, it changes everywhere: nav, footer, contact page, metadata.
+ */
+
+export const site = {
+  name: "Abdul Alzokm",
+  role: "Product Designer",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://abdulalzokm.com",
+  description:
+    "Abdul Alzokm is a Product Designer with an architecture background, blending creativity and strategy to design products people love.",
+  email: "abdulalzokm@gmail.com",
+  location: "Toronto / Oakville, ON",
+  intro:
+    "I'm Abdul Alzokm, a Product Designer that blends creativity and strategy to design products people love. Built on 5+ years of design thinking experience.",
+} as const;
+
+export const nav = [
+  { label: "About", href: "/about" },
+  { label: "Projects", href: "/projects" },
+  { label: "Experience", href: "/experience" },
+  { label: "Education", href: "/education" },
+  { label: "UX Vision", href: "/vision" },
+  { label: "Contact", href: "/contact" },
+] as const;
+
+export const links = {
+  linkedin: "https://www.linkedin.com/in/abdul-alzokm/",
+  resume:
+    "https://drive.google.com/file/d/12NFKVMsmmlJpeCgSX9fK9QDI6Aqg0r9c/view",
+  email: `mailto:${site.email}`,
+} as const;
+
+/** External links surfaced next to the nav on desktop and inside the mobile menu. */
+export const externalNav = [
+  { label: "Resume", href: links.resume },
+  { label: "LinkedIn", href: links.linkedin },
+] as const;
+
+/** Feeds the tools ticker on the home page and the experience page. */
+export const tools = [
+  "Figma",
+  "Photoshop",
+  "FigJam",
+  "Illustrator",
+] as const;
+
+/** Feeds the greeting ticker under the hero. */
+export const greetings = ["HI", "BONJOUR"] as const;

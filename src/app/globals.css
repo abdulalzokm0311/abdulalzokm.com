@@ -1,0 +1,157 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Design tokens. This is the whole visual system in one place.
+   Change a value here and it propagates everywhere. Tailwind v4 turns each
+   token into a utility automatically: --color-ink becomes text-ink, bg-ink, etc.
+   --------------------------------------------------------------------------- */
+@theme {
+  /* Surfaces and ink. Warm cream paper, near-black ink. */
+  --color-paper: #faf7f2;
+  --color-paper-alt: #f3efe7;
+  --color-ink: #141312;
+  --color-ink-soft: #4a453e;
+  --color-muted: #8a8378;
+  --color-rule: #e3ddd2;
+
+  /* Redline oxide. Architects mark up drawings in this colour.
+     Used sparingly: focus rings, active states, the odd underline. */
+  --color-accent: #9a4a2f;
+
+  /* Typefaces. The --font-* vars on the right are injected by next/font
+     in src/app/layout.tsx. */
+  --font-display: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
+
+  /* Fluid type scale. Sizes interpolate with the viewport, so there are
+     almost no per-breakpoint font-size overrides anywhere in the codebase. */
+  --text-display: clamp(3rem, 12.5vw, 11rem);
+  --text-display--line-height: 0.88;
+  --text-display--letter-spacing: -0.03em;
+
+  --text-h1: clamp(2.25rem, 5.5vw, 4.25rem);
+  --text-h1--line-height: 1.02;
+  --text-h1--letter-spacing: -0.025em;
+
+  --text-h2: clamp(1.875rem, 3.8vw, 3rem);
+  --text-h2--line-height: 1.06;
+  --text-h2--letter-spacing: -0.02em;
+
+  --text-h3: clamp(1.375rem, 2.2vw, 1.875rem);
+  --text-h3--line-height: 1.15;
+  --text-h3--letter-spacing: -0.015em;
+
+  --text-lead: clamp(1.0625rem, 1.5vw, 1.375rem);
+  --text-lead--line-height: 1.5;
+
+  --text-label: 0.6875rem;
+  --text-label--line-height: 1;
+  --text-label--letter-spacing: 0.14em;
+
+  /* Marquee tickers. Duration is overridden per-instance via --marquee-duration. */
+  --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* The track renders its content twice, so travelling exactly -50% loops seamlessly. */
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+   --------------------------------------------------------------------------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Visible, high contrast, and consistent. Never remove this. */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  /* Headings default to the display serif; body copy stays in the grotesk. */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid var(--color-rule);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Two utilities used often enough to earn a name.
+   --------------------------------------------------------------------------- */
+@utility shell {
+  /* The page gutter. Every section sits inside one of these. */
+  width: 100%;
+  max-width: 82rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+
+  @media (width >= 48rem) {
+    padding-inline: 2.5rem;
+  }
+
+  @media (width >= 80rem) {
+    padding-inline: 4rem;
+  }
+}
+
+@utility label {
+  /* Small mono annotation, the drafting-set voice of the design system. */
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--text-label--letter-spacing);
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* ---------------------------------------------------------------------------
+   Reduced motion. Framer Motion components also check useReducedMotion()
+   in JS, but this is the backstop that catches CSS animation too.
+   --------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
