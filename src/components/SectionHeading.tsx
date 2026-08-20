@@ -1,24 +1,21 @@
-import { Icon, type IconName } from "@/components/Icon";
 import { cn } from "@/lib/utils";
 
 /**
- * The section opener used across the site:
+ * The section opener:
  *
- *   ▣  CASE STUDIES
+ *   CASE STUDIES
  *   What I've designed recently
  *
- * The eyebrow names the section, the heading says something. The icon is
- * decorative and hidden from assistive tech.
+ * The eyebrow names the section, the heading says something. No icon: a small
+ * pictogram beside every label adds nothing the words do not already carry.
  */
 export function SectionHeading({
-  icon,
   eyebrow,
   title,
   description,
   align = "left",
   className,
 }: {
-  icon: IconName;
   eyebrow: string;
   title: string;
   description?: string;
@@ -32,15 +29,7 @@ export function SectionHeading({
         className,
       )}
     >
-      <div
-        className={cn(
-          "flex items-center gap-2",
-          align === "center" && "justify-center",
-        )}
-      >
-        <Icon name={icon} className="h-4 w-4 text-accent" />
-        <p className="eyebrow text-ink">{eyebrow}</p>
-      </div>
+      <p className="eyebrow text-accent">{eyebrow}</p>
 
       <h2 className="text-section mt-4">{title}</h2>
 

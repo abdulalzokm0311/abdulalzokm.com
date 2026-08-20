@@ -25,7 +25,6 @@ export default function HomePage() {
       <section id="work" className="shell scroll-mt-24 pt-24 md:pt-32">
         <Reveal>
           <SectionHeading
-            icon="cases"
             eyebrow="Case studies"
             title="What I've designed recently"
             align="center"
@@ -69,7 +68,6 @@ export default function HomePage() {
 
           <Reveal delay={0.08} className="md:col-span-7">
             <SectionHeading
-              icon="user"
               eyebrow="About"
               title="A product designer who thinks like an architect"
             />
@@ -97,7 +95,6 @@ export default function HomePage() {
       <section className="shell pt-24 md:pt-32">
         <Reveal>
           <SectionHeading
-            icon="work"
             eyebrow="Experience"
             title="Where I've worked"
             align="center"
@@ -138,7 +135,6 @@ export default function HomePage() {
       <section className="shell pt-24 md:pt-32">
         <Reveal>
           <SectionHeading
-            icon="school"
             eyebrow="Education"
             title="Where I trained"
             align="center"
@@ -171,11 +167,7 @@ export default function HomePage() {
       <section className="shell pt-24 md:pt-32">
         <Reveal>
           <div className="rounded-block bg-surface px-6 py-16 text-center md:py-20">
-            <div className="flex justify-center">
-              <Icon name="sparkle" className="h-6 w-6 text-accent" />
-            </div>
-
-            <h2 className="text-section mx-auto mt-6 max-w-2xl text-balance">
+            <h2 className="text-section mx-auto max-w-2xl text-balance">
               Looking to start a project? Feel free to contact me.
             </h2>
 

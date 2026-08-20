@@ -57,6 +57,7 @@ export const headlines = [
   "I am a product designer",
   "I think like an architect",
   "I turn complex flows into clear ones",
-  "I have 5+ years of design thinking experience",
-  "I am available for hire",
+  "I was previously an architect",
+  "I love video games and anime",
+  "I play volleyball and tennis",
 ] as const;

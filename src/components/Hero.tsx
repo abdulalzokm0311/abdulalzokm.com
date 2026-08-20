@@ -11,53 +11,54 @@ const contactItems = [
 
 /**
  * Full bleed and full screen. The tint runs edge to edge rather than sitting
- * inside a rounded panel, so the first screen reads as the page itself rather
- * than as a card placed on it.
+ * inside a rounded panel, so the first screen reads as the page itself.
+ *
+ * The greeting and headline sit centred in the optical middle; the contact
+ * details are pinned to the bottom left of the same screen, so everything
+ * needed to reach Abdul is above the fold without a call to action.
  */
 export function Hero() {
   return (
     <section className="bg-surface">
-      <div className="shell flex min-h-[calc(100dvh-4rem)] flex-col justify-center py-16 text-center md:min-h-[calc(100dvh-5rem)] md:py-20">
-        <Reveal immediate y={16}>
+      <div className="shell flex min-h-[calc(100dvh-4rem)] flex-col py-14 md:min-h-[calc(100dvh-5rem)] md:py-16">
+        <Reveal
+          immediate
+          y={16}
+          className="flex flex-1 flex-col justify-center text-center"
+        >
           <p className="text-sub text-ink">Welcome, I&rsquo;m Abdul</p>
 
-          <div className="mt-6 flex justify-center">
-            <Icon name="sparkle" className="h-6 w-6 text-accent" />
-          </div>
-
-          <div className="mt-6">
+          <div className="mt-8">
             <RotatingHeadline phrases={headlines} />
           </div>
         </Reveal>
 
-        <Reveal immediate delay={0.15}>
-          <div className="mx-auto mt-16 max-w-2xl border-t border-rule pt-8">
-            <p className="eyebrow text-muted">Get in touch</p>
+        <Reveal immediate delay={0.15} className="mt-10">
+          <p className="eyebrow text-muted">Get in touch</p>
 
-            <ul className="mt-5 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-8">
-              {contactItems.map((item) => (
-                <li key={item.label}>
-                  {item.href ? (
-                    <a
-                      href={item.href}
-                      {...(item.href.startsWith("http")
-                        ? { target: "_blank", rel: "noreferrer noopener" }
-                        : {})}
-                      className="flex items-center gap-2 text-sm text-ink transition-colors hover:text-accent"
-                    >
-                      <Icon name={item.icon} className="h-4 w-4 text-accent" />
-                      {item.label}
-                    </a>
-                  ) : (
-                    <span className="flex items-center gap-2 text-sm text-ink">
-                      <Icon name={item.icon} className="h-4 w-4 text-accent" />
-                      {item.label}
-                    </span>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ul className="mt-5 flex flex-col gap-3 sm:flex-row sm:gap-8">
+            {contactItems.map((item) => (
+              <li key={item.label}>
+                {item.href ? (
+                  <a
+                    href={item.href}
+                    {...(item.href.startsWith("http")
+                      ? { target: "_blank", rel: "noreferrer noopener" }
+                      : {})}
+                    className="flex items-center gap-2 text-sm text-ink transition-colors hover:text-accent"
+                  >
+                    <Icon name={item.icon} className="h-4 w-4 text-accent" />
+                    {item.label}
+                  </a>
+                ) : (
+                  <span className="flex items-center gap-2 text-sm text-ink">
+                    <Icon name={item.icon} className="h-4 w-4 text-accent" />
+                    {item.label}
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
         </Reveal>
       </div>
     </section>

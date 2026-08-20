@@ -6,10 +6,13 @@ import { useEffect, useState } from "react";
 /**
  * Cycles the hero headline.
  *
- * The phrases crossfade rather than swapping one-at-a-time, so the line is
- * never blank mid-transition. Both copies are absolutely positioned inside a
- * container whose height is reserved for the longest phrase, which also keeps
- * the page from jogging on every cycle.
+ * One phrase at a time: the outgoing line finishes leaving before the next
+ * arrives. Crossfading them looked fine when the phrases were similar lengths
+ * and turned into overlapping text once they were not. The transitions are
+ * kept short so the gap between phrases is not noticeable.
+ *
+ * Both copies are absolutely positioned inside a container whose height is
+ * reserved for the longest phrase, so the page does not jog on every cycle.
  *
  * Accessibility: the full list is exposed once as static text for screen
  * readers, and the animating copy is hidden from them. A live region that
@@ -37,7 +40,7 @@ export function RotatingHeadline({
   }, [phrases.length, interval, reduceMotion]);
 
   return (
-    <h1 className="text-hero relative mx-auto min-h-[3.6em] max-w-4xl sm:min-h-[2.4em]">
+    <h1 className="text-hero relative mx-auto min-h-[3.6em] max-w-4xl font-normal sm:min-h-[2.4em]">
       <span className="sr-only">{phrases.join(". ")}.</span>
 
       {reduceMotion ? (
@@ -45,7 +48,7 @@ export function RotatingHeadline({
           {phrases[0]}
         </span>
       ) : (
-        <AnimatePresence initial={false}>
+        <AnimatePresence mode="wait" initial={false}>
           <motion.span
             aria-hidden
             key={index}
@@ -53,7 +56,7 @@ export function RotatingHeadline({
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
           >
             {phrases[index]}
           </motion.span>

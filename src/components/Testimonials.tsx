@@ -12,7 +12,6 @@ export function Testimonials() {
     <section className="shell pt-24 md:pt-32">
       <Reveal>
         <SectionHeading
-          icon="quote"
           eyebrow="References"
           title="What the people I've worked with say"
           align="center"
