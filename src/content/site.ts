@@ -16,12 +16,9 @@ export const site = {
 } as const;
 
 export const nav = [
+  { label: "Home", href: "/" },
+  { label: "Case Studies", href: "/projects" },
   { label: "About", href: "/about" },
-  { label: "Projects", href: "/projects" },
-  { label: "Experience", href: "/experience" },
-  { label: "Education", href: "/education" },
-  { label: "UX Vision", href: "/vision" },
-  { label: "Contact", href: "/contact" },
 ] as const;
 
 export const links = {
@@ -33,6 +30,24 @@ export const links = {
 
 /** External links surfaced next to the nav on desktop and inside the mobile menu. */
 export const externalNav = [
+  { label: "Resume", href: links.resume },
+] as const;
+
+/**
+ * The footer carries every page, including the ones kept out of the header to
+ * keep it short. These pages are still routed and still indexed.
+ */
+export const footerNav = [
+  { label: "Home", href: "/" },
+  { label: "Case Studies", href: "/projects" },
+  { label: "About", href: "/about" },
+  { label: "Experience", href: "/experience" },
+  { label: "Education", href: "/education" },
+  { label: "UX Vision", href: "/vision" },
+  { label: "Contact", href: "/contact" },
+] as const;
+
+export const footerExternal = [
   { label: "Resume", href: links.resume },
   { label: "LinkedIn", href: links.linkedin },
 ] as const;
@@ -55,7 +70,6 @@ export const greetings = ["HI", "BONJOUR"] as const;
  */
 export const headlines = [
   "I am a product designer",
-  "I think like an architect",
   "I turn complex flows into clear ones",
   "I was previously an architect",
   "I love video games and anime",

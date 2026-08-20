@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { Icon } from "@/components/Icon";
-import { externalNav, links, nav, site } from "@/content/site";
+import { footerExternal, footerNav, links, site } from "@/content/site";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -55,7 +55,7 @@ export function SiteFooter() {
               <div>
                 <p className="eyebrow text-accent-pale">Site</p>
                 <ul className="mt-5 flex flex-col gap-3">
-                  {nav.map((item) => (
+                  {footerNav.map((item) => (
                     <li key={item.href}>
                       <Link
                         href={item.href}
@@ -71,7 +71,7 @@ export function SiteFooter() {
               <div>
                 <p className="eyebrow text-accent-pale">Elsewhere</p>
                 <ul className="mt-5 flex flex-col gap-3">
-                  {externalNav.map((item) => (
+                  {footerExternal.map((item) => (
                     <li key={item.href}>
                       <a
                         href={item.href}

@@ -40,7 +40,7 @@ export function RotatingHeadline({
   }, [phrases.length, interval, reduceMotion]);
 
   return (
-    <h1 className="text-hero relative mx-auto min-h-[3.6em] max-w-4xl font-normal sm:min-h-[2.4em]">
+    <h1 className="text-hero relative mx-auto min-h-[2.7em] max-w-4xl font-normal sm:min-h-[1.4em]">
       <span className="sr-only">{phrases.join(". ")}.</span>
 
       {reduceMotion ? (

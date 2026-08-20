@@ -36,8 +36,10 @@
 
   /* Type scale. Fluid, so there are almost no per-breakpoint font-size
      overrides anywhere in the codebase. */
-  --text-hero: clamp(2.25rem, 5vw, 3.5rem);
-  --text-hero--line-height: 1.15;
+  /* The reference sets this at a flat 32px on desktop, not a large fluid
+     display size. Matched, with a slightly smaller floor for narrow screens. */
+  --text-hero: clamp(1.625rem, 3.2vw, 2rem);
+  --text-hero--line-height: 1.25;
 
   --text-section: clamp(1.75rem, 3.2vw, 2.375rem);
   --text-section--line-height: 1.2;

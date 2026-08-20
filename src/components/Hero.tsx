@@ -3,62 +3,69 @@ import { Reveal } from "@/components/Reveal";
 import { RotatingHeadline } from "@/components/RotatingHeadline";
 import { headlines, links, site } from "@/content/site";
 
-const contactItems = [
-  { icon: "mail" as const, label: site.email, href: links.email },
-  { icon: "linkedin" as const, label: "LinkedIn", href: links.linkedin },
-  { icon: "pin" as const, label: site.location, href: undefined },
-];
-
 /**
- * Full bleed and full screen. The tint runs edge to edge rather than sitting
- * inside a rounded panel, so the first screen reads as the page itself.
+ * Full bleed and full screen.
  *
- * The greeting and headline sit centred in the optical middle; the contact
- * details are pinned to the bottom left of the same screen, so everything
- * needed to reach Abdul is above the fold without a call to action.
+ * The greeting and headline sit centred in the optical middle. The contact
+ * details are pinned 24px from the bottom left of the viewport and the
+ * location 24px from the bottom right, matching the reference: this row sits
+ * outside the content column, hard against the page edges rather than inset
+ * with the rest of the page.
  */
 export function Hero() {
   return (
     <section className="bg-surface">
-      <div className="shell flex min-h-[calc(100dvh-4rem)] flex-col py-14 md:min-h-[calc(100dvh-5rem)] md:py-16">
+      <div className="flex min-h-[calc(100dvh-4rem)] flex-col md:min-h-[calc(100dvh-5rem)]">
         <Reveal
           immediate
           y={16}
-          className="flex flex-1 flex-col justify-center text-center"
+          className="shell flex flex-1 flex-col justify-center py-16 text-center"
         >
           <p className="text-sub text-ink">Welcome, I&rsquo;m Abdul</p>
 
-          <div className="mt-8">
+          {/* 11px, measured off the reference. */}
+          <div className="mt-[11px]">
             <RotatingHeadline phrases={headlines} />
           </div>
         </Reveal>
 
-        <Reveal immediate delay={0.15} className="mt-10">
-          <p className="eyebrow text-muted">Get in touch</p>
+        <Reveal
+          immediate
+          delay={0.15}
+          className="flex flex-col gap-5 px-6 pb-6 sm:flex-row sm:items-end sm:justify-between"
+        >
+          <div>
+            <p className="eyebrow text-muted">Get in touch</p>
 
-          <ul className="mt-5 flex flex-col gap-3 sm:flex-row sm:gap-8">
-            {contactItems.map((item) => (
-              <li key={item.label}>
-                {item.href ? (
-                  <a
-                    href={item.href}
-                    {...(item.href.startsWith("http")
-                      ? { target: "_blank", rel: "noreferrer noopener" }
-                      : {})}
-                    className="flex items-center gap-2 text-sm text-ink transition-colors hover:text-accent"
-                  >
-                    <Icon name={item.icon} className="h-4 w-4 text-accent" />
-                    {item.label}
-                  </a>
-                ) : (
-                  <span className="flex items-center gap-2 text-sm text-ink">
-                    <Icon name={item.icon} className="h-4 w-4 text-accent" />
-                    {item.label}
-                  </span>
-                )}
+            <ul className="mt-4 flex flex-col gap-3 sm:flex-row sm:gap-8">
+              <li>
+                <a
+                  href={links.email}
+                  className="flex items-center gap-2 text-sm text-ink transition-colors hover:text-accent"
+                >
+                  <Icon name="mail" className="h-4 w-4 text-accent" />
+                  {site.email}
+                </a>
               </li>
-            ))}
-          </ul>
+              <li>
+                <a
+                  href={links.linkedin}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="flex items-center gap-2 text-sm text-ink transition-colors hover:text-accent"
+                >
+                  <Icon name="linkedin" className="h-4 w-4 text-accent" />
+                  LinkedIn
+                  <span className="sr-only">(opens in a new tab)</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <p className="flex items-center gap-2 text-sm text-ink">
+            <Icon name="pin" className="h-4 w-4 text-accent" />
+            {site.location}
+          </p>
         </Reveal>
       </div>
     </section>

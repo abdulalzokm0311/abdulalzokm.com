@@ -58,9 +58,15 @@ export function SiteHeader() {
 
   return (
     <header
+      /* At the top the bar carries the hero's tint so the two read as one
+         surface. Once the page scrolls onto white content it turns white and
+         picks up a hairline, so the nav stays legible over the work. Solid
+         rather than translucent: nothing needs to show through it. */
       className={cn(
-        "sticky top-0 z-50 bg-paper/90 backdrop-blur-md transition-colors duration-300",
-        scrolled ? "border-b border-rule" : "border-b border-transparent",
+        "sticky top-0 z-50 transition-colors duration-300",
+        scrolled
+          ? "border-b border-rule bg-paper"
+          : "border-b border-transparent bg-surface",
       )}
     >
       <div className="shell flex h-16 items-center justify-between gap-6 md:h-20">
@@ -145,7 +151,7 @@ export function SiteHeader() {
             animate={{ opacity: 1 }}
             exit={reduceMotion ? undefined : { opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto border-t border-rule bg-paper outline-none md:hidden"
+            className="fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto border-t border-rule bg-surface outline-none md:hidden"
           >
             <nav aria-label="Mobile" className="shell py-8">
               <ul className="flex flex-col">
