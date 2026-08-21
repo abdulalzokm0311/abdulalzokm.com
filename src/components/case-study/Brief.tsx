@@ -41,19 +41,23 @@ export function Brief({ project }: { project: Project }) {
           <div className="md:col-span-7">
             <ul className="grid gap-3 sm:grid-cols-2">
               {tasks.map((task) => (
+                /* Fixed minimum height with the label pinned to the bottom,
+                   so tiles read identically whether a label runs to one line
+                   or three. Without it, studies with short labels leave the
+                   number stranded in an empty tile. */
                 <li
                   key={task.task}
-                  className="rounded-card bg-surface-deep p-5 sm:p-6"
+                  className="flex min-h-36 flex-col justify-between rounded-card bg-surface-deep p-5 sm:p-6"
                 >
                   <div className="flex items-baseline gap-2.5">
-                    <span className="font-display text-4xl leading-none text-accent">
+                    <span className="font-display text-5xl leading-none text-accent">
                       {task.result}
                     </span>
                     {task.note ? (
                       <span className="eyebrow text-ink-soft">{task.note}</span>
                     ) : null}
                   </div>
-                  <p className="mt-3 text-xs leading-relaxed text-ink-soft">
+                  <p className="mt-4 text-xs leading-relaxed text-ink-soft">
                     {task.task}
                   </p>
                 </li>
