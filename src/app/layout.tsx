@@ -4,6 +4,7 @@ import { Afacad, Rubik } from "next/font/google";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { PageTransition } from "@/components/PageTransition";
+import { RouteTransitionProvider } from "@/components/transition/RouteTransition";
 import { site } from "@/content/site";
 
 import "./globals.css";
@@ -86,13 +87,15 @@ export default function RootLayout({
           Skip to content
         </a>
 
-        <SiteHeader />
+        <RouteTransitionProvider>
+          <SiteHeader />
 
-        <main id="main" tabIndex={-1} className="outline-none">
-          <PageTransition>{children}</PageTransition>
-        </main>
+          <main id="main" tabIndex={-1} className="outline-none">
+            <PageTransition>{children}</PageTransition>
+          </main>
 
-        <SiteFooter />
+          <SiteFooter />
+        </RouteTransitionProvider>
       </body>
     </html>
   );

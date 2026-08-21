@@ -1,20 +1,15 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { useReducedMotion } from "motion/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useCallback, useRef, useState } from "react";
-import { createPortal } from "react-dom";
+import { useCallback } from "react";
 
 import { Icon } from "@/components/Icon";
 import { ImageSlot } from "@/components/ImageSlot";
 import { cardThemeVars, heroGradient } from "@/lib/project-theme";
 import type { Project } from "@/lib/projects";
+import { useRouteTransition } from "@/components/transition/RouteTransition";
 import { cn } from "@/lib/utils";
-
-const EASE = [0.16, 1, 0.3, 1] as const;
-/** Long enough to read as a morph, short enough not to delay the navigation. */
-const TRANSITION_MS = 460;
 
 /**
  * One case study as a full-width card: media on one side, the story and the
@@ -24,8 +19,9 @@ const TRANSITION_MS = 460;
  * action are the links, so the tags and metrics stay selectable and the tab
  * order stays predictable.
  *
- * On hover it adopts the study's own palette, and on click it expands into
- * that study's title gradient before routing, so the two pages feel joined.
+ * On hover it adopts the study's own palette. On click a panel in that study's
+ * title gradient swipes across the screen and the route changes underneath it,
+ * so the two pages read as continuous.
  */
 export function ProjectCard({
   project,
@@ -38,18 +34,16 @@ export function ProjectCard({
   className?: string;
 }) {
   const href = `/projects/${project.slug}`;
-  const router = useRouter();
   const reduceMotion = useReducedMotion();
-  const articleRef = useRef<HTMLElement>(null);
-  const [origin, setOrigin] = useState<DOMRect | null>(null);
+  const { swipeTo } = useRouteTransition();
 
   const gradient =
-    heroGradient(project.theme) ?? project.theme.accent ?? undefined;
+    heroGradient(project.theme) ??
+    (project.theme.accent ? `linear-gradient(158deg, ${project.theme.accent}, ${project.theme.accent})` : "");
 
   /**
-   * Expand the card into a full-screen panel in the study's gradient, then
-   * navigate. With reduced motion the click is left alone and the link
-   * navigates normally.
+   * Hand off to the layout-level swipe. With reduced motion the click is left
+   * alone and the link navigates normally.
    */
   const handleNavigate = useCallback(
     (event: React.MouseEvent<HTMLAnchorElement>) => {
@@ -66,22 +60,13 @@ export function ProjectCard({
       }
 
       event.preventDefault();
-      const rect = articleRef.current?.getBoundingClientRect();
-      if (!rect) {
-        router.push(href);
-        return;
-      }
-
-      setOrigin(rect);
-      router.prefetch(href);
-      window.setTimeout(() => router.push(href), TRANSITION_MS);
+      swipeTo(href, gradient);
     },
-    [href, reduceMotion, router],
+    [gradient, href, reduceMotion, swipeTo],
   );
 
   return (
     <article
-      ref={articleRef}
       style={cardThemeVars(project.theme)}
       className={cn(
         "theme-hover group grid overflow-hidden rounded-block bg-surface md:grid-cols-2",
@@ -146,25 +131,26 @@ export function ProjectCard({
           ))}
         </dl>
 
-        {/* The fill wipes in from the left on hover, and the arrow hands off
-            to a second copy so it reads as leaving rather than nudging. */}
+        {/* Expands on hover: the pill grows, the fill wipes in from the left,
+            and the arrow hands off to a second copy so it reads as leaving
+            rather than nudging. */}
         <Link
           href={href}
           onClick={handleNavigate}
-          className="group/cta relative mt-8 inline-flex w-fit items-center gap-2.5 overflow-hidden rounded-full border border-rule px-6 py-3.5"
+          className="group/cta relative mt-8 inline-flex w-fit items-center gap-2.5 overflow-hidden rounded-full border border-rule px-6 py-3.5 transition-[padding,border-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:px-9 hover:border-accent focus-visible:px-9 focus-visible:border-accent"
         >
           <span
             aria-hidden
             className="absolute inset-0 origin-left scale-x-0 bg-accent transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/cta:scale-x-100 group-focus-visible/cta:scale-x-100"
           />
 
-          <span className="eyebrow relative text-ink transition-colors duration-300 group-hover/cta:text-paper group-focus-visible/cta:text-paper">
+          <span className="eyebrow relative whitespace-nowrap text-ink transition-colors duration-300 group-hover/cta:text-paper group-focus-visible/cta:text-paper">
             View case study
           </span>
 
           <span
             aria-hidden
-            className="relative block h-4 w-4 overflow-hidden text-ink transition-colors duration-300 group-hover/cta:text-paper group-focus-visible/cta:text-paper"
+            className="relative block h-4 w-4 shrink-0 overflow-hidden text-ink transition-colors duration-300 group-hover/cta:text-paper group-focus-visible/cta:text-paper"
           >
             <Icon
               name="arrow"
@@ -176,59 +162,8 @@ export function ProjectCard({
             />
           </span>
         </Link>
+
       </div>
-
-      <ExpandTransition origin={origin} gradient={gradient} />
     </article>
-  );
-}
-
-/**
- * Grows from the card's on-screen rect to fill the viewport.
- *
- * Portalled to the body because the cards sit inside Reveal's transformed
- * wrapper, and a transformed ancestor makes position: fixed resolve against it
- * rather than the viewport.
- */
-function ExpandTransition({
-  origin,
-  gradient,
-}: {
-  origin: DOMRect | null;
-  gradient?: string;
-}) {
-  if (typeof document === "undefined") return null;
-
-  return createPortal(
-    <AnimatePresence>
-      {origin ? (
-        <motion.div
-          aria-hidden
-          initial={{
-            top: origin.top,
-            left: origin.left,
-            width: origin.width,
-            height: origin.height,
-            borderRadius: 40,
-          }}
-          animate={{
-            top: 0,
-            left: 0,
-            width: "100vw",
-            height: "100vh",
-            borderRadius: 0,
-          }}
-          transition={{ duration: TRANSITION_MS / 1000, ease: EASE }}
-          style={{
-            position: "fixed",
-            zIndex: 60,
-            backgroundImage: gradient,
-            backgroundColor: gradient ? undefined : "var(--color-surface)",
-            pointerEvents: "none",
-          }}
-        />
-      ) : null}
-    </AnimatePresence>,
-    document.body,
   );
 }
