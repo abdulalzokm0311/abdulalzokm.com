@@ -184,6 +184,18 @@
   }
 }
 
+/**
+ * Custom cursor. The class is added by CustomCursor once it mounts, so no-JS
+ * visitors and coarse pointers keep the native cursor. Text fields are left
+ * alone: losing the I-beam in a form is a real usability cost for no gain.
+ */
+@media (pointer: fine) {
+  html.cursor-custom,
+  html.cursor-custom *:not(input):not(textarea):not(select) {
+    cursor: none;
+  }
+}
+
 /* ---------------------------------------------------------------------------
    Reduced motion. Framer Motion components also check useReducedMotion()
    in JS, but this is the backstop that catches CSS animation too.

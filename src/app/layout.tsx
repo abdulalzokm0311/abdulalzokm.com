@@ -3,6 +3,7 @@ import { Afacad, Rubik } from "next/font/google";
 
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { CustomCursor } from "@/components/CustomCursor";
 import { PageTransition } from "@/components/PageTransition";
 import { RouteTransitionProvider } from "@/components/transition/RouteTransition";
 import { site } from "@/content/site";
@@ -86,6 +87,8 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+
+        <CustomCursor />
 
         <RouteTransitionProvider>
           <SiteHeader />
