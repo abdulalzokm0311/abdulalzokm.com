@@ -1,72 +1,192 @@
 ---
 title: "Passafund"
+headline: "Judging a borrower on more than a credit score"
 shortTitle: "Passafund"
+client: "Passafund"
 slug: "passafund"
 order: 4
 year: "2025"
 published: true
-summary: "A personality assessment feature for a P2P lending startup that helps lenders judge borrower trustworthiness beyond the credit score."
-role: "UI/UX Design"
-timeline: "TODO: e.g. 6 weeks, 2025"
-tools: ["Figma", "FigJam"]
-tags: ["Fintech", "Feature Design", "End to End"]
+summary: "A personality assessment feature for a peer-to-peer lending startup, designed to give lenders insight into borrowers that financial history alone does not carry."
+role: "UI/UX Designer, sole designer on the feature"
+team: "Solo"
+timeline: "Internship, 2025"
+context: "Passafund, a peer-to-peer lending startup"
+tools: ["Figma"]
+tags: ["Fintech", "Feature Design", "Survey Research", "Trust and Safety"]
 metrics:
-  - value: "End to end"
-    label: "assessment flow designed"
-  - value: "Beyond credit"
-    label: "signals surfaced to lenders"
-  - value: "3"
-    label: "assessment goals defined"
+  - value: "4"
+    label: "usability findings from the concept survey"
+  - value: "75%"
+    label: "flagged skipped questions as invisible"
+  - value: "68%"
+    label: "flagged the dark blue background as confusing"
+brief:
+  problem: "In peer-to-peer lending a credit score is the whole picture, and it is a thin one. Lenders wanted some read on whether a borrower would actually follow through, and financial history alone does not answer that."
+  approach: "I designed the personality assessment end to end during my internship, then surveyed lenders and borrowers on the existing concept and rebuilt it around what came back."
+tasks:
+  - task: "Usability findings from the concept survey"
+    result: "4"
+  - task: "Flagged skipped questions as not visible"
+    result: "75%"
+  - task: "Flagged the dark blue background as confusing"
+    result: "68%"
+  - task: "Competitor assessment tools benchmarked"
+    result: "4"
+tasksNote: "Internship project. These are findings from a survey on the existing assessment concept, not results from the refined design. A second round of testing was scoped but had not run."
+# Passafund's brand blue, sampled from the product screens at #1375FF. That
+# value is 4.19:1 on white, under AA for small text, so accent sits darker at
+# #094AB2. Worst contrast across all stops and surfaces is 4.70:1.
+theme:
+  paper: "#FFFFFF"
+  gradientFrom: "#EEF4FF"
+  gradientVia: "#D3E3FF"
+  gradientTo: "#AECCFF"
+  accent: "#094AB2"
+  accentDeep: "#073A8C"
+  surface: "#EEF4FF"
+  surfaceDeep: "#DCE9FF"
+  ink: "#0C1A33"
+  inkSoft: "#33425C"
+  muted: "#44546F"
+  rule: "#C9DCFA"
 cover: ""
-coverAlt: "Passafund personality assessment, lender view"
+coverAlt: "Passafund personality assessment, borrower question screen"
 ---
-> **This case study is a scaffold, not a draft.** Everything below is either a
-> fact you gave me or a question for you to answer. Nothing here invents
-> research findings, quotes or outcomes. Delete this note when you fill it in.
 
-A personality assessment feature for a P2P lending startup that helps lenders
-judge borrower trustworthiness beyond the credit score.
+## The trust gap
 
-## Why this feature existed
+Passafund is a fintech startup working on peer-to-peer lending. In that model
+an ordinary person makes a call a bank makes with a whole department behind it,
+and on Passafund they were making it on a credit score and little else.
 
-TODO: what the business was trying to solve, and what lenders were working
-with before. If this came out of a specific complaint or metric, say so.
+A credit score summarises a repayment history well. It says much less about
+whether someone will follow through, which is the thing a lender is actually
+trying to judge. Passafund wanted a behavioural signal to sit alongside the
+financial one.
+
+During my internship I was responsible for the complete design of that
+feature: a personality assessment that gives lenders insight into a borrower
+without pretending to replace the credit score.
+
+## Three ways this could go wrong
+
+A personality test attached to a lending decision is a feature that can do
+real harm if it is designed carelessly. I set the constraints before drawing
+any screens.
+
+<ChangeList
+  items={[
+    { title: "Bias in lending decisions", text: "Results are framed objectively, avoiding loaded labels, and focus on actionable insight that complements financial data rather than replacing it." },
+    { title: "Privacy concerns", text: "Clear communication about how the data is used, and an explicit statement that the assessment is for lender insight only and never visible to other borrowers." },
+    { title: "Complexity of assessment", text: "Intuitive interface, plain language and a streamlined flow, so the assessment does not become a hurdle that borrowers abandon." },
+  ]}
+/>
+
+## Who else tried this
+
+To understand the landscape I analysed several existing personality and
+financial assessments, looking for best practices and for the gap Passafund
+could occupy.
+
+<ChangeList
+  items={[
+    { title: "Sun Life", text: "Educational, aimed at financial literacy. No integration into lending decisions, so it serves self-awareness rather than a lending judgment." },
+    { title: "Discover", text: "Self-awareness and personal financial growth. Like Sun Life, it is built for personal insight, not lender assessment." },
+    { title: "TD Wealth", text: "Maps financial decision-making styles to support advisor conversations. Advisory-focused rather than linked to a lending decision." },
+    { title: "Lenddo", text: "Uses alternative external data, social media and online behaviour, for creditworthiness where traditional systems are thin. Passafund's assessment is more introspective, evaluating traits that shape financial behaviour." },
+  ]}
+/>
+
+Plenty of financial personality quizzes exist. None are wired into a lending
+decision the way Passafund intended. That was the opportunity, and also the
+warning: an assessment nobody else attempts in this context needs to be read
+as an objective tool rather than a subjective hurdle.
+
+## What the survey said
+
+I built a survey and sent it to potential users, both lenders and borrowers,
+who had used a preliminary prototype of the assessment. The goal was to find
+out how the existing concept was actually landing.
 
 <Figure
   src=""
-  alt="TODO: the lender view before"
-  caption="TODO: replace with your before screens."
+  alt="TODO: survey charts, visual appeal and UI clarity issues"
+  caption="Visual appeal skewed to simple or average at 45 percent, with only 2 percent calling it appealing. Three UI clarity issues dominated."
 />
 
-## Three goals
+<Finding
+  index="01"
+  title="The dark blue background caused confusion"
+  observation="Multiple users said the dark blue background applied after selecting an answer made the interface feel unclear or inconsistent. The visual feedback for a selected answer was doing the opposite of its job."
+  quotes={[
+    { text: "Multiple users mentioned that the dark blue background after selecting an answer made the interface feel unclear or inconsistent.", who: "Survey synthesis" },
+  ]}
+  changed="Selection feedback rebuilt for consistency, so choosing an answer reads as confirmation rather than a state change the user has to interpret."
+/>
 
-You gave me this outcome: three goals defined. TODO: write the three, in the
-words you actually used, and say what each one ruled out.
+<Finding
+  index="02"
+  title="Progress tracking left people unsure how much was left"
+  observation="Users could not tell how many questions remained. In an assessment people are already reluctant to start, not knowing the length is a reason to abandon it."
+  quotes={[
+    { text: "The progress indicator needs to be more visible and provide concrete numerical context.", who: "Survey synthesis" },
+  ]}
+  changed="A clearer progress indicator with concrete numbers rather than an abstract bar, so the remaining effort is always legible."
+/>
 
-## The assessment
+<Finding
+  index="03"
+  title="Question highlighting helped and hurt at once"
+  observation="The highlighting feature was called out positively for drawing attention, and negatively for being annoying when skipping between questions. Three quarters of respondents said skipped questions were not visible enough."
+  quotes={[
+    { text: "Annoying when skipping between questions.", who: "Survey respondent" },
+  ]}
+  changed="Highlighting logic refined so it guides attention without fighting the user, and skipped questions are surfaced clearly enough to return to."
+/>
 
-TODO: the model behind it, why you chose it, and how you kept it short enough
-that borrowers finish. Assessment length is a real tradeoff worth showing.
+## Walking the borrower's path
+
+The user journey focused on borrowers completing the assessment, concentrating
+on the interactions that mattered most: question selection, visual feedback
+and progress tracking.
 
 <Figure
   src=""
-  alt="TODO: borrower-facing assessment flow"
-  caption="TODO: replace with your final screens."
+  alt="TODO: borrower user journey map"
+  caption="Mapping the borrower journey through the assessment to locate the pain points."
 />
-
-## The lender view
-
-TODO: how results are presented, and how you handled the risk of a
-personality score being read as a verdict. This is the most sensitive
-decision in the project, so it deserves the most space.
 
 <Figure
+  wide
   src=""
-  alt="TODO: lender-facing results"
-  caption="TODO: replace with your final screens."
+  alt="TODO: refined assessment screens, borrower and lender views"
+  aspect="21/9"
+  caption="The refined assessment. TODO: replace with your final screens."
 />
 
-## What is still open
+## What fintech design taught me
 
-TODO: what you would need to see in real lending outcomes before trusting
-the signal.
+**Proactive risk mitigation.** Identifying bias and privacy concerns early,
+before any screens existed, is what kept this from becoming a feature that
+quietly penalised people. On a sensitive product that work has to come first.
+
+**Small UI issues are not small.** A background colour on a selected answer
+was enough to make the whole interface read as inconsistent. The survey caught
+something I would not have predicted from the design alone.
+
+**Business goals run through user comfort.** The feature's purpose was
+increasing lender confidence, but the only route to it was a borrower
+finishing an assessment they found clear and fair. Serving one meant serving
+the other.
+
+## Where it would go next
+
+Another round of usability testing on the refined design, to validate the
+changes and find what the first survey could not. Beyond that: A/B testing the
+visual treatment and wording against completion rates, a feedback loop with
+lenders on whether the results actually change their decisions, and monitoring
+completion rates against lending outcomes.
+
+The honest state of this one is that the redesign answered the survey, and the
+survey is all the evidence there is so far.
