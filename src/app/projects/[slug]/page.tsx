@@ -79,9 +79,6 @@ export default async function CaseStudyPage({ params }: Params) {
 
           <p className="eyebrow mt-10 text-accent">
             {project.client || project.shortTitle}
-            {project.year ? (
-              <span className="text-ink-soft"> / {project.year}</span>
-            ) : null}
           </p>
 
           <h1 className="text-hero mt-4 max-w-4xl font-normal">
