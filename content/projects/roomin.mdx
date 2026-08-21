@@ -36,18 +36,23 @@ tasksNote: "Team project across four months. The numbers are outcomes from usabi
 # cream, WestJet on cool white. Accent is one step darker than the brand value,
 # which is only 3.83:1 on the gradient's deepest stop.
 theme:
+  # Warm cream body, teal title block. The gradient sweeps light to mid teal
+  # so it reads as a real gradient rather than a tint.
   paper: "#FFFBF3"
-  gradientFrom: "#FFFBF3"
-  gradientVia: "#F6F3E9"
-  gradientTo: "#E4EFE9"
-  accent: "#00706F"
-  accentDeep: "#005453"
-  surface: "#FFFBF3"
-  surfaceDeep: "#EDE9DC"
+  gradientFrom: "#EAF7F4"
+  gradientVia: "#AEDCD5"
+  gradientTo: "#84C6BE"
+  # Darkened from #00706F so small text still clears WCAG AA on the darkest
+  # stop. Measured worst case across all three stops is 4.98:1.
+  accent: "#004B4A"
+  accentDeep: "#003B3A"
+  # Matches gradientFrom so the nav meets the title block seamlessly.
+  surface: "#EAF7F4"
+  surfaceDeep: "#D3EBE6"
   ink: "#0E1A1A"
-  inkSoft: "#44544F"
-  muted: "#5C6B66"
-  rule: "#E0DCCE"
+  inkSoft: "#33433E"
+  muted: "#374843"
+  rule: "#CADED9"
 cover: ""
 coverAlt: "Roomin app, profile with compatibility score, compatibility breakdown and filter screens"
 ---
