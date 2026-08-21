@@ -143,6 +143,47 @@
   text-transform: uppercase;
 }
 
+/**
+ * A project card that adopts its case study's palette on hover.
+ *
+ * The card carries the study's colours as --t-* custom properties, set inline
+ * from its frontmatter. On hover the design tokens are repointed at those, so
+ * every descendant using text-accent, bg-surface, border-rule and the rest
+ * re-themes at once without a single per-element hover class.
+ *
+ * cardThemeVars() guarantees all nine are defined, so none of these
+ * declarations can resolve to nothing.
+ */
+@utility theme-hover {
+  &,
+  & * {
+    transition:
+      background-color 450ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 450ms cubic-bezier(0.16, 1, 0.3, 1),
+      color 450ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  &:hover,
+  &:focus-within {
+    --color-paper: var(--t-paper);
+    --color-accent: var(--t-accent);
+    --color-accent-deep: var(--t-accent-deep);
+    --color-surface: var(--t-surface);
+    --color-surface-deep: var(--t-surface-deep);
+    --color-ink: var(--t-ink);
+    --color-ink-soft: var(--t-ink-soft);
+    --color-muted: var(--t-muted);
+    --color-rule: var(--t-rule);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-hover,
+  .theme-hover * {
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* ---------------------------------------------------------------------------
    Reduced motion. Framer Motion components also check useReducedMotion()
    in JS, but this is the backstop that catches CSS animation too.
