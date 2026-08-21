@@ -1,69 +1,237 @@
 ---
 title: "Roomin"
+headline: "Redefining trust in roommate searching"
 shortTitle: "Roomin"
+client: "Roomin"
 slug: "roomin"
 order: 2
 year: "2025"
 published: true
 summary: "A roommate-matching app that turns the uncertainty of searching into clarity, using compatibility scoring, real reviews, and verification."
-role: "Product Design, User Research"
-timeline: "TODO: e.g. 10 weeks, 2025"
-tools: ["Figma", "FigJam"]
+role: "UX Designer and Researcher, leading a team of four"
+team: "Team of 4 designers"
+timeline: "4 months"
+context: "Mobile, roommate matching"
+tools: ["Figma", "FigJam", "Notion", "Miro", "Google Forms"]
 tags: ["Product Design", "Trust and Safety", "Mobile"]
 metrics:
   - value: "87%"
-    label: "perceived trust in matches"
-  - value: "5/6"
-    label: "core features validated"
+    label: "increase in perceived trust and transparency"
   - value: "6/6"
-    label: "said it was easier to decide"
+    label: "said compatibility simplified deciding"
+  - value: "5/6"
+    label: "expert reviewers validated the goals"
+tasks:
+  - task: "Compatibility score simplifies decision-making"
+    result: "6/6"
+  - task: "Reviews boost perceived transparency and trust"
+    result: "87%"
+  - task: "Expert validation of trust and transparency goals"
+    result: "5/6"
+  - task: "Major iterations after testing"
+    result: "4"
+tasksNote: "Team project across four months. The numbers are outcomes from usability testing and expert review, not live product metrics."
+# Roomin's own palette. The brand teal is #008080, near identical to WestJet's,
+# so the studies are separated by ground rather than hue: Roomin sits on its
+# cream, WestJet on cool white. Accent is one step darker than the brand value,
+# which is only 3.83:1 on the gradient's deepest stop.
+theme:
+  paper: "#FFFBF3"
+  gradientFrom: "#FFFBF3"
+  gradientVia: "#F6F3E9"
+  gradientTo: "#E4EFE9"
+  accent: "#00706F"
+  accentDeep: "#005453"
+  surface: "#FFFBF3"
+  surfaceDeep: "#EDE9DC"
+  ink: "#0E1A1A"
+  inkSoft: "#44544F"
+  muted: "#5C6B66"
+  rule: "#E0DCCE"
 cover: ""
-coverAlt: "Roomin app, compatibility match screen"
+coverAlt: "Roomin app, profile with compatibility score, compatibility breakdown and filter screens"
 ---
-> **This case study is a scaffold, not a draft.** Everything below is either a
-> fact you gave me or a question for you to answer. Nothing here invents
-> research findings, quotes or outcomes. Delete this note when you fill it in.
 
-A roommate-matching app that turns the uncertainty of searching into clarity,
-using compatibility scoring, real reviews, and verification.
+## Why does finding a roommate feel like rolling the dice?
 
-## The problem you were solving
+Roomin is a digital platform dedicated to simplifying the often daunting
+roommate search.
 
-TODO: what made you pick this problem, and what you knew about it before you
-started designing. If you did any early research, that goes here.
+As UX Designer and Researcher I led a team of four designers to address trust
+and transparency issues in this space. The goal was to turn roommate selection
+from a risky gamble into a safer, more informed experience.
 
-## Compatibility scoring
+> We wanted users to feel like they were choosing a roommate, not gambling on
+> one.
 
-TODO: the model you built. Which factors, why those, how they were weighted,
-and how you decided to show the reasoning rather than just a number.
+<Steps
+  items={[
+    { label: "Research", text: "12 interviews, competitor audit, secondary research." },
+    { label: "Synthesise", text: "Affinity clustering and SWOT prioritisation." },
+    { label: "Define", text: "Persona, user journey, four prioritised features." },
+    { label: "Design", text: "Low-fi wireframes through mid-fi to hi-fi in Figma." },
+    { label: "Test and iterate", text: "Five second tests, journey tests, expert review." },
+  ]}
+/>
+
+## Why the roommate search is broken today
+
+**Finding roommates today is hard because** competitor platforms prioritise
+listings rather than lived experience, tight move-in deadlines leave little
+time to vet options, most apps have no real accountability or safety
+framework, and profiles are minimal, vague and easy to fake.
+
+**Students and young adults feel it most because** they are often moving for
+the first time with little rental experience, budget constraints sharply limit
+their choices, and many rely on unmoderated platforms like Kijiji or Facebook
+groups.
+
+> The result: users are expected to make a big decision with very little
+> information or support. That is the gap Roomin closes.
+
+## Listening before sketching
+
+We ran 12 user interviews, in person and remotely, to understand concerns
+about the roommate search. Participants were selected for diverse experiences.
+The goal was to surface pain points and identify the features that could
+meaningfully build trust and clarity.
+
+<ChangeList
+  items={[
+    { title: "87% concerned about trust", text: "Participants felt profiles were too vague, which increased their anxiety about safety." },
+    { title: "75% wanted verification", text: "Users wanted a robust verification system for profiles, to feel confident before messaging anyone." },
+    { title: "75% wanted lifestyle filters", text: "Filtering on real habits, sleep, cleaning, guests and smoking mattered more than the basics most apps offered." },
+    { title: "63% found it tedious", text: "Users found the search so lengthy that they often settled for the first available option to be done with it." },
+  ]}
+/>
 
 <Figure
   src=""
-  alt="TODO: compatibility score screens"
-  caption="TODO: replace with your final screens."
+  alt="TODO: affinity clustering board from FigJam"
+  caption="Insights from interviews, secondary research and competitor analysis, grouped into themes."
 />
-
-## Reviews and verification
-
-TODO: how these work, and what you had to decide. Trust features carry real
-tradeoffs, so the interesting part is what you chose not to do.
 
 <Figure
   src=""
-  alt="TODO: reviews and verification screens"
-  caption="TODO: replace with your final screens."
+  alt="TODO: SWOT prioritisation matrix, value against implementation effort"
+  caption="Each idea mapped by user value and feasibility, to pick the features worth building first."
 />
 
-## Testing
+## Walking in Dani's shoes
 
-These are the numbers you gave me. Add the method: how many participants,
-what you asked them to do, and specifically how you measured perceived trust,
-since that one needs explaining.
+Dani's journey is what most users go through: cautious, curious and unsure
+when reaching out. Users question whether they are really compatible, feel
+skeptical during chats, and get overwhelmed by unclear communication. The
+early search phase is where the trust problem lives.
 
-- 87% perceived trust
-- 5/6 features validated
-- 6/6 said it was easier to decide
+<Figure
+  src=""
+  alt="TODO: user journey map across beginning, research, searching, communication and decision making"
+  caption="Journey map. Emotions run from frustrated and cautious to confident and relieved, with the dip at communication."
+/>
 
-## What is still open
+## Four features, one trust problem
 
-TODO: the feature that did not validate, and what you would do about it.
+From anxious searching to confident choosing: show compatibility upfront,
+share real experiences from past roommates, enable lifestyle based filtering,
+and give users a way to flag suspicious profiles.
+
+<ChangeList
+  items={[
+    { title: "Compatibility score", text: "Helps users understand how well they align before they commit. No guesswork, just clear expectations up front." },
+    { title: "Detailed filter system", text: "Match on what matters day to day: sleep schedule, cleaning, guests, pets, religion and more." },
+    { title: "Real roommate reviews", text: "Profiles are one side of the story. Reviews from people who actually lived with someone reveal what a bio cannot." },
+    { title: "Report system", text: "A quiet way to flag what feels off, without confrontation, so patterns can be acted on." },
+  ]}
+/>
+
+<Figure
+  wide
+  src=""
+  alt="TODO: the four feature screens, compatibility, filters, reviews and report"
+  aspect="21/9"
+  caption="The four trust-first features as built."
+/>
+
+## What testing changed
+
+Five second tests, journey tests and expert review, across two rounds. Each
+finding below drove a specific redesign.
+
+<Finding
+  index="01"
+  title="The home page was doing too much"
+  changed="The home screen was cut back to rent, location and a short bio, so the card carries only what someone needs to decide whether to look further."
+  observation="Four of five participants found the homepage overwhelming and hard to navigate in a five second test."
+  src=""
+  alt="TODO: home page before and after"
+/>
+
+<Finding
+  index="02"
+  title="Filters people would actually use"
+  changed="Filters are collapsed by default with progressive disclosure, so users expand only what is relevant to them."
+  observation="Three of five felt overwhelmed by the number of filters and skipped them entirely, which defeated the point of building them."
+  src=""
+  alt="TODO: filter system before and after"
+/>
+
+<Finding
+  index="03"
+  title="Ratings out, reviews in"
+  changed="The star rating was removed and written reviews kept. Reviews carry the nuance a single number flattens."
+  observation="Two of three industry experts said the rating system could create bias and add complexity, which made us question whether ratings supported a fair experience at all."
+  src=""
+  alt="TODO: reviews before and after"
+/>
+
+<Finding
+  index="04"
+  title="A score nobody understood"
+  changed="The score was enlarged and paired with an Explore More view breaking out matching preferences and areas of difference, so the number shows its work."
+  observation="Five of five did not understand how the compatibility score was calculated or what it meant. Without context the feature lost its value."
+  src=""
+  alt="TODO: compatibility score before and after"
+/>
+
+<Finding
+  index="05"
+  title="It read as a dating app"
+  changed="Imagery, copy and the profile layout were reworked to communicate the app's actual purpose."
+  observation="Three of five thought the design was for a dating app. The option to add photos and videos gave the wrong impression."
+  src=""
+  alt="TODO: profile screens showing the corrected framing"
+/>
+
+## Did it fix the trust problem?
+
+> This is the first time I'd actually feel comfortable messaging someone
+> before meeting them. The score and the reviews are doing a lot of work.
+
+The quote above is from a usability participant in the final round.
+
+<Figure
+  wide
+  src=""
+  alt="TODO: final hi-fi screens across the core flow"
+  aspect="21/9"
+  caption="Final designs after four rounds of iteration."
+/>
+
+## What trust taught us about design
+
+**Trust is the silent feature.** Every design decision either earns it or
+spends it.
+
+**Numbers without context are theatre.** 89% meant nothing until users could
+tap it open.
+
+**Show the differences, not just the similarities.** Trust grows when an
+interface is honest about misfit rather than hiding it.
+
+**The brief is rarely the problem.** Find a roommate was framed as housing,
+but the design problem was always trust.
+
+Next: a deeper verification process going beyond email and phone into ID and
+reference checks, smarter filters driven by behaviour data, and more usability
+rounds on the final design.

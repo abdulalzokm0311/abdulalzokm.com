@@ -23,6 +23,8 @@ export type Metric = {
  * Anything left unset falls back to the site's own palette.
  */
 export type ProjectTheme = {
+  /** The page ground. Lets a study sit on cream rather than white. */
+  paper?: string;
   accent?: string;
   /** Three stops for the case study title block. All three must be set. */
   gradientFrom?: string;
@@ -38,6 +40,7 @@ export type ProjectTheme = {
 };
 
 const THEME_VARS: Partial<Record<keyof ProjectTheme, string>> = {
+  paper: "--color-paper",
   accent: "--color-accent",
   accentDeep: "--color-accent-deep",
   surface: "--color-surface",

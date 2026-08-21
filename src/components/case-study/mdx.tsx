@@ -141,12 +141,19 @@ export function Finding({
   observation,
   quotes = [],
   changed,
+  src,
+  alt,
+  aspect = "16/9",
 }: {
   index: string;
   title: string;
   observation: string;
   quotes?: { text: string; who: string }[];
   changed: string;
+  /** Optional supporting image, e.g. the before and after of the fix. */
+  src?: string;
+  alt?: string;
+  aspect?: string;
 }) {
   return (
     <section className="my-20 border-t border-rule pt-8">
@@ -163,24 +170,34 @@ export function Finding({
 
       {/* The evidence behind it, deliberately quieter. */}
       <div className="mt-10 grid gap-x-10 gap-y-8 border-t border-rule pt-8 md:grid-cols-12">
-        <div className="md:col-span-4">
+        {/* With no quotes to sit beside it, the observation takes a wider
+            measure rather than leaving half the row empty. */}
+        <div className={quotes.length > 0 ? "md:col-span-4" : "md:col-span-7"}>
           <p className="eyebrow text-muted">What we saw</p>
           <p className="mt-3 text-sm">{observation}</p>
         </div>
 
-        <div className="md:col-span-7 md:col-start-6">
-          <ul className="space-y-5">
-            {quotes.map((quote) => (
-              <li key={quote.who}>
-                <p className="text-sm italic text-ink-soft">
-                  &ldquo;{quote.text}&rdquo;
-                </p>
-                <p className="eyebrow mt-2 text-muted">{quote.who}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {quotes.length > 0 ? (
+          <div className="md:col-span-7 md:col-start-6">
+            <ul className="space-y-5">
+              {quotes.map((quote) => (
+                <li key={quote.who}>
+                  <p className="text-sm italic text-ink-soft">
+                    &ldquo;{quote.text}&rdquo;
+                  </p>
+                  <p className="eyebrow mt-2 text-muted">{quote.who}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
       </div>
+
+      {alt ? (
+        <div className="mt-10">
+          <ImageSlot src={src} alt={alt} aspect={aspect} sizes="100vw" />
+        </div>
+      ) : null}
     </section>
   );
 }
@@ -192,9 +209,11 @@ export function Steps({
   items: { label: string; text: string }[];
 }) {
   return (
-    <ol className="my-10 grid gap-px overflow-hidden bg-rule sm:grid-cols-2 lg:grid-cols-4">
+    /* Hairline per item rather than a filled grid, so a count that does not
+       divide evenly into the row leaves whitespace instead of an empty cell. */
+    <ol className="my-10 grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
       {items.map((item, index) => (
-        <li key={item.label} className="bg-paper p-6">
+        <li key={item.label} className="border-t border-rule pt-5">
           <span className="eyebrow text-accent">
             {String(index + 1).padStart(2, "0")}
           </span>
@@ -267,6 +286,14 @@ export const mdxComponents = {
   ),
   ol: (props: React.ComponentProps<"ol">) => (
     <ol className="mt-5 max-w-2xl list-decimal space-y-2 pl-5" {...props} />
+  ),
+  /* Pull quote. Set larger than body and marked with a rule rather than
+     wrapped in a panel, matching how quotes read inside a Finding. */
+  blockquote: (props: React.ComponentProps<"blockquote">) => (
+    <blockquote
+      className="my-10 max-w-3xl border-l-2 border-accent pl-6 text-[1.375rem] italic leading-snug text-ink [&>p]:mt-0"
+      {...props}
+    />
   ),
   strong: (props: React.ComponentProps<"strong">) => (
     <strong className="font-medium text-ink" {...props} />
