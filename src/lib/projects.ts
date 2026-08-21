@@ -107,6 +107,8 @@ export type ProjectMeta = {
   team: string;
   /** Where the work happened: a course, a company, a client engagement. */
   context: string;
+  /** Optional skim summary shown under the spec strip. Omit to hide it. */
+  brief: { problem: string; approach: string } | null;
   tasks: TaskResult[];
   /** Caveat printed under the results table. */
   tasksNote: string;
@@ -146,6 +148,13 @@ function parseFile(filename: string): Project {
     client: String(data.client ?? ""),
     team: String(data.team ?? ""),
     context: String(data.context ?? ""),
+    brief:
+      data.brief && data.brief.problem && data.brief.approach
+        ? {
+            problem: String(data.brief.problem),
+            approach: String(data.brief.approach),
+          }
+        : null,
     tasks: (data.tasks as TaskResult[]) ?? [],
     tasksNote: String(data.tasksNote ?? ""),
     theme: (data.theme as ProjectTheme) ?? {},

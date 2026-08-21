@@ -5,6 +5,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 
 import { Icon } from "@/components/Icon";
 import { ImageSlot } from "@/components/ImageSlot";
+import { Brief } from "@/components/case-study/Brief";
 import { mdxComponents } from "@/components/case-study/mdx";
 import {
   getAdjacentProjects,
@@ -109,13 +110,15 @@ export default async function CaseStudyPage({ params }: Params) {
           <Spec label="Context" value={project.context} />
         </dl>
 
+        <Brief project={project} />
+
         {/* The story. */}
         <div className="pb-8">
           <MDXRemote source={project.content} components={mdxComponents} />
         </div>
 
         {/* Measured outcomes, read as a table because that is what they are. */}
-        {project.tasks.length > 0 ? (
+        {project.tasks.length > 0 && !project.brief ? (
           <section className="mt-20">
             <h2 className="text-section max-w-3xl">Measured task outcomes</h2>
 
