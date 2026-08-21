@@ -209,9 +209,13 @@ export function Steps({
   items: { label: string; text: string }[];
 }) {
   return (
-    /* Hairline per item rather than a filled grid, so a count that does not
-       divide evenly into the row leaves whitespace instead of an empty cell. */
-    <ol className="my-10 grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+    /* Hairline per item rather than a filled grid, so nothing paints an empty
+       cell. The column count follows the item count on wide screens, so a
+       five stage process stays on one line instead of orphaning the last one. */
+    <ol
+      className="my-10 grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-[repeat(var(--steps-cols),minmax(0,1fr))]"
+      style={{ "--steps-cols": items.length } as React.CSSProperties}
+    >
       {items.map((item, index) => (
         <li key={item.label} className="border-t border-rule pt-5">
           <span className="eyebrow text-accent">
