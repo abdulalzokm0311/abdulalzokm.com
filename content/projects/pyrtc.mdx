@@ -1,74 +1,193 @@
 ---
 title: "PyRTC"
+headline: "Bringing adaptive optics out of the command line"
 shortTitle: "PyRTC"
+client: "SHARP Imaging Labs"
 slug: "pyrtc"
 order: 3
-year: "2025"
+year: "2026"
 published: true
-summary: "A dashboard that makes pyRTC, a terminal-only adaptive optics controller, usable by a junior researcher on day one."
-role: "UX Design, Research"
-timeline: "TODO: e.g. 12 weeks, 2025"
-tools: ["Figma", "FigJam"]
-tags: ["Dashboard Design", "Scientific Tools", "Onboarding"]
+summary: "Redesigning pyRTC, an open-source astronomy real-time controller, into a unified dashboard a junior researcher can run on day one."
+role: "UX Researcher and Designer"
+team: "Team of 4"
+timeline: "14 weeks, Jan to Apr 2026"
+context: "UX capstone, client project with SHARP Imaging Labs, University of Toronto"
+tools: ["Figma", "Tailwind", "Lucide"]
+tags: ["UX Research", "Field Study", "Interaction Design", "Design Systems", "Scientific UI"]
 metrics:
   - value: "4 → 1"
-    label: "workspaces collapsed into one"
-  - value: "4"
-    label: "research findings shipped"
+    label: "windows collapsed into one workspace"
   - value: "0 → 5"
-    label: "onboarding steps introduced"
+    label: "onboarding steps for first-time users"
+  - value: "4"
+    label: "usability findings shipped"
+brief:
+  problem: "pyRTC is command-line driven, with four separate viewer windows and almost no public docs. New researchers either learn from a mentor or they do not learn at all, and when that mentor retires the knowledge goes with them."
+  approach: "As UX researcher and designer on a team of four, I worked on the field study at the Dunlap Institute and the interviews with AO researchers, then on the three flows and the design system built for open-source handoff."
+tasks:
+  - task: "Fragmented viewer windows collapsed into one workspace"
+    result: "4 → 1"
+  - task: "Onboarding steps for first-time users, from none"
+    result: "0 → 5"
+  - task: "Usability findings shipped as design iterations"
+    result: "4"
+  - task: "Design system for open-source handoff"
+    result: "1"
+tasksNote: "Capstone client project. These are design and testing outcomes, not live product metrics."
+# Sampled from the case study's own slides: indigo and slate rather than the
+# teal the other two studies sit on, so the three read as distinct products.
+# accent is darkened from the deck's #5B5BD6, which fails AA as small text.
+theme:
+  paper: "#FFFFFF"
+  gradientFrom: "#F2F4FE"
+  gradientVia: "#DCE2FA"
+  gradientTo: "#BFCBF5"
+  accent: "#3A3A9E"
+  accentDeep: "#2A2A78"
+  surface: "#F2F4FE"
+  surfaceDeep: "#E2E7FA"
+  ink: "#12172B"
+  inkSoft: "#3A4160"
+  muted: "#4C5474"
+  rule: "#D3DAF3"
 cover: ""
-coverAlt: "PyRTC dashboard, live telemetry view"
+coverAlt: "pyRTC dashboard, unified telemetry workspace"
 ---
-> **This case study is a scaffold, not a draft.** Everything below is either a
-> fact you gave me or a question for you to answer. Nothing here invents
-> research findings, quotes or outcomes. Delete this note when you fill it in.
 
-A dashboard that makes pyRTC, a terminal-only adaptive optics controller,
-usable by a junior researcher on day one.
+## Listening before designing
 
-## The starting point
+None of us were astronomers. Designing a real-time controller without that
+grounding would have produced a beautiful terminal replacement that no one in
+a basement lab could actually use.
 
-TODO: describe the tool as you found it, and how you learned what it does.
-Designing for a scientific instrument you did not previously understand is
-itself an interesting part of this story.
+So the first half of the project was about getting close to the work. Visiting
+the lab, watching a closed loop run on the optical table, and interviewing the
+people who use these systems for a living.
+
+<Steps
+  items={[
+    { label: "Field study", text: "One hour contextual inquiry at the Dunlap Institute, observing a closed-loop demo on a vibration-isolated optical table in a 30 °C basement." },
+    { label: "Interviews", text: "Four semi-structured remote interviews with AO researchers at U of T, U of Hawai'i and Carnegie Science, 30 to 45 minutes each." },
+    { label: "Competitive scan", text: "Benchmarked four industry real-time controllers, ALPAO, CACAO, DARC and ESO SPARTA, on cost, accessibility and visual approach." },
+  ]}
+/>
 
 <Figure
   src=""
-  alt="TODO: the original terminal workflow"
-  caption="TODO: replace with your before capture."
+  alt="TODO: affinity mapping boards from synthesis"
+  caption="Synthesis: codebooks, affinity mapping, jobs-to-be-done, personas and an impact / effort matrix."
 />
 
-## Research
+## Three patterns kept surfacing
 
-TODO: who you spoke to in the lab, what you observed, and the four findings
-you shipped against. Name the four.
+Across four interviews, every researcher, junior or senior, eventually
+described the same three problems in different words.
 
-## Four workspaces into one
+<Finding
+  index="01"
+  title="The learning curve has no railing"
+  observation="There is no formal onboarding for pyRTC, or for adaptive optics in general. New users are expected to absorb decades of tribal knowledge from senior staff. When that staff retires, the knowledge leaves with them."
+  quotes={[
+    { text: "Most of these systems rely on knowledge that is in the head of someone that retired.", who: "Software developer, Carnegie Science" },
+  ]}
+  changed="A guided onboarding that personalises the workspace by experience level, so a junior researcher starts somewhere safe instead of nowhere."
+/>
 
-You gave me this outcome: the workflow collapsed from four windows to one.
+<Finding
+  index="02"
+  title="Calibration burns hours that should be minutes"
+  observation="Tiny config changes force a full loop restart. Telemetry filenames are typed by hand, every time. Routine work is brittle, manual and easy to break, which are exactly the wrong properties for a research tool."
+  quotes={[
+    { text: "I have to restart the entire loop and shut everything down just to make a small change. It's very, very annoying.", who: "Postdoc, Dunlap Institute" },
+  ]}
+  changed="Per-block start and stop controls, so stopping one component no longer means stopping the system."
+/>
 
-TODO: what those four windows were, why collapsing them was the right call,
-and what you had to give up to do it.
+<Finding
+  index="03"
+  title="Live data is visible but never inspectable"
+  observation="The current interface shows four separate windows of dots moving around. You cannot read a value, correlate sensors at the same time slice, or save a moment for review later."
+  quotes={[
+    { text: "I want to view data efficiently without bringing up a bunch of separate windows and fiddling with their scalings.", who: "Grad student, U of Hawai'i" },
+  ]}
+  changed="A single dashboard where every data block is inspectable, and clicking one reveals the code behind it."
+/>
+
+> How might we design an interface that makes complex AO tasks simpler, so
+> students can run experiments safely without needing an expert to guide them?
+
+## One workspace, three flows, zero terminal-only steps
+
+Rather than redesigning the whole product, we focused on three flows that map
+directly to the three insights: onboarding for the learning curve, a modular
+dashboard for live data, and embedded docs for the knowledge gap.
+
+<Decision
+  index="01"
+  title="A guided onboarding that respects expertise"
+  before="No formal onboarding existed. A new researcher opened a terminal and either had a mentor beside them or did not."
+  after="Five short questions, role, AO familiarity, optional institutional sign-on and which data streams matter most, populate the dashboard before the user ever sees it. Junior researchers land on a beginner-safe layout. Senior researchers can skip and configure freely."
+  src=""
+  alt="TODO: onboarding flow, role and data stream selection screens"
+/>
+
+<Decision
+  index="02"
+  title="A bento-box dashboard you can actually rearrange"
+  before="Four separate viewer windows of moving dots, with no way to read a value or correlate sensors at the same time slice."
+  after="One drag-and-drop workspace. Drag a data block in from the left rail to add it, drag it back out to remove it. Top-bar telemetry stays visible, and clicking any block opens the live code terminal scoped to that data stream."
+  src=""
+  alt="TODO: bento-box dashboard with telemetry blocks"
+/>
+
+<Decision
+  index="03"
+  title="Documentation that lives inside the workspace"
+  before="Our first idea was an adaptive optics concept glossary, on the assumption that new users needed the vocabulary."
+  after="A test participant pointed out that pyRTC users already know AO. What they need is the API. We replaced the glossary with the project's actual function reference, searchable from any data block's overflow menu, and kept the glossary as a secondary tab."
+  src=""
+  alt="TODO: embedded API reference panel"
+/>
+
+## Three sessions, four shipped fixes
+
+We ran 25 to 46 minute moderated sessions with three participants, two
+returning interviewees and one new. Findings were ranked on an impact and
+effort matrix. Everything below was high impact and feasible within the
+remaining sprint.
+
+<ChangeList
+  items={[
+    { title: "Per-component start and stop", text: "Testing surfaced that stopping the system is not one action but many. A camera might need a reboot while the deformable mirror keeps holding. Per-block controls now sit next to the overflow menu, with a single system-wide toggle in the header." },
+    { title: "API reference over glossary", text: "A domain expert flagged that pyRTC's audience already speaks AO. We swapped the glossary for the README's API content and kept the glossary as a secondary tab." },
+    { title: "Cloud sync made optional and disclosed", text: "Two participants pushed back on mandatory institutional login, since lab data already lives on local servers. Sign-on became optional, with explicit disclosure during onboarding and a kill switch in settings." },
+    { title: "Visible quick menu over hover tooltip", text: "Peer critique flagged the info-icon tooltip as an accessibility risk, since content was hidden behind hover and not keyboard-reachable. It became a visible ellipsis menu with keyboard-navigable controls." },
+  ]}
+/>
 
 <Figure
+  wide
   src=""
-  alt="TODO: the dashboard"
-  caption="TODO: replace with your final screens."
+  alt="TODO: before and after, dashboard with per-block controls"
+  aspect="21/9"
+  caption="Before and after the testing round. Per-block controls, visible menus, and telemetry that stays readable."
 />
 
-## Onboarding, from zero
+## What I would take into the next one
 
-You gave me this outcome: no onboarding existed, and you introduced five steps.
+**Domain immersion is non-negotiable.** The single biggest lift came from an
+hour in a 30 °C basement watching a closed loop run. None of the secondary
+research had prepared us for the optical-table reality: vibration isolation,
+dark-room observation, four laptops humming at once. The redesign that emerged
+was shaped by that room more than any interview transcript.
 
-TODO: what the five steps are and why that sequence. What does a researcher
-need to understand first?
+**Designing for an open-source handoff changes everything.** When the
+developers are volunteers, every opinionated design choice has to come with a
+re-implementable default. Tailwind, Geist and Lucide were not aesthetic picks.
+They were the only stack that survived the question "could a grad student
+rebuild this in a weekend?"
 
-<Video
-  src=""
-  caption="TODO: replace with your first-run video."
-/>
-
-## What is still open
-
-TODO: what you would watch once researchers have used it for a full term.
+**If I had another sprint,** I would pair-test the API reference with a junior
+researcher running an actual closed loop, not a static prototype. Testing
+showed it was the right idea. I want to know whether jumping to a function
+from a block is a path users actually walk, or one we hope they walk.
