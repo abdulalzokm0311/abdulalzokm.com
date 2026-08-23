@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 
 import { Icon } from "@/components/Icon";
+import { ImageSlot } from "@/components/ImageSlot";
 import { BrowserFrame } from "@/components/case-study/BrowserFrame";
 import { Brief } from "@/components/case-study/Brief";
 import { mdxComponents } from "@/components/case-study/mdx";
@@ -99,15 +100,30 @@ export default async function CaseStudyPage({ params }: Params) {
       </header>
 
       <div className="shell">
-        {/* Lifted into the title block so the window overlaps the gradient. */}
+        {/* Lifted into the title block so the cover overlaps the gradient.
+            A study whose cover is already a device mockup skips the chrome,
+            since framing a photo of a monitor inside a browser window is one
+            frame too many. */}
         <div className="-mt-8 md:-mt-12">
-          <BrowserFrame
-            src={project.cover}
-            alt={project.coverAlt}
-            aspect={project.coverAspect || "16/9"}
-            url={project.coverUrl}
-            priority
-          />
+          {project.coverChrome ? (
+            <BrowserFrame
+              src={project.cover}
+              alt={project.coverAlt}
+              aspect={project.coverAspect || "16/9"}
+              url={project.coverUrl}
+              priority
+            />
+          ) : (
+            <ImageSlot
+              src={project.cover}
+              alt={project.coverAlt}
+              aspect={project.coverAspect || "16/9"}
+              sizes="100vw"
+              fit="contain"
+              priority
+              className="rounded-card"
+            />
+          )}
         </div>
 
         {/* The column count follows however many specs a study actually sets,

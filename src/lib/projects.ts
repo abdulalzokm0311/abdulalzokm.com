@@ -65,6 +65,8 @@ export type ProjectMeta = {
   coverAspect: string;
   /** Address shown in the hero's browser chrome. */
   coverUrl: string;
+  /** Set false when the cover already is a device mockup and needs no chrome. */
+  coverChrome: boolean;
   coverAlt: string;
   /** Set to false to keep a project in the repo but off the site. */
   published: boolean;
@@ -111,6 +113,7 @@ function parseFile(filename: string): Project {
     cover: String(data.cover ?? ""),
     coverAspect: String(data.coverAspect ?? ""),
     coverUrl: String(data.coverUrl ?? ""),
+    coverChrome: data.coverChrome !== false,
     coverAlt: String(data.coverAlt ?? ""),
     published: data.published !== false,
     content,
