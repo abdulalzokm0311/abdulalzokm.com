@@ -55,6 +55,14 @@ export default async function CaseStudyPage({ params }: Params) {
   if (!project) notFound();
 
   const { next } = getAdjacentProjects(slug);
+
+  const specs = [
+    { label: "Role", value: project.role },
+    { label: "Team", value: project.team },
+    { label: "Timeline", value: project.timeline },
+    { label: "Tools", value: project.tools.join(", ") },
+    { label: "Context", value: project.context },
+  ].filter((spec) => spec.value);
   const themeCss = themeToCssText(project.theme);
   const gradient = heroGradient(project.theme);
 
@@ -102,12 +110,15 @@ export default async function CaseStudyPage({ params }: Params) {
           />
         </div>
 
-        <dl className="mt-14 grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-5">
-          <Spec label="Role" value={project.role} />
-          <Spec label="Team" value={project.team} />
-          <Spec label="Timeline" value={project.timeline} />
-          <Spec label="Tools" value={project.tools.join(", ")} />
-          <Spec label="Context" value={project.context} />
+        {/* The column count follows however many specs a study actually sets,
+            so omitting one closes the row up instead of leaving a gap. */}
+        <dl
+          className="mt-14 grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-[repeat(var(--spec-cols),minmax(0,1fr))]"
+          style={{ "--spec-cols": specs.length } as React.CSSProperties}
+        >
+          {specs.map((spec) => (
+            <Spec key={spec.label} label={spec.label} value={spec.value} />
+          ))}
         </dl>
 
         <Brief project={project} />
