@@ -60,11 +60,15 @@ export function AutoVideo({
   };
 
   return (
-    <figure className="my-12">
+    /* Sized by height, not width. These clips are roughly 1.4:1, so at the
+       full text measure they stand 813px tall and the caption falls below the
+       fold. Capping the height keeps the whole clip and its caption on one
+       screen, and the width follows from the aspect ratio. */
+    <figure className="mx-auto my-10 w-fit max-w-full">
       <div className="relative overflow-hidden rounded-card bg-surface">
         <video
           ref={videoRef}
-          className="block w-full"
+          className="block max-h-[62vh] w-auto max-w-full"
           loop
           muted
           playsInline
@@ -90,7 +94,7 @@ export function AutoVideo({
       </div>
 
       {caption ? (
-        <figcaption className="mt-3 text-sm text-muted">
+        <figcaption className="mt-3 max-w-2xl text-sm text-muted">
           {caption}
           {reduceMotion ? " Press play to watch." : null}
         </figcaption>
