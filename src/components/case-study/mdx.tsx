@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 
+import { AutoVideo } from "@/components/case-study/AutoVideo";
 import { ImageSlot } from "@/components/ImageSlot";
 import { cn } from "@/lib/utils";
 
@@ -40,42 +41,8 @@ export function Figure({
   );
 }
 
-export function Video({
-  src,
-  caption,
-  poster,
-}: {
-  src?: string;
-  caption?: string;
-  poster?: string;
-}) {
-  return (
-    <figure className="my-12">
-      {src ? (
-        <video
-          className="w-full bg-surface"
-          controls
-          muted
-          playsInline
-          preload="metadata"
-          poster={poster}
-        >
-          <source src={src} type="video/mp4" />
-          Your browser does not support embedded video.
-        </video>
-      ) : (
-        <ImageSlot
-          alt={caption ?? "Flow video"}
-          aspect="16/9"
-          sizes="100vw"
-        />
-      )}
-      {caption ? (
-        <figcaption className="mt-3 text-sm text-muted">{caption}</figcaption>
-      ) : null}
-    </figure>
-  );
-}
+/** Case studies use AutoVideo; this alias keeps <Video> working in MDX. */
+export const Video = AutoVideo;
 
 /* ------------------------------------------------------------------ */
 /* Structure                                                           */
