@@ -254,6 +254,44 @@ export function ChangeList({
   );
 }
 
+type OrderItem = { step: string; detail?: string; flag?: string };
+
+/** One band in a page-order stack. */
+function OrderBand({ item, index }: { item: OrderItem; index: number }) {
+  const flagged = Boolean(item.flag);
+
+  return (
+    <li
+      className={cn(
+        "flex items-baseline gap-4 rounded-card px-5 py-4 sm:gap-6 sm:px-6 sm:py-5",
+        flagged ? "border-l-4 border-accent bg-surface-deep" : "bg-surface",
+      )}
+    >
+      <span
+        className={cn(
+          "font-display text-xl leading-none",
+          flagged ? "text-accent" : "text-muted",
+        )}
+      >
+        {String(index + 1).padStart(2, "0")}
+      </span>
+
+      <span className="flex-1">
+        <span className="block font-display text-base font-medium text-ink">
+          {item.step}
+        </span>
+        {item.detail ? (
+          <span className="mt-1 block text-sm text-ink-soft">{item.detail}</span>
+        ) : null}
+      </span>
+
+      {flagged ? (
+        <span className="eyebrow shrink-0 text-accent">{item.flag}</span>
+      ) : null}
+    </li>
+  );
+}
+
 /**
  * The running order of a page, drawn as a stack rather than written as a list.
  *
@@ -265,55 +303,68 @@ export function PageOrder({
   items,
   caption,
 }: {
-  items: { step: string; detail?: string; flag?: string }[];
+  items: OrderItem[];
   caption?: string;
 }) {
   return (
     <figure className="my-12">
       <ol className="flex flex-col gap-2">
-        {items.map((item, index) => {
-          const flagged = Boolean(item.flag);
-
-          return (
-            <li
-              key={item.step}
-              className={cn(
-                "flex items-baseline gap-5 rounded-card px-6 py-5 sm:gap-7 sm:px-8",
-                flagged
-                  ? "border-l-4 border-accent bg-surface-deep"
-                  : "bg-surface",
-              )}
-            >
-              <span
-                className={cn(
-                  "font-display text-2xl leading-none",
-                  flagged ? "text-accent" : "text-muted",
-                )}
-              >
-                {String(index + 1).padStart(2, "0")}
-              </span>
-
-              <span className="flex-1">
-                <span className="block font-display text-lg font-medium text-ink">
-                  {item.step}
-                </span>
-                {item.detail ? (
-                  <span className="mt-1 block text-sm text-ink-soft">
-                    {item.detail}
-                  </span>
-                ) : null}
-              </span>
-
-              {flagged ? (
-                <span className="eyebrow shrink-0 text-accent">{item.flag}</span>
-              ) : null}
-            </li>
-          );
-        })}
+        {items.map((item, index) => (
+          <OrderBand key={item.step} item={item} index={index} />
+        ))}
       </ol>
 
       {caption ? (
         <figcaption className="mt-3 text-sm text-muted">{caption}</figcaption>
+      ) : null}
+    </figure>
+  );
+}
+
+/**
+ * Two page orders side by side. Reading down the pair, the flagged step
+ * visibly climbs, which is the entire point of a reordering and the one thing
+ * prose is worst at conveying.
+ */
+export function PageOrderCompare({
+  before,
+  after,
+  beforeLabel = "Before",
+  afterLabel = "After",
+  caption,
+}: {
+  before: OrderItem[];
+  after: OrderItem[];
+  beforeLabel?: string;
+  afterLabel?: string;
+  caption?: string;
+}) {
+  const columns = [
+    { label: beforeLabel, items: before },
+    { label: afterLabel, items: after },
+  ];
+
+  return (
+    <figure className="my-12">
+      <div className="grid gap-8 md:grid-cols-2 md:gap-6">
+        {columns.map((column) => (
+          <div key={column.label}>
+            <div className="mb-4 flex items-center gap-4">
+              <p className="eyebrow shrink-0 text-muted">{column.label}</p>
+              <span aria-hidden className="h-px flex-1 bg-rule" />
+            </div>
+
+            <ol className="flex flex-col gap-2">
+              {column.items.map((item, index) => (
+                <OrderBand key={item.step} item={item} index={index} />
+              ))}
+            </ol>
+          </div>
+        ))}
+      </div>
+
+      {caption ? (
+        <figcaption className="mt-4 text-sm text-muted">{caption}</figcaption>
       ) : null}
     </figure>
   );
@@ -340,6 +391,7 @@ export const mdxComponents = {
   Steps,
   ChangeList,
   PageOrder,
+  PageOrderCompare,
   Note,
 
   h2: (props: React.ComponentProps<"h2">) => (

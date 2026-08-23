@@ -149,6 +149,24 @@ Someone landing here is early. They are working out whether RBC has anything
 for them at all, so the page should pull them in and then get them to the
 cards.
 
+<PageOrderCompare
+  caption="The cards move above the secondary tools, and the audience split moves to the top so nobody reads the wrong page."
+  before={[
+    { step: "Awareness", detail: "The hero" },
+    { step: "Lower-priority info", detail: "Tools and secondary content" },
+    { step: "Exploration", detail: "The cards", flag: "Buried" },
+    { step: "Recommendations and other", detail: "Everything else" },
+  ]}
+  after={[
+    { step: "Awareness", detail: "Hero, leading with the welcome offer" },
+    { step: "Are you in the right place?", detail: "Business or commercial, decided up front" },
+    { step: "Exploration", detail: "The full card lineup", flag: "Moved up" },
+    { step: "Benefits", detail: "Short tiles, not paragraphs" },
+    { step: "Tools", detail: "Still here, now below the cards" },
+    { step: "Closing CTA", detail: "One last chance to apply" },
+  ]}
+/>
+
 <Decision
   index="01"
   title="Lead with the offer, then get out of the way"
