@@ -85,20 +85,23 @@ structure that is hard to compare, and there is no way to change a flight
 without starting over.
 
 <Figure
-  src=""
-  alt="TODO: WestJet live landing page, annotated"
+  src="/projects/westjet/before-landing.webp"
+  aspect="1732/1084"
+  alt="WestJet live landing page: empty destination field already styled red, and a promotional block competing with the search form"
   caption="Empty fields styled red before any input. Search competes with a promo block and a hero image."
 />
 
 <Figure
-  src=""
-  alt="TODO: WestJet live search results, annotated"
+  src="/projects/westjet/before-results.webp"
+  aspect="1732/1084"
+  alt="WestJet live search results: 47 unranked flights, with the same savings message repeated as a banner, a date-cell tag and a fare-card tag"
   caption="Dozens of results, no ranking. The same savings message repeats three different ways in one viewport."
 />
 
 <Figure
-  src=""
-  alt="TODO: WestJet live fare interstitial, annotated"
+  src="/projects/westjet/before-fare-interstitial.webp"
+  aspect="1732/1084"
+  alt="WestJet live fare interstitial asking the user to reconsider the cheapest fare they just chose"
   caption="Choosing the cheapest fare triggers an interstitial arguing against the choice just made."
 />
 
@@ -123,8 +126,9 @@ effect on the flow:
   title="One action, not three"
   before="The landing page split attention across the search container, a promotional offer and a hero image. The search box, the whole point of the page, was the narrowest thing on it."
   after="A single primary action anchors the page. The label changed from Get Flights to Search Flights, because searching is what the button does and get implied a purchase. Validation only fires once someone has touched a field."
-  src=""
-  alt="TODO: redesigned landing page with a single search action"
+  src="/projects/westjet/decision-01-single-action.png"
+  aspect="886/1254"
+  alt="Landing page before and after: the old page splitting attention across search, a promo block and a hero image, above the redesign anchored on one Search Flights action"
 />
 
 <Decision
@@ -132,8 +136,9 @@ effect on the flow:
   title="Stop making people remember their departure date"
   before="Picking a return date meant holding the departure date in your head. Disabled dates sat at a contrast too low to read as a rule, and there was no way to see how long the trip would be."
   after="A summary bar under the calendar shows departure, return and duration. Hovering a return date previews the full range, so trip length is visible instead of calculated."
-  src=""
-  alt="TODO: redesigned date picker with range preview and duration"
+  src="/projects/westjet/decision-02-date-picker.webp"
+  aspect="803/1140"
+  alt="Date picker before and after: the old calendar with no trip context, above the redesign showing departure, return and a seven day duration under the calendar"
 />
 
 <Decision
@@ -141,8 +146,9 @@ effect on the flow:
   title="Five ranked options instead of endless scroll"
   before="Results ran to dozens of flights with no ranking, and the same extra savings message appeared three times in close proximity: a banner, a date-cell tag and a mini banner on the fare card."
   after="Results open under Top Departing Flights: five options ranked on price and convenience, with Show all for the rest. The three savings treatments collapsed into one Lowest Price tag."
-  src=""
-  alt="TODO: redesigned search results with ranked options"
+  src="/projects/westjet/decision-03-ranked-results.webp"
+  aspect="803/844"
+  alt="Search results before and after: the old nested fare types and repeated savings tags, above one row from the ranked list with a single Lowest Price tag"
 />
 
 <Decision
@@ -150,8 +156,9 @@ effect on the flow:
   title="Show the total, and where you are"
   before="The total sat alone in a corner with no breakdown, choosing the cheapest fare triggered a modal arguing against it, and nothing told you where you were in the process."
   after="The summary opens with a stepper. Fees break out alongside the grand total, cancellation coverage is an explicit choice rather than fine print, and a 15 minute timer shows how long the fare is held."
-  src=""
-  alt="TODO: redesigned trip summary with stepper and price breakdown"
+  src="/projects/westjet/decision-04-trip-summary.webp"
+  aspect="805/1190"
+  alt="Trip summary before and after: the old nested fare cards, above the redesigned review with a five step progress stepper, a full price breakdown and a fare hold timer"
 />
 
 ### Six smaller changes
@@ -212,25 +219,40 @@ page, the input fields and the primary action.
 
 ## The redesigned flows
 
-<Figure
-  wide
-  src=""
-  alt="TODO: flow 1, landing through trip summary"
-  aspect="21/9"
-  caption="Flow 1, search and selection. Landing through trip summary, after both rounds."
-/>
+Both flows, walked end to end after the second round.
 
-<Figure
-  wide
-  src=""
-  alt="TODO: flow 2, seat selection through payment and confirmation"
-  aspect="21/9"
-  caption="Flow 2, booking and checkout. Seats through payment, organized by passenger."
+### Flow 1: search and selection
+
+<Video
+  src="/projects/westjet/flow-01.mp4"
+  caption="Landing and search. One primary action, with the promotional block demoted below it."
 />
 
 <Video
-  src=""
-  caption="TODO: replace with the prototype walkthrough."
+  src="/projects/westjet/flow-02.mp4"
+  caption="Selecting the departing flight. Five ranked options under Top Departing Flights, fares reading left to right at one level."
+/>
+
+<Video
+  src="/projects/westjet/flow-03.mp4"
+  caption="Trip review. The stepper, the price breakdown, and Modify sitting on the summary itself."
+/>
+
+### Flow 2: booking and checkout
+
+<Video
+  src="/projects/westjet/flow-04.mp4"
+  caption="Seat selection, with the legend beside the map and an explicit skip."
+/>
+
+<Video
+  src="/projects/westjet/flow-05.mp4"
+  caption="Checked bags, organised by passenger first and flight second."
+/>
+
+<Video
+  src="/projects/westjet/flow-06.mp4"
+  caption="Payment through to confirmation, with the booking summary alongside."
 />
 
 ## What I would do next
