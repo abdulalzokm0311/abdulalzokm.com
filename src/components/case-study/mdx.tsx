@@ -254,6 +254,71 @@ export function ChangeList({
   );
 }
 
+/**
+ * The running order of a page, drawn as a stack rather than written as a list.
+ *
+ * The argument in these sections is almost always about sequence: something
+ * important sits too far down. A numbered list states that; a stack shows it,
+ * because the flagged band is visibly below the ones burying it.
+ */
+export function PageOrder({
+  items,
+  caption,
+}: {
+  items: { step: string; detail?: string; flag?: string }[];
+  caption?: string;
+}) {
+  return (
+    <figure className="my-12">
+      <ol className="flex flex-col gap-2">
+        {items.map((item, index) => {
+          const flagged = Boolean(item.flag);
+
+          return (
+            <li
+              key={item.step}
+              className={cn(
+                "flex items-baseline gap-5 rounded-card px-6 py-5 sm:gap-7 sm:px-8",
+                flagged
+                  ? "border-l-4 border-accent bg-surface-deep"
+                  : "bg-surface",
+              )}
+            >
+              <span
+                className={cn(
+                  "font-display text-2xl leading-none",
+                  flagged ? "text-accent" : "text-muted",
+                )}
+              >
+                {String(index + 1).padStart(2, "0")}
+              </span>
+
+              <span className="flex-1">
+                <span className="block font-display text-lg font-medium text-ink">
+                  {item.step}
+                </span>
+                {item.detail ? (
+                  <span className="mt-1 block text-sm text-ink-soft">
+                    {item.detail}
+                  </span>
+                ) : null}
+              </span>
+
+              {flagged ? (
+                <span className="eyebrow shrink-0 text-accent">{item.flag}</span>
+              ) : null}
+            </li>
+          );
+        })}
+      </ol>
+
+      {caption ? (
+        <figcaption className="mt-3 text-sm text-muted">{caption}</figcaption>
+      ) : null}
+    </figure>
+  );
+}
+
 /** An honest caveat. Used where a number could be mistaken for something bigger. */
 export function Note({ children }: { children: ReactNode }) {
   return (
@@ -274,6 +339,7 @@ export const mdxComponents = {
   Finding,
   Steps,
   ChangeList,
+  PageOrder,
   Note,
 
   h2: (props: React.ComponentProps<"h2">) => (

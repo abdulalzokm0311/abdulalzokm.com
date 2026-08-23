@@ -75,15 +75,20 @@ of us took it from competitive analysis through to final hi-fi.
 The home page opened with a wall of copy and never let up. To reach the actual
 cards you had to scroll past secondary tools and lower-priority content first.
 
-That is the whole problem in one line. The old running order was:
+That is the whole problem in one line. The old running order:
 
-1. Awareness, the hero
-2. Lower-priority info, tools and secondary content
-3. Exploration, the cards, the thing people came for
-4. Recommendations and other
+<PageOrder
+  caption="The old home page, in order. The cards sat third, below content most people did not need yet."
+  items={[
+    { step: "Awareness", detail: "The hero" },
+    { step: "Lower-priority info", detail: "Tools and secondary content" },
+    { step: "Exploration", detail: "The cards, the thing people came for", flag: "Buried here" },
+    { step: "Recommendations and other", detail: "Everything else" },
+  ]}
+/>
 
-Exploration sat below content most people did not need yet, on a page whose
-main job is helping someone find the right card.
+Exploration sat third, on a page whose main job is helping someone find the
+right card.
 
 The page also served two audiences at once, business and commercial, so
 neither got a clean path through. The product pages had the same habit: a
