@@ -347,6 +347,53 @@ export function PageOrderCompare({
   );
 }
 
+/**
+ * Several screenshots in one row.
+ *
+ * Three stacked full-width shots of the same thing is a lot of scrolling for
+ * evidence the reader takes in at a glance. Side by side they stay legible and
+ * the comparison between them is immediate.
+ */
+export function FigureGrid({
+  items,
+  aspect = "16/9",
+  columns = 3,
+}: {
+  items: { src?: string; alt: string; caption?: string }[];
+  aspect?: string;
+  columns?: 2 | 3;
+}) {
+  return (
+    <div
+      className={cn(
+        "my-12 grid gap-6 sm:grid-cols-2",
+        columns === 3 ? "lg:grid-cols-3" : "",
+      )}
+    >
+      {items.map((item) => (
+        <figure key={item.alt} className="m-0">
+          <div className="rounded-card bg-surface p-2">
+            <ImageSlot
+              src={item.src}
+              alt={item.alt}
+              aspect={aspect}
+              sizes="(min-width: 1024px) 32vw, (min-width: 640px) 46vw, 92vw"
+              fit="contain"
+              compact
+              className="rounded-sm"
+            />
+          </div>
+          {item.caption ? (
+            <figcaption className="mt-3 text-sm leading-snug text-muted">
+              {item.caption}
+            </figcaption>
+          ) : null}
+        </figure>
+      ))}
+    </div>
+  );
+}
+
 /** An honest caveat. Used where a number could be mistaken for something bigger. */
 export function Note({ children }: { children: ReactNode }) {
   return (
@@ -369,6 +416,7 @@ export const mdxComponents = {
   ChangeList,
   PageOrder,
   PageOrderCompare,
+  FigureGrid,
   Note,
 
   h2: (props: React.ComponentProps<"h2">) => (

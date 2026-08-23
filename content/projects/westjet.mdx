@@ -54,7 +54,9 @@ theme:
   inkSoft: "#40595D"
   muted: "#566E71"
   rule: "#CBE0DE"
-cover: ""
+cover: "/projects/westjet/cover-landing-redesign.png"
+coverAspect: "1440/1031"
+coverUrl: "westjet.com/flights"
 coverAlt: "WestJet booking flow redesign, search results screen"
 ---
 
@@ -84,25 +86,13 @@ Attention splits across competing calls to action. Fare types nest in a
 structure that is hard to compare, and there is no way to change a flight
 without starting over.
 
-<Figure
-  src="/projects/westjet/before-landing.webp"
+<FigureGrid
   aspect="1732/1084"
-  alt="WestJet live landing page: empty destination field already styled red, and a promotional block competing with the search form"
-  caption="Empty fields styled red before any input. Search competes with a promo block and a hero image."
-/>
-
-<Figure
-  src="/projects/westjet/before-results.webp"
-  aspect="1732/1084"
-  alt="WestJet live search results: 47 unranked flights, with the same savings message repeated as a banner, a date-cell tag and a fare-card tag"
-  caption="Dozens of results, no ranking. The same savings message repeats three different ways in one viewport."
-/>
-
-<Figure
-  src="/projects/westjet/before-fare-interstitial.webp"
-  aspect="1732/1084"
-  alt="WestJet live fare interstitial asking the user to reconsider the cheapest fare they just chose"
-  caption="Choosing the cheapest fare triggers an interstitial arguing against the choice just made."
+  items={[
+    { src: "/projects/westjet/before-landing.webp", alt: "WestJet live landing page: empty destination field already styled red, and a promotional block competing with the search form", caption: "Empty fields styled red before any input. Search competes with a promo block and a hero image." },
+    { src: "/projects/westjet/before-results.webp", alt: "WestJet live search results: 47 unranked flights, with the same savings message repeated as a banner, a date-cell tag and a fare-card tag", caption: "Dozens of results, no ranking. The same savings message repeats three different ways in one viewport." },
+    { src: "/projects/westjet/before-fare-interstitial.webp", alt: "WestJet live fare interstitial asking the user to reconsider the cheapest fare they just chose", caption: "Choosing the cheapest fare triggers an interstitial arguing against the choice just made." },
+  ]}
 />
 
 ## Two rounds, not one

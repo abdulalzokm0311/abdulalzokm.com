@@ -61,6 +61,10 @@ export type ProjectMeta = {
   metrics: Metric[];
   /** Path under /public, or "" while still a placeholder. */
   cover: string;
+  /** True ratio of the cover file, e.g. "1440/1031". */
+  coverAspect: string;
+  /** Address shown in the hero's browser chrome. */
+  coverUrl: string;
   coverAlt: string;
   /** Set to false to keep a project in the repo but off the site. */
   published: boolean;
@@ -105,6 +109,8 @@ function parseFile(filename: string): Project {
     tags: (data.tags as string[]) ?? [],
     metrics: (data.metrics as Metric[]) ?? [],
     cover: String(data.cover ?? ""),
+    coverAspect: String(data.coverAspect ?? ""),
+    coverUrl: String(data.coverUrl ?? ""),
     coverAlt: String(data.coverAlt ?? ""),
     published: data.published !== false,
     content,

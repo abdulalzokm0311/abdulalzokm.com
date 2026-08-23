@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 
 import { Icon } from "@/components/Icon";
-import { ImageSlot } from "@/components/ImageSlot";
+import { BrowserFrame } from "@/components/case-study/BrowserFrame";
 import { Brief } from "@/components/case-study/Brief";
 import { mdxComponents } from "@/components/case-study/mdx";
 import {
@@ -99,13 +99,13 @@ export default async function CaseStudyPage({ params }: Params) {
       </header>
 
       <div className="shell">
+        {/* Lifted into the title block so the window overlaps the gradient. */}
         <div className="-mt-8 md:-mt-12">
-          {/* TODO: set `cover` in the frontmatter to fill this. */}
-          <ImageSlot
+          <BrowserFrame
             src={project.cover}
             alt={project.coverAlt}
-            aspect="16/9"
-            sizes="100vw"
+            aspect={project.coverAspect || "16/9"}
+            url={project.coverUrl}
             priority
           />
         </div>
