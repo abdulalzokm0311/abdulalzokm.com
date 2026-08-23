@@ -25,7 +25,7 @@ export function Brief({ project }: { project: Project }) {
       </div>
 
       <div className="mt-9 grid gap-10 md:grid-cols-12 md:gap-14">
-        <div className="md:col-span-5">
+        <div className={tasks.length > 0 ? "md:col-span-5" : "md:col-span-9"}>
           <h3 className="font-display text-xl font-medium text-ink">
             The problem
           </h3>

@@ -1,0 +1,263 @@
+---
+title: "Redesigning RBC's Business Credit Cards"
+headline: "Making a wall of text into something you can scan"
+shortTitle: "RBC"
+client: "RBC"
+slug: "rbc-business-cards"
+order: 0
+year: "2025"
+published: true
+summary: "A dense, outdated set of business credit card pages, reordered around the decision a business owner is actually trying to make."
+role: "Product Designer, end to end from competitive analysis to hi-fi"
+team: "Two designers"
+timeline: "TODO: add your dates, e.g. Summer 2025"
+context: "RBC, business credit cards"
+tools: ["Figma"]
+tags: ["Product Design", "Information Architecture", "Financial Services", "Design Systems"]
+metrics:
+  - value: "3"
+    label: "pages redesigned, desktop and mobile"
+  - value: "2"
+    label: "audiences given separate paths"
+  - value: "In build"
+    label: "delivered and in development"
+brief:
+  problem: "The pages made you read instead of letting you scan, and the order worked against the visitor. To reach the cards, the thing people came for, you had to scroll past secondary tools first. One page also served two different audiences at once, so neither got a clean path."
+  approach: "I worked end to end with one other designer, from competitive analysis through hi-fi. We reordered the home page around the decision a business owner is making, split the business audience from the commercial one, and replaced feature prose with image-led sections."
+tasks:
+  - task: "Pages redesigned, desktop and mobile"
+    result: "3"
+  - task: "Canadian banks benchmarked"
+    result: "3"
+  - task: "Audiences given their own path"
+    result: "2"
+  - task: "Delivered and in development"
+    result: "In build"
+tasksNote: "These describe the scope of the work, not its results. The redesign is in development, so there is no live performance data, and no usability testing or analytics were run on this project."
+# RBC's own palette, sampled from rbcroyalbank.com: blue #006AC3, deeper blue
+# #0051A5, yellow #FEDF01. The title block sweeps yellow into blue so the
+# brand reads immediately. Both brand values are unusable as small text, blue
+# at 5.46:1 and yellow at 1.33:1 on white, so accent sits darker at #00468F.
+# Worst contrast across every stop and surface is 5.15:1.
+theme:
+  paper: "#FFFFFF"
+  gradientFrom: "#FFEFA3"
+  gradientVia: "#DDE9F6"
+  gradientTo: "#B2D2EF"
+  accent: "#00468F"
+  accentDeep: "#003468"
+  surface: "#F2F7FC"
+  surfaceDeep: "#E1EDF8"
+  ink: "#17212E"
+  inkSoft: "#3B4757"
+  muted: "#45515F"
+  rule: "#CFE0EF"
+cover: ""
+coverAlt: "Redesigned RBC business credit cards home page, white-labeled"
+---
+
+<Note>
+  The screens here are white-labeled. RBC logos and brand colours have been
+  removed because the work is internal and still in build.
+</Note>
+
+## The ask
+
+A marketing manager came to our team with the business credit cards home page
+and two of its product pages. They were old and they were not working.
+
+Everything was text. The pages made you read instead of letting you scan, and
+the order of the content did not match what a business owner came to do. Two
+of us took it from competitive analysis through to final hi-fi.
+
+## The pages made you work for it
+
+The home page opened with a wall of copy and never let up. To reach the actual
+cards you had to scroll past secondary tools and lower-priority content first.
+
+That is the whole problem in one line. The old running order was:
+
+1. Awareness, the hero
+2. Lower-priority info, tools and secondary content
+3. Exploration, the cards, the thing people came for
+4. Recommendations and other
+
+Exploration sat below content most people did not need yet, on a page whose
+main job is helping someone find the right card.
+
+The page also served two audiences at once, business and commercial, so
+neither got a clean path through. The product pages had the same habit: a
+large intro paragraph almost nobody would read, then who the card was for,
+then a long block of feature text, then a call to action at the bottom. The
+features were worth knowing. They were just buried in prose.
+
+<Figure
+  src=""
+  alt="TODO: white-labeled current home page and product page, annotated with the old priority order"
+  caption="The current pages, annotated with the order they ran in."
+/>
+
+## What everyone else was doing
+
+Before touching the design we looked at how other Canadian banks handle their
+business pages. CIBC, Scotiabank and National Bank all ran roughly the same
+flow: an awareness piece up top, an exploration step with the product, then
+the bank's other features and benefits.
+
+The pattern was consistent enough to trust, and it made the gap obvious. RBC
+led with awareness and then dropped the user into secondary tools before
+letting them explore. Everyone else got people to the product faster.
+
+<Note>
+  There was no research budget on this project, so there is no usability
+  testing or analytics behind these decisions. The competitive analysis, a
+  close audit of the current pages, and design judgment are what drove them.
+</Note>
+
+## What we set out to do
+
+<ChangeList
+  items={[
+    { title: "Scannable first", text: "Use the least text that still delivers the message. Someone should be able to skim the page and still get it." },
+    { title: "Two pages, two jobs", text: "The home page tells a story. The product pages help you decide. Different jobs, different tones." },
+    { title: "One audience per page", text: "Business cards are for businesses under $3 million in revenue. Anything above that is commercial. Give the commercial audience a clear way out instead of making them read past content that is not for them." },
+    { title: "Modern, but still RBC", text: "Push the visual language forward without stepping outside the brand." },
+    { title: "Respect answer-engine visibility", text: "Keep longer-form text where it helps the page get surfaced, and balance that against the push to cut copy." },
+  ]}
+/>
+
+## The constraint that shaped everything
+
+The hardest part was designing something modern inside RBC's existing design
+system. The bank has a set visual language and a fixed palette, and the
+redesign had to live inside both. Most of the work was finding how far the
+system could be pushed before it stopped feeling like RBC.
+
+Answer-engine visibility was the other real constraint. Some sections had to
+stay text-heavy on purpose so the pages would still perform in search. That
+gave the "cut the copy" goal a hard limit, and part of the job was deciding
+section by section where scannability won and where the text had to stay.
+
+## The home page
+
+Someone landing here is early. They are working out whether RBC has anything
+for them at all, so the page should pull them in and then get them to the
+cards.
+
+<Decision
+  index="01"
+  title="Lead with the offer, then get out of the way"
+  before="An opening wall of copy, with no immediate reason to keep reading."
+  after="A lifestyle image of a business owner, a headline leading with the card's welcome offer, and two actions: Apply Now straight to the application, View Details through to the product page."
+  src=""
+  alt="TODO: white-labeled redesigned home page hero, desktop and mobile"
+/>
+
+<Decision
+  index="02"
+  title="Are you in the right place?"
+  before="Business and commercial audiences shared one path, and the distinction was buried far down the page."
+  after="A short section near the top that separates the two. Business credit cards are for businesses under $3 million in revenue, and anyone above that is pointed to the commercial page before they waste time on the wrong content."
+  src=""
+  alt="TODO: white-labeled audience split section"
+/>
+
+<Decision
+  index="03"
+  title="Show the range, early"
+  before="The cards sat below secondary tools, so exploration came after content most people did not need yet."
+  after="The full lineup of RBC business credit cards, together and high on the page. Exploration now happens where people are looking for it."
+  src=""
+  alt="TODO: white-labeled card lineup section"
+/>
+
+The rest of the page follows the same logic. Benefits of being an RBC business
+client became short tiles instead of paragraphs, quick proof points a business
+owner can take in at a glance. The tools section got an updated visual so it
+reads as helpful rather than as clutter. The page closes on one more chance to
+apply, with a gradient pulled from the card art so the section ties back to
+the product.
+
+<Figure
+  wide
+  src=""
+  alt="TODO: white-labeled redesigned home page, full flow, desktop and mobile"
+  aspect="21/9"
+  caption="The redesigned home page. TODO: replace with your final screens."
+/>
+
+## The product pages
+
+Same problems, different job. A product page is where someone decides, so it
+has to give them enough to say yes without making them read a manual. This
+structure applies to both cards we redesigned, the WestJet RBC World Elite
+Mastercard for Business and the RBC Avion Visa Infinite Business Credit Card.
+
+<Decision
+  index="01"
+  title="Decide from the top of the page"
+  before="A large intro paragraph almost nobody would read, before any of the detail that matters."
+  after="The card and its main features in one section above the fold, enough to make a call on its own. Cleaner hierarchy, scannable in a few seconds."
+  src=""
+  alt="TODO: white-labeled redesigned product page summary section"
+/>
+
+<Decision
+  index="02"
+  title="Say who it is not for"
+  before="The old page had the idea of fit, but hid it inside body text."
+  after="Best for you if, and may not be ideal for you if, made visual and easy to parse. It lets people self-select quickly and sets honest expectations about who the card suits."
+  src=""
+  alt="TODO: white-labeled ideal and not ideal section"
+/>
+
+<Decision
+  index="03"
+  title="Let the images do the explaining"
+  before="A long block of feature text. The features were real and worth knowing, and nobody was reading them."
+  after="Short image-led sections, one feature at a time, taking cues from how Wealthsimple and Robinhood present product features. The images carry the explanation, which speaks more directly than a list ever did."
+  src=""
+  alt="TODO: white-labeled chunked feature sections"
+/>
+
+One section is new. Brand partners was not on the old pages at all, and it
+makes the point that the card unlocks more than the card: Petro-Canada, Rexall
+and DoorDash DashPass on the WestJet card, and the Avion Collection and
+business owner offers on Avion. The page then closes on a final call to
+action.
+
+<Figure
+  wide
+  src=""
+  alt="TODO: white-labeled redesigned WestJet and Avion product pages, desktop and mobile"
+  aspect="21/9"
+  caption="Both redesigned product pages. TODO: replace with your final screens."
+/>
+
+## Where it stands
+
+Delivered and in development. There is no live data yet, and I am not going to
+attach numbers to it that do not exist.
+
+What I would want to watch once it ships:
+
+- Engagement on the Apply and View Details actions
+- Scroll depth, as a rough read on whether the page is genuinely more scannable
+- Drop-off on the product pages, to see whether the chunked feature sections
+  hold attention better than the old text wall
+- Whether the business and commercial split cuts down on the wrong audience
+  landing on business pages
+
+## What I took from it
+
+Designing something modern inside a bank's design system is its own skill. The
+creativity was not in ignoring the constraints, it was in finding room to move
+inside them.
+
+Balancing that against answer-engine visibility, where some text has to stay,
+meant almost every section was a tradeoff between how clean it could look and
+how much it needed to say.
+
+And working from a stakeholder ask with no research budget pushed me to lean
+on competitive analysis and craft, and to be clear about what that evidence
+can and cannot claim.
