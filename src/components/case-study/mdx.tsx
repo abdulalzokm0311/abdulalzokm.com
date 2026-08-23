@@ -73,8 +73,17 @@ export function Decision({
         <h3 className="text-card">{title}</h3>
       </div>
 
-      <div className="mt-8">
-        <ImageSlot src={src} alt={alt} aspect={aspect} sizes="100vw" />
+      {/* The screenshot is matted rather than sitting flush. These exports
+          carry their own BEFORE and AFTER labels in the top corners, and a
+          24px corner radius on a flush image clips straight through them. */}
+      <div className="mt-8 rounded-card bg-surface p-2 sm:p-3">
+        <ImageSlot
+          src={src}
+          alt={alt}
+          aspect={aspect}
+          sizes="100vw"
+          className="rounded-sm"
+        />
       </div>
 
       <div className="mt-8 grid gap-8 sm:grid-cols-2">
