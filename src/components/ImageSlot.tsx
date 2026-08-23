@@ -16,6 +16,12 @@ type ImageSlotProps = {
   sizes?: string;
   /** Only for the largest above-the-fold image on a page. */
   priority?: boolean;
+  /**
+   * "cover" fills the slot and crops the overflow, which suits art-directed
+   * covers. "contain" guarantees the whole image is visible, which is what a
+   * screenshot needs: a UI shot with a corner sliced off is just wrong.
+   */
+  fit?: "cover" | "contain";
   /** Drop the descriptive text in the placeholder. For slots too small to fit it. */
   compact?: boolean;
   className?: string;
@@ -35,6 +41,7 @@ export function ImageSlot({
   sizes = "100vw",
   priority = false,
   compact = false,
+  fit = "cover",
   className,
 }: ImageSlotProps) {
   if (!src) {
@@ -81,7 +88,7 @@ export function ImageSlot({
         fill
         sizes={sizes}
         priority={priority}
-        className="object-cover"
+        className={fit === "contain" ? "object-contain" : "object-cover"}
       />
     </div>
   );

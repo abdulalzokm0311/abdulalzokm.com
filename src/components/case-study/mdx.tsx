@@ -33,7 +33,7 @@ export function Figure({
 }) {
   return (
     <figure className={cn("my-12", wide ? "" : "mx-auto max-w-4xl")}>
-      <ImageSlot src={src} alt={alt} aspect={aspect} sizes="100vw" />
+      <ImageSlot src={src} alt={alt} aspect={aspect} sizes="100vw" fit="contain" />
       {caption ? (
         <figcaption className="mt-3 text-sm text-muted">{caption}</figcaption>
       ) : null}
@@ -82,6 +82,7 @@ export function Decision({
           alt={alt}
           aspect={aspect}
           sizes="100vw"
+          fit="contain"
           className="rounded-sm"
         />
       </div>
