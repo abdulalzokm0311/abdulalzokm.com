@@ -11,6 +11,3 @@ build
 next-env.d.ts
 *.tsbuildinfo
 .claude/
-
-# Case study video is large; keep it out of git and upload to the host directly.
-# Remove this block if you'd rather version the files.
