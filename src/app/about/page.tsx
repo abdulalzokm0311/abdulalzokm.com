@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { ImageSlot } from "@/components/ImageSlot";
 import { PhotoScatter } from "@/components/PhotoScatter";
 import { SectionHeading } from "@/components/SectionHeading";
 import { about } from "@/content/about";
@@ -25,32 +26,46 @@ export default function AboutPage() {
           </h1>
 
           <div className="mt-10 grid gap-10 md:grid-cols-12">
-            <div className="md:col-span-7">
+            {/* Portrait leads, so the page opens on a face rather than a wall
+                of copy. Contained at its own ratio, never cropped. */}
+            <div className="md:col-span-4">
+              <ImageSlot
+                src={about.portrait}
+                alt={about.portraitAlt}
+                aspect={about.portraitAspect}
+                sizes="(min-width: 768px) 30vw, 92vw"
+                fit="contain"
+                priority
+                className="rounded-card"
+              />
+            </div>
+
+            <div className="md:col-span-8">
               {about.full.map((paragraph, index) => (
                 <p key={index} className={cn(index > 0 && "mt-5", "max-w-2xl")}>
                   {paragraph}
                 </p>
               ))}
-            </div>
 
-            <dl className="md:col-span-4 md:col-start-9">
-              <div className="border-t border-rule pt-4">
-                <dt className="eyebrow text-muted">Now</dt>
-                <dd className="mt-2 text-sm text-ink">
-                  Product Designer at RBC
-                </dd>
-              </div>
-              <div className="mt-6 border-t border-rule pt-4">
-                <dt className="eyebrow text-muted">Studied</dt>
-                <dd className="mt-2 text-sm text-ink">
-                  BArch and MI in UX Design, University of Toronto
-                </dd>
-              </div>
-              <div className="mt-6 border-t border-rule pt-4">
-                <dt className="eyebrow text-muted">Based in</dt>
-                <dd className="mt-2 text-sm text-ink">{site.location}</dd>
-              </div>
-            </dl>
+              <dl className="mt-10 grid gap-6 sm:grid-cols-3">
+                <div className="border-t border-rule pt-4">
+                  <dt className="eyebrow text-muted">Now</dt>
+                  <dd className="mt-2 text-sm text-ink">
+                    Product Designer at RBC
+                  </dd>
+                </div>
+                <div className="border-t border-rule pt-4">
+                  <dt className="eyebrow text-muted">Studied</dt>
+                  <dd className="mt-2 text-sm text-ink">
+                    BArch and MI in UX Design, University of Toronto
+                  </dd>
+                </div>
+                <div className="border-t border-rule pt-4">
+                  <dt className="eyebrow text-muted">Based in</dt>
+                  <dd className="mt-2 text-sm text-ink">{site.location}</dd>
+                </div>
+              </dl>
+            </div>
           </div>
         </div>
       </section>

@@ -15,8 +15,9 @@ export const about = {
     "I hold a Bachelor of Architecture from the University of Toronto and a Master of Information in User Experience Design from the same institution, a foundation that lets me balance aesthetics, usability, and intent in everything I build.",
   ],
   /** TODO: replace with a real photo. See public/README.md. */
-  portrait: "",
-  portraitAlt: "Portrait photograph of Abdul Alzokm",
+  portrait: "/about/me.png",
+  portraitAspect: "2448/3264",
+  portraitAlt: "Abdul on a lit deck at night, one arm along the railing, looking off to the side",
 
   /**
    * The second half of the page. Playing, then watching, then eating, which
@@ -29,9 +30,8 @@ export const about = {
    */
   life: [
     {
-      // TODO: drop 01-volleyball into public/about/ and restore this src.
-      src: "",
-      aspect: "3/4",
+      src: "/about/01-volleyball.png",
+      aspect: "1392/1868",
       alt: "Mid-air at the top of a volleyball serve, ball above an indoor court",
       caption: "Playing a volleyball tournament.",
       scale: 0.92,
@@ -84,9 +84,8 @@ export const about = {
       drop: 44,
     },
     {
-      // TODO: drop 07-egypt into public/about/ and restore this src.
-      src: "",
-      aspect: "3/4",
+      src: "/about/07-egypt.png",
+      aspect: "3000/4000",
       alt: "Wearing an Egypt number 10 shirt beside a giant football sculpture at night",
       caption: "Watching Egypt win their first ever World Cup game.",
       scale: 0.9,
@@ -94,9 +93,8 @@ export const about = {
       drop: 28,
     },
     {
-      // TODO: drop 08-pizza into public/about/ and restore this src.
-      src: "",
-      aspect: "3/4",
+      src: "/about/08-pizza.png",
+      aspect: "2448/3264",
       alt: "Grinning behind an enormous pizza that fills the whole table",
       caption: "Eating pizza in the Bahamas.",
       scale: 0.96,

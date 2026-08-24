@@ -56,11 +56,10 @@ export default function HomePage() {
       <section className="shell pt-24 md:pt-32">
         <div className="grid items-center gap-10 rounded-block bg-surface p-6 md:grid-cols-12 md:p-10">
           <Reveal className="md:col-span-5">
-            {/* TODO: add a portrait to /public and set `portrait` in src/content/about.ts */}
             <ImageSlot
               src={about.portrait}
               alt={about.portraitAlt}
-              aspect="4/5"
+              aspect={about.portraitAspect}
               sizes="(min-width: 768px) 38vw, 92vw"
               className="rounded-card"
             />
