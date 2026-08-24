@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { Hero } from "@/components/Hero";
 import { Icon } from "@/components/Icon";
-import { ImageSlot } from "@/components/ImageSlot";
+import { SlatPortrait } from "@/components/SlatPortrait";
 import { Marquee } from "@/components/Marquee";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Reveal } from "@/components/Reveal";
@@ -56,12 +56,10 @@ export default function HomePage() {
       <section className="shell pt-24 md:pt-32">
         <div className="grid items-center gap-10 rounded-block bg-surface p-6 md:grid-cols-12 md:p-10">
           <Reveal className="md:col-span-5">
-            <ImageSlot
+<SlatPortrait
               src={about.portrait}
               alt={about.portraitAlt}
               aspect={about.portraitAspect}
-              sizes="(min-width: 768px) 38vw, 92vw"
-              className="rounded-card"
             />
           </Reveal>
 

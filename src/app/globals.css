@@ -180,6 +180,17 @@
   }
 }
 
+@keyframes dust-settle {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.65;
+  }
+  100% {
+    transform: translate(var(--dust-drift, 0), 26px) scale(0.3);
+    opacity: 0;
+  }
+}
+
 /* ---------------------------------------------------------------------------
    Reduced motion. Framer Motion components also check useReducedMotion()
    in JS, but this is the backstop that catches CSS animation too.

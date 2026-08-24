@@ -22,6 +22,11 @@ type ImageSlotProps = {
    * screenshot needs: a UI shot with a corner sliced off is just wrong.
    */
   fit?: "cover" | "contain";
+  /**
+   * Pass false inside a draggable wrapper. The browser's own image drag
+   * otherwise starts a ghost preview and swallows the pointer.
+   */
+  draggable?: boolean;
   /** Drop the descriptive text in the placeholder. For slots too small to fit it. */
   compact?: boolean;
   className?: string;
@@ -42,6 +47,7 @@ export function ImageSlot({
   priority = false,
   compact = false,
   fit = "cover",
+  draggable,
   className,
 }: ImageSlotProps) {
   if (!src) {
@@ -91,6 +97,7 @@ export function ImageSlot({
         fill
         sizes={sizes}
         priority={priority}
+        draggable={draggable}
         className={fit === "contain" ? "object-contain" : "object-cover"}
       />
     </div>
