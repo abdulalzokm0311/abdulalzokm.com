@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 
 import { AutoVideo } from "@/components/case-study/AutoVideo";
 import { ScreenCarousel } from "@/components/case-study/ScreenCarousel";
+import { SectionCarousel } from "@/components/case-study/SectionCarousel";
 import { ImageSlot } from "@/components/ImageSlot";
 import { cn } from "@/lib/utils";
 
@@ -93,22 +94,26 @@ export function Decision({
         <h3 className="text-card">{title}</h3>
       </div>
 
+      {/* A decision does not always need its own image. This one hands off to
+          a carousel below, so the slot is skipped rather than left empty. */}
       {/* Capped by height so the title, the screenshot and the before/after
           pair stay on one screen together. A decision you have to scroll to
           finish reading is a decision the reader assembles from memory.
           Height cannot be capped directly on an aspect-ratio box without
           collapsing it, so the cap becomes a max-width derived from the
           image's own ratio. Wide exports never reach it. */}
-      <div className="mx-auto mt-8" style={{ maxWidth: maxImageWidth }}>
-        <ImageSlot
-          src={src}
-          alt={alt}
-          aspect={aspect}
-          sizes="100vw"
-          fit="contain"
-          className="rounded-sm"
-        />
-      </div>
+      {alt ? (
+        <div className="mx-auto mt-8" style={{ maxWidth: maxImageWidth }}>
+          <ImageSlot
+            src={src}
+            alt={alt}
+            aspect={aspect}
+            sizes="100vw"
+            fit="contain"
+            className="rounded-sm"
+          />
+        </div>
+      ) : null}
 
       <div className="mt-8 grid gap-8 sm:grid-cols-2">
         <div>
@@ -561,6 +566,7 @@ export const mdxComponents = {
   PageOrderCompare,
   FigureGrid,
   ScreenCarousel,
+  SectionCarousel,
   Results,
   Note,
 
