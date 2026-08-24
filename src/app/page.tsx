@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Hero } from "@/components/Hero";
 import { Icon } from "@/components/Icon";
 import { SlatPortrait } from "@/components/SlatPortrait";
+import { TracedCard } from "@/components/TracedCard";
 import { Marquee } from "@/components/Marquee";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Reveal } from "@/components/Reveal";
@@ -54,7 +55,8 @@ export default function HomePage() {
 
       {/* ---------------------------------------------------------------- */}
       <section className="shell pt-24 md:pt-32">
-        <div className="grid items-center gap-10 rounded-block bg-surface p-6 md:grid-cols-12 md:p-10">
+        <TracedCard className="rounded-block bg-surface">
+          <div className="grid items-center gap-10 p-6 md:grid-cols-12 md:p-10">
           <Reveal className="md:col-span-5">
 <SlatPortrait
               src={about.portrait}
@@ -85,7 +87,8 @@ export default function HomePage() {
               <Icon name="arrow" className="h-4 w-4" />
             </Link>
           </Reveal>
-        </div>
+          </div>
+        </TracedCard>
       </section>
 
       {/* ---------------------------------------------------------------- */}
