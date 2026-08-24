@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
 import { AutoVideo } from "@/components/case-study/AutoVideo";
+import { ScreenCarousel } from "@/components/case-study/ScreenCarousel";
 import { ImageSlot } from "@/components/ImageSlot";
 import { cn } from "@/lib/utils";
 
@@ -500,6 +501,7 @@ export const mdxComponents = {
   PageOrder,
   PageOrderCompare,
   FigureGrid,
+  ScreenCarousel,
   Note,
 
   h2: (props: React.ComponentProps<"h2">) => (
