@@ -171,8 +171,19 @@ export function Finding({
       </div>
 
       {alt ? (
-        <div className="mt-10">
-          <ImageSlot src={src} alt={alt} aspect={aspect} sizes="100vw" />
+        /* Capped and centred. These are usually before-and-after pairs, which
+           run close to square, and at the full text measure a square image
+           stands taller than the viewport. Matted so a label sitting in the
+           image's own corner is not clipped by the corner radius. */
+        <div className="mx-auto mt-10 max-w-[34rem] rounded-card bg-surface p-2 sm:p-3">
+          <ImageSlot
+            src={src}
+            alt={alt}
+            aspect={aspect}
+            sizes="(min-width: 768px) 34rem, 92vw"
+            fit="contain"
+            className="w-full rounded-sm"
+          />
         </div>
       ) : null}
     </section>
