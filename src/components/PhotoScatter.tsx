@@ -30,19 +30,24 @@ export function PhotoScatter() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <ul className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 sm:gap-x-10 lg:grid-cols-4">
+    /* Below lg this is an ordinary two-column flow, because absolute scatter
+       on a 375px screen just piles photographs on top of each other. From lg
+       up the container becomes the coordinate space and every photo takes its
+       own left, top and width, so the set overlaps and drifts rather than
+       settling into rows. */
+    <ul className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 lg:mt-20 lg:relative lg:block lg:h-[880px] lg:gap-0">
       {about.life.map((photo, index) => (
         <li
           key={photo.caption}
-          className="flex flex-col"
+          className="lg:absolute"
           style={{
-            marginTop: `${photo.drop}px`,
-            alignItems: index % 2 === 0 ? "flex-start" : "flex-end",
+            left: `${photo.left}%`,
+            top: `${photo.top}%`,
+            width: `${photo.w}%`,
           }}
         >
-          {/* Tilt on the outside, bob on the inside, so the two transforms
-              do not overwrite each other. */}
-          <div style={{ width: `${photo.scale * 100}%`, rotate: `${photo.tilt}deg` }}>
+          {/* Tilt outside, bob inside, so the two transforms do not fight. */}
+          <div style={{ rotate: `${photo.tilt}deg` }}>
             <div
               className="relative"
               style={
@@ -57,7 +62,7 @@ export function PhotoScatter() {
                 src={photo.src}
                 alt={photo.alt}
                 aspect={photo.aspect}
-                sizes="(min-width: 1024px) 20vw, 44vw"
+                sizes="(min-width: 1024px) 18vw, 44vw"
                 fit="contain"
                 compact
                 className="rounded-card"
@@ -81,7 +86,7 @@ export function PhotoScatter() {
               ) : null}
             </div>
 
-            <p className="mt-4 text-xs leading-snug text-ink-soft">
+            <p className="mt-3 text-xs leading-snug text-ink-soft">
               {photo.caption}
             </p>
           </div>

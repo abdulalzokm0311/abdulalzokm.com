@@ -23,10 +23,11 @@ export const about = {
    * The second half of the page. Playing, then watching, then eating, which
    * is the order Abdul described them in.
    *
-   * `scale` is the share of its column each photo takes, `tilt` its rotation
-   * in degrees, and `drop` how far it hangs below its neighbours. Together
-   * they scatter the set rather than tiling it. Fixed values, not random, so
-   * the server and the browser agree on the layout.
+   * `left` and `top` are percentages of the scatter container, `w` a
+   * percentage of its width, and `tilt` a rotation in degrees. Real
+   * coordinates rather than grid cells, so the set genuinely scatters and can
+   * overlap instead of settling into rows. Fixed values, not random, so the
+   * server and the browser agree on the layout.
    */
   life: [
     {
@@ -34,72 +35,80 @@ export const about = {
       aspect: "1392/1868",
       alt: "Mid-air at the top of a volleyball serve, ball above an indoor court",
       caption: "Playing a volleyball tournament.",
-      scale: 0.92,
-      tilt: -3.5,
-      drop: 0,
+      left: 2,
+      top: 5,
+      w: 16,
+      tilt: -4,
     },
     {
       src: "/about/02-padel-tournament.png",
       aspect: "1340/1174",
       alt: "Following through on a padel shot on an indoor court, looking back over the shoulder",
       caption: "Playing a padel tournament.",
-      scale: 1,
-      tilt: 2.5,
-      drop: 56,
+      left: 22,
+      top: 0,
+      w: 21,
+      tilt: 3,
     },
     {
       src: "/about/03-padel.png",
       aspect: "1254/1254",
       alt: "Setting up a padel shot with the ball in the air, glass-walled court behind",
       caption: "More padel.",
-      scale: 0.82,
-      tilt: -1.5,
-      drop: 20,
+      left: 46,
+      top: 11,
+      w: 14,
+      tilt: -2,
     },
     {
       src: "/about/04-padel-district.png",
       aspect: "852/1846",
       alt: "Waiting on the return at an indoor padel court, boards around the court reading The District",
-      caption: "Padel at The District.",
-      scale: 0.72,
-      tilt: 4,
-      drop: 72,
+      caption: "Playing pickleball with my brother.",
+      left: 63,
+      top: 2,
+      w: 11,
+      tilt: 5,
     },
     {
       src: "/about/05-tennis.png",
       aspect: "1069/1471",
       alt: "Winding up a tennis backhand on an outdoor court at dusk, treeline behind",
       caption: "Playing tennis with my dad.",
-      scale: 0.86,
-      tilt: -2.5,
-      drop: 8,
+      left: 50,
+      top: 54,
+      w: 15,
+      tilt: 3,
     },
     {
       src: "/about/06-snowboarding.png",
       aspect: "853/1844",
       alt: "Riding a snowboard down a quiet groomed slope, pines along the treeline",
-      caption: "Snowboarding.",
-      scale: 0.74,
-      tilt: 3,
-      drop: 44,
+      caption: "Snowboarding in Blue Mountain.",
+      left: 5,
+      top: 52,
+      w: 12,
+      tilt: 4,
     },
     {
       src: "/about/07-egypt.png",
       aspect: "3000/4000",
       alt: "Wearing an Egypt number 10 shirt beside a giant football sculpture at night",
       caption: "Watching Egypt win their first ever World Cup game.",
-      scale: 0.9,
-      tilt: -4,
-      drop: 28,
+      left: 78,
+      top: 15,
+      w: 17,
+      tilt: -3,
     },
     {
       src: "/about/08-pizza.png",
       aspect: "2448/3264",
       alt: "Grinning behind an enormous pizza that fills the whole table",
       caption: "Eating pizza in the Bahamas.",
-      scale: 0.96,
-      tilt: 1.5,
-      drop: 64,
+      left: 23,
+      top: 60,
+      w: 18,
+      tilt: -2,
     },
   ],
 } as const;
