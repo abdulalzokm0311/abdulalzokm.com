@@ -478,6 +478,50 @@ export function FigureGrid({
   );
 }
 
+/**
+ * The outcome numbers, as a closing statement rather than a skim tile.
+ *
+ * Deliberately not the brief's tiles. The brief's job is to be read in ten
+ * seconds by someone who will not scroll; this one lands at the end of the
+ * argument, so the numbers run large on hairlines with room to breathe.
+ */
+export function Results({
+  items,
+  note,
+}: {
+  items: { value: string; label: string }[];
+  note?: string;
+}) {
+  return (
+    <section className="my-12">
+      <dl className="grid gap-px overflow-hidden border-y border-rule bg-rule sm:grid-cols-2 lg:grid-cols-4">
+        {items.map((item) => (
+          <div key={item.label} className="bg-paper px-6 py-8">
+            <dt className="sr-only">{item.label}</dt>
+            <dd>
+              <span className="block font-display text-5xl leading-none text-accent">
+                {item.value}
+              </span>
+              <span
+                aria-hidden
+                className="mt-4 block text-sm leading-snug text-ink-soft"
+              >
+                {item.label}
+              </span>
+            </dd>
+          </div>
+        ))}
+      </dl>
+
+      {note ? (
+        <p className="mt-5 max-w-2xl text-xs leading-relaxed text-muted">
+          {note}
+        </p>
+      ) : null}
+    </section>
+  );
+}
+
 /** An honest caveat. Used where a number could be mistaken for something bigger. */
 export function Note({ children }: { children: ReactNode }) {
   return (
@@ -502,6 +546,7 @@ export const mdxComponents = {
   PageOrderCompare,
   FigureGrid,
   ScreenCarousel,
+  Results,
   Note,
 
   h2: (props: React.ComponentProps<"h2">) => (
