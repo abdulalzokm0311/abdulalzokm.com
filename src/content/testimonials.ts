@@ -1,8 +1,7 @@
 /**
- * TODO (Abdul): every quote below is a placeholder. Replace them with real
- * references from managers, professors or teammates, and delete any you do
- * not fill. The section hides itself if this array is empty, so an unfinished
- * references section never ships by accident.
+ * Real references only. The section hides itself when this array is empty, so
+ * an unfinished references block never ships by accident, and a single genuine
+ * quote is worth more than three placeholders.
  */
 
 export type Testimonial = {
@@ -14,20 +13,8 @@ export type Testimonial = {
 export const testimonials: Testimonial[] = [
   {
     quote:
-      "TODO: paste a real reference here. Two or three sentences works best, ideally naming something specific you shipped and how you worked with the people around you.",
-    name: "TODO: Name",
-    title: "TODO: Role at Company",
-  },
-  {
-    quote:
-      "TODO: paste a real reference here. A quote from a manager at RBC or Passafund carries the most weight, since those are the roles a hiring team will ask about.",
-    name: "TODO: Name",
-    title: "TODO: Role at Company",
-  },
-  {
-    quote:
-      "TODO: paste a real reference here. A professor from the Master of Information or a studio critic from architecture is a good third voice, because it speaks to the crossover.",
-    name: "TODO: Name",
-    title: "TODO: Role at Company",
+      "Abdul has a strong ability to bring together creativity, UX, business objectives, and customer-centric thinking. He translated a complex, information-heavy microsite into a clear, intuitive, and visually engaging experience, always considering how customers would navigate and interact with the content. He was highly collaborative, receptive to feedback, and a pleasure to work with. I would gladly work with Abdul again and highly recommend him.",
+    name: "Akshay Carvalho",
+    title: "Marketing Manager, RBC",
   },
 ];

@@ -1,6 +1,7 @@
 import { Icon } from "@/components/Icon";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
+import { cn } from "@/lib/utils";
 import { testimonials } from "@/content/testimonials";
 
 export function Testimonials() {
@@ -18,7 +19,21 @@ export function Testimonials() {
         />
       </Reveal>
 
-      <ul className="mt-12 grid gap-6 md:grid-cols-3">
+      {/* Columns follow the count, capped at three, and the whole block
+          narrows when there are only one or two. A single quote stretched
+          across the full measure reads as a gap where two more should be. */}
+      <ul
+        className={cn(
+          "mt-12 grid gap-6 md:grid-cols-[repeat(var(--ref-cols),minmax(0,1fr))]",
+          testimonials.length === 1 && "mx-auto max-w-2xl",
+          testimonials.length === 2 && "mx-auto max-w-4xl",
+        )}
+        style={
+          {
+            "--ref-cols": Math.min(testimonials.length, 3),
+          } as React.CSSProperties
+        }
+      >
         {testimonials.map((item, index) => (
           <Reveal key={item.name + index} delay={index * 0.06}>
             <li className="flex h-full flex-col rounded-card bg-surface p-7">
