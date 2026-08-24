@@ -78,7 +78,10 @@ export function ImageSlot({
     <div
       style={{ aspectRatio: aspect }}
       className={cn(
-        "relative w-full overflow-hidden rounded-card bg-surface-deep",
+        // No fill. With object-contain the letterbox would otherwise show a
+        // themed panel behind every screenshot that is not exactly the slot's
+        // ratio, which reads as a coloured border nobody asked for.
+        "relative w-full overflow-hidden rounded-card",
         className,
       )}
     >

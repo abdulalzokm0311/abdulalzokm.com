@@ -24,15 +24,23 @@ export function Figure({
   aspect = "16/9",
   /** Break out of the text measure and run the full content width. */
   wide = false,
+  /** Tighter than the text measure, for a section that has to fit one screen. */
+  narrow = false,
 }: {
   src?: string;
   alt: string;
   caption?: string;
   aspect?: string;
   wide?: boolean;
+  narrow?: boolean;
 }) {
   return (
-    <figure className={cn("my-12", wide ? "" : "mx-auto max-w-4xl")}>
+    <figure
+      className={cn(
+        narrow ? "my-8 mx-auto max-w-2xl" : "my-12",
+        !wide && !narrow && "mx-auto max-w-4xl",
+      )}
+    >
       <ImageSlot src={src} alt={alt} aspect={aspect} sizes="100vw" fit="contain" />
       {caption ? (
         <figcaption className="mt-3 text-sm text-muted">{caption}</figcaption>
@@ -76,7 +84,7 @@ export function Decision({
       {/* The screenshot is matted rather than sitting flush. These exports
           carry their own BEFORE and AFTER labels in the top corners, and a
           24px corner radius on a flush image clips straight through them. */}
-      <div className="mt-8 rounded-card bg-surface p-2 sm:p-3">
+      <div className="mt-8">
         <ImageSlot
           src={src}
           alt={alt}
@@ -179,7 +187,7 @@ export function Finding({
 
           {alt ? (
             <div className={imageFirst ? "md:order-1" : undefined}>
-              <div className="rounded-card bg-surface p-2 sm:p-3">
+              <div>
                 <ImageSlot
                   src={src}
                   alt={alt}
@@ -239,7 +247,7 @@ export function Finding({
            run close to square, and at the full text measure a square image
            stands taller than the viewport. Matted so a label sitting in the
            image's own corner is not clipped by the corner radius. */
-        <div className="mx-auto mt-10 max-w-[34rem] rounded-card bg-surface p-2 sm:p-3">
+        <div className="mx-auto mt-10 max-w-[34rem]">
           <ImageSlot
             src={src}
             alt={alt}
@@ -447,7 +455,7 @@ export function FigureGrid({
     >
       {items.map((item) => (
         <figure key={item.alt} className="m-0">
-          <div className="rounded-card bg-surface p-2">
+          <div>
             <ImageSlot
               src={item.src}
               alt={item.alt}
