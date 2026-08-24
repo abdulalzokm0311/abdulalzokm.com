@@ -75,6 +75,14 @@ export function Decision({
   alt: string;
   aspect?: string;
 }) {
+  /* 35rem of image, which leaves room for the heading and the before/after
+     pair inside a 900px viewport. */
+  const [w, h] = aspect.split("/").map((part) => Number(part.trim()));
+  const maxImageWidth =
+    Number.isFinite(w) && Number.isFinite(h) && h > 0
+      ? `${(w / h) * 35}rem`
+      : undefined;
+
   return (
     <section className="my-16 border-t border-rule pt-8">
       <div className="flex items-baseline gap-4">
@@ -82,10 +90,13 @@ export function Decision({
         <h3 className="text-card">{title}</h3>
       </div>
 
-      {/* The screenshot is matted rather than sitting flush. These exports
-          carry their own BEFORE and AFTER labels in the top corners, and a
-          24px corner radius on a flush image clips straight through them. */}
-      <div className="mt-8">
+      {/* Capped by height so the title, the screenshot and the before/after
+          pair stay on one screen together. A decision you have to scroll to
+          finish reading is a decision the reader assembles from memory.
+          Height cannot be capped directly on an aspect-ratio box without
+          collapsing it, so the cap becomes a max-width derived from the
+          image's own ratio. Wide exports never reach it. */}
+      <div className="mt-8" style={{ maxWidth: maxImageWidth }}>
         <ImageSlot
           src={src}
           alt={alt}
