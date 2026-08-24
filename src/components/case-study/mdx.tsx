@@ -121,6 +121,8 @@ export function Finding({
   src,
   alt,
   aspect = "16/9",
+  method,
+  layout = "stacked",
 }: {
   index: string;
   title: string;
@@ -131,7 +133,69 @@ export function Finding({
   src?: string;
   alt?: string;
   aspect?: string;
+  /** How the finding surfaced, e.g. "5 second test". */
+  method?: string;
+  /**
+   * "stacked" puts the image under the text. "split" runs them side by side
+   * and alternates which side the image lands on down the page.
+   */
+  layout?: "stacked" | "split";
 }) {
+  /* Split: text one side, evidence the other, alternating down the page so
+     the eye is not tracking the same column five times in a row. */
+  if (layout === "split") {
+    const imageFirst = Number(index) % 2 === 0;
+
+    return (
+      <section className="my-16 border-t border-rule pt-8">
+        <div className="grid items-center gap-8 md:grid-cols-2 md:gap-14">
+          <div className={imageFirst ? "md:order-2" : undefined}>
+            <p className="eyebrow text-accent">
+              {index}
+              {method ? ` · ${method}` : ""}
+            </p>
+
+            <h3 className="text-card mt-4">{title}</h3>
+
+            <p className="mt-5 text-sm">{observation}</p>
+
+            <div className="mt-6 border-t border-rule pt-5">
+              <p className="eyebrow text-accent">What changed</p>
+              <p className="mt-3 text-sm text-ink">{changed}</p>
+            </div>
+
+            {quotes.map((quote) => (
+              <blockquote
+                key={quote.who}
+                className="mt-6 border-l-2 border-rule pl-4"
+              >
+                <p className="text-sm italic text-ink">{quote.text}</p>
+                <cite className="eyebrow mt-2 block not-italic text-muted">
+                  {quote.who}
+                </cite>
+              </blockquote>
+            ))}
+          </div>
+
+          {alt ? (
+            <div className={imageFirst ? "md:order-1" : undefined}>
+              <div className="rounded-card bg-surface p-2 sm:p-3">
+                <ImageSlot
+                  src={src}
+                  alt={alt}
+                  aspect={aspect}
+                  sizes="(min-width: 768px) 46vw, 92vw"
+                  fit="contain"
+                  className="w-full rounded-sm"
+                />
+              </div>
+            </div>
+          ) : null}
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="my-20 border-t border-rule pt-8">
       <div className="flex items-baseline gap-4">

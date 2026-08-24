@@ -160,19 +160,41 @@ and give users a way to flag suspicious profiles.
 
 <Figure
   wide
-  src=""
-  alt="TODO: the four feature screens, compatibility, filters, reviews and report"
-  aspect="21/9"
+  src="/projects/roomin/features-built.png"
+  alt="Eight Roomin screens: profile with compatibility score, compatibility breakdown, filter list, report options, saved profiles, reviews, place overview and lifestyle preferences"
+  aspect="1183/1139"
   caption="The four trust-first features as built."
 />
 
-## What testing changed
+## Wireframing the flow
 
-Five second tests, journey tests and expert review, across two rounds. Each
-finding below drove a specific redesign.
+Before any visual design, the four features were laid out as low fidelity
+screens so the structure could be argued with while it was still cheap to
+change. Six screens covered the path end to end: browsing a listing, setting
+preferences, saved profiles, messages, a full profile and its reviews.
+
+Greyboxing on purpose. With no colour, imagery or type hierarchy to react to,
+testing sessions stayed on what the screens were actually for rather than how
+they looked.
+
+<Figure
+  wide
+  src="/projects/roomin/wireframes.png"
+  aspect="1521/491"
+  alt="Six greyscale wireframes: a listing card with sort and filter, a preferences form, saved profiles, a messages list, a full profile, and a reviews screen"
+  caption="The six wireframes taken into testing."
+/>
+
+## Reading the wireframes back
+
+Five second tests, journey tests and expert review, across two rounds, run
+against the wireframes above. Each finding below is paired with the screen
+that produced it and the change it forced.
 
 <Finding
   index="01"
+  method="5 second test"
+  layout="split"
   title="The home page was doing too much"
   changed="The home screen was cut back to rent, location and a short bio, so the card carries only what someone needs to decide whether to look further."
   observation="Four of five participants found the homepage overwhelming and hard to navigate in a five second test."
@@ -183,6 +205,8 @@ finding below drove a specific redesign.
 
 <Finding
   index="02"
+  method="User journey"
+  layout="split"
   title="Filters people would actually use"
   changed="Filters are collapsed by default with progressive disclosure, so users expand only what is relevant to them."
   observation="Three of five felt overwhelmed by the number of filters and skipped them entirely, which defeated the point of building them."
@@ -193,6 +217,8 @@ finding below drove a specific redesign.
 
 <Finding
   index="03"
+  method="Expert review"
+  layout="split"
   title="Ratings out, reviews in"
   changed="The star rating was removed and written reviews kept. Reviews carry the nuance a single number flattens."
   observation="Two of three industry experts said the rating system could create bias and add complexity, which made us question whether ratings supported a fair experience at all."
@@ -203,6 +229,8 @@ finding below drove a specific redesign.
 
 <Finding
   index="04"
+  method="User journey"
+  layout="split"
   title="A score nobody understood"
   changed="The score was enlarged and paired with an Explore More view breaking out matching preferences and areas of difference, so the number shows its work."
   observation="Five of five did not understand how the compatibility score was calculated or what it meant. Without context the feature lost its value."
@@ -213,6 +241,8 @@ finding below drove a specific redesign.
 
 <Finding
   index="05"
+  method="5 second test"
+  layout="split"
   title="It read as a dating app"
   changed="Imagery, copy and the profile layout were reworked to communicate the app's actual purpose."
   observation="Three of five thought the design was for a dating app. The option to add photos and videos gave the wrong impression."
