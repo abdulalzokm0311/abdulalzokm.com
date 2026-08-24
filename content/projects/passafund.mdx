@@ -50,8 +50,10 @@ theme:
   inkSoft: "#33425C"
   muted: "#44546F"
   rule: "#C9DCFA"
-cover: ""
-coverAlt: "Passafund personality assessment, borrower question screen"
+cover: "/projects/passafund/cover.png"
+coverAspect: "1536/1024"
+coverChrome: false
+coverAlt: "The Passafund app on a phone against a blue backdrop, showing the launch screen and the line your online lending marketplace"
 ---
 
 ## The trust gap
@@ -153,17 +155,21 @@ on the interactions that mattered most: question selection, visual feedback
 and progress tracking.
 
 <Figure
-  src=""
-  alt="TODO: borrower user journey map"
+  src="/projects/passafund/journey-map.jpg"
+  aspect="3648/2534"
+  alt="Borrower journey map for Alexa across six stages, discover through apply results, tracking goals, actions, thoughts, pain points, emotions and opportunities. Emotions run from curious and cautious, through slightly confused, to disconnected at the end"
   caption="Mapping the borrower journey through the assessment to locate the pain points."
 />
 
-<Figure
-  wide
-  src=""
-  alt="TODO: refined assessment screens, borrower and lender views"
-  aspect="21/9"
-  caption="The refined assessment. TODO: replace with your final screens."
+<ScreenCarousel
+  screens={[
+    { src: "/projects/passafund/screens/01-launch.png", label: "Launch", alt: "Launch screen: the Passafund wordmark on solid blue with the line your online lending marketplace" },
+    { src: "/projects/passafund/screens/02-question-01.png", label: "Question 1", alt: "Question 1 of 16, on honesty and openness in interactions, with a Cebuano translation beneath and five options from Never to Always" },
+    { src: "/projects/passafund/screens/03-question-06.png", label: "Question 6", alt: "Question 6 of 16, on making big purchases without planning or budgeting, with the same five point scale" },
+    { src: "/projects/passafund/screens/04-question-12.png", label: "Question 12", alt: "Question 12 of 16, on moral responsibility for how you treat others" },
+    { src: "/projects/passafund/screens/05-question-16.png", label: "Question 16", alt: "Question 16 of 16, on saving discipline, with Often selected and highlighted in blue" },
+    { src: "/projects/passafund/screens/06-done.png", label: "Complete", alt: "Completion screen reading Done, thanking the borrower and saying results will be available shortly" },
+  ]}
 />
 
 ## What fintech design taught me
