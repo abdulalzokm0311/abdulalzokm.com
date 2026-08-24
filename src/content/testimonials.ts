@@ -17,4 +17,10 @@ export const testimonials: Testimonial[] = [
     name: "Akshay Carvalho",
     title: "Marketing Manager, RBC",
   },
+  {
+    quote:
+      "Abdul is a talented and dependable designer who learns quickly, embraces feedback, and consistently goes above and beyond. He played a key role in leading a large-scale site design from concept to completion, collaborating effectively with partners throughout the process. His initiative, reliability, and strong design skills made him a valuable member of the team.",
+    name: "Jackie Evershed",
+    title: "Senior Product Design Manager, RBC",
+  },
 ];
