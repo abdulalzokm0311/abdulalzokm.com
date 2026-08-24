@@ -23,4 +23,10 @@ export const testimonials: Testimonial[] = [
     name: "Jackie Evershed",
     title: "Senior Product Design Manager, RBC",
   },
+  {
+    quote:
+      "Abdul is a bright and thoughtful designer who is genuinely easy to work with. He stays on top of his work, takes ownership, and is comfortable working independently with stakeholders. What stood out to me most was his critical thinking. He asks the right questions and isn't afraid to suggest a better design solution when he sees an opportunity. It was a great experience working with him, and I'd happily recommend him to any team.",
+    name: "Hanna Kukharenka",
+    title: "Project Manager, RBC",
+  },
 ];
