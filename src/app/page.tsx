@@ -199,13 +199,13 @@ export default function HomePage() {
               </span>
             </div>
 
-            <Link
-              href="/contact"
+            <a
+              href={links.email}
               className="eyebrow mt-10 inline-flex items-center gap-2 rounded-full bg-accent px-7 py-4 text-paper transition-colors hover:bg-accent-deep"
             >
               Send me a message
               <Icon name="arrow" className="h-4 w-4" />
-            </Link>
+            </a>
           </div>
         </Reveal>
       </section>

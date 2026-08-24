@@ -64,10 +64,16 @@ export function HeroStatement() {
             {tab.statement}
           </p>
 
+          {/* Sized and angled off the reference, where the word is far larger
+              than the statement's own type and overlaps its last line rather
+              than sitting politely beneath it. The negative margin pulls it up
+              into the statement; the rotation is what stops it reading as a
+              caption. */}
           <p
             aria-hidden
-            className="pointer-events-none mt-2 select-none text-center font-script text-[clamp(3rem,9vw,6.5rem)] leading-none text-accent/85"
-            >
+            className="pointer-events-none -mt-3 select-none text-center font-script text-[clamp(4rem,11vw,9rem)] leading-[0.9] text-accent sm:-mt-6 sm:translate-x-[6%]"
+            style={{ rotate: "-8deg" }}
+          >
             {tab.script}
           </p>
         </motion.div>

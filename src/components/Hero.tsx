@@ -21,7 +21,7 @@ export function Hero() {
           y={16}
           className="shell flex flex-1 flex-col justify-center py-16 text-center"
         >
-          <p className="text-sub mb-10 text-ink sm:mb-14">
+          <p className="mb-10 font-script text-[clamp(1.75rem,3.4vw,2.5rem)] leading-none text-ink sm:mb-14">
             Welcome, I&rsquo;m Abdul
           </p>
 

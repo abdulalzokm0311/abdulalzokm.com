@@ -88,12 +88,12 @@ export default function AboutPage() {
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
-            <Link
-              href="/contact"
+            <a
+              href={links.email}
               className="eyebrow rounded-full bg-accent px-6 py-3.5 text-paper transition-colors hover:bg-accent-deep"
             >
               Get in touch
-            </Link>
+            </a>
             <a
               href={links.resume}
               target="_blank"

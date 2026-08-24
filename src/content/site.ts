@@ -35,16 +35,12 @@ export const externalNav = [
 
 /**
  * The footer carries every page, including the ones kept out of the header to
- * keep it short. These pages are still routed and still indexed.
+ * keep it short. Only routes that actually exist belong here.
  */
 export const footerNav = [
   { label: "Home", href: "/" },
   { label: "Case Studies", href: "/projects" },
   { label: "About", href: "/about" },
-  { label: "Experience", href: "/experience" },
-  { label: "Education", href: "/education" },
-  { label: "UX Vision", href: "/vision" },
-  { label: "Contact", href: "/contact" },
 ] as const;
 
 export const footerExternal = [
@@ -78,7 +74,7 @@ export const heroTabs = [
     label: "Who I am",
     script: "who i am",
     statement:
-      "A product designer who blends creativity and strategy to design products people love.",
+      "A product designer who takes dense, complicated things and makes them scannable.",
   },
   {
     label: "What I care about",
@@ -96,12 +92,6 @@ export const heroTabs = [
     label: "Off the clock",
     script: "off the clock",
     statement:
-      "Padel, volleyball and tennis. Video games and anime. Snowboarding at Blue Mountain when there is snow.",
-  },
-  {
-    label: "What's next",
-    script: "what's next",
-    statement:
-      "Joining Rocket Innovation Studio as a product designer, starting September 2026.",
+      "Padel, volleyball and tennis. Video games and anime. And a very big foodie.",
   },
 ] as const;
