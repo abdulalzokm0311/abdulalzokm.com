@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Hero } from "@/components/Hero";
 import { Icon } from "@/components/Icon";
 import { SlatPortrait } from "@/components/SlatPortrait";
+import { ToolMark } from "@/components/ToolMark";
 import { TracedCard } from "@/components/TracedCard";
 import { Marquee } from "@/components/Marquee";
 import { ProjectCard } from "@/components/ProjectCard";
@@ -122,10 +123,13 @@ export default function HomePage() {
         <Reveal>
           <div className="mt-8 overflow-hidden rounded-card bg-surface py-4">
             <Marquee
-              items={[...tools, ...tools, ...tools, ...tools]}
+              items={[...tools, ...tools, ...tools, ...tools].map(
+                (tool, index) => (
+                  <ToolMark key={index} name={tool.name} logo={tool.logo} />
+                ),
+              )}
               duration={28}
               separator="✳"
-              itemClassName="eyebrow text-ink"
             />
           </div>
         </Reveal>

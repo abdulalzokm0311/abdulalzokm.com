@@ -54,10 +54,10 @@ export const footerExternal = [
 
 /** Feeds the tools ticker on the home page and the experience page. */
 export const tools = [
-  "Figma",
-  "Photoshop",
-  "FigJam",
-  "Illustrator",
+  { name: "Figma", logo: "/tools/figma.svg" },
+  { name: "Photoshop", logo: "" },
+  { name: "FigJam", logo: "" },
+  { name: "Illustrator", logo: "" },
 ] as const;
 
 /** Feeds the greeting ticker. */

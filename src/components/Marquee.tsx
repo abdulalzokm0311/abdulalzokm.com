@@ -1,7 +1,9 @@
+import type { ReactNode } from "react";
+
 import { cn } from "@/lib/utils";
 
 type MarqueeProps = {
-  items: readonly string[];
+  items: readonly ReactNode[];
   /** Seconds for one full loop. Higher is slower. */
   duration?: number;
   /** Character placed between items. */
@@ -30,7 +32,7 @@ export function Marquee({
   const track = (
     <ul className="flex shrink-0 items-center">
       {items.map((item, index) => (
-        <li key={`${item}-${index}`} className="flex items-center">
+        <li key={index} className="flex items-center">
           <span className={cn("whitespace-nowrap", itemClassName)}>{item}</span>
           <span
             aria-hidden
