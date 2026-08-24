@@ -56,6 +56,41 @@ coverChrome: false
 coverAlt: "The pyRTC dashboard on a laptop: live telemetry across the top, and PSF, DM surface, wavefront slopes and interaction matrix as separate blocks"
 ---
 
+## What pyRTC is, and who it is for
+
+Adaptive optics is how ground-based telescopes cancel atmospheric distortion in
+real time. A real-time controller is the software running that closed loop,
+measuring the wavefront and reshaping a deformable mirror thousands of times a
+second.
+
+Most controllers in the field are written in low-level C, locked to expensive
+hardware bundles, and built for full-scale observatories. pyRTC is the outlier:
+open source, written in Python, made by U of T PhD student Jacob Taylor with
+Robin Swanson and Ryan Dungee. It is the only realistic learning tool for a
+graduate student who wants to actually run adaptive optics without buying a
+$200k bundle.
+
+That accessibility is its superpower, and the existing interface hides it
+behind a wall of terminal commands and four disconnected plotting windows.
+
+<ChangeList
+  items={[
+    { title: "The brief", text: "Modernise the pyRTC graphical interface, and lower the barrier to entry for newly admitted AO researchers." },
+    { title: "Stakeholders", text: "Robin Swanson as client, Jacob Taylor as creator, the grad-student developers, and the wider open-source AO community." },
+    { title: "My part", text: "UX designer and researcher on a team of four. I worked on the interface design, ran interviews with AO researchers, and built the design system with the team." },
+  ]}
+/>
+
+<Steps
+  items={[
+    { label: "Discovery", text: "Weeks 1 to 4. Lab visit, secondary research, competitive scan." },
+    { label: "Synthesis", text: "Weeks 5 to 7. Interviews, codebooks, affinity mapping, personas." },
+    { label: "Ideation", text: "Weeks 8 to 9. Low-fi flows, moodboard, logo redesign." },
+    { label: "Mid-fi and test", text: "Weeks 10 to 12. Clickable prototype, three usability sessions." },
+    { label: "Iterate and hand off", text: "Weeks 13 to 14. Hi-fi prototype, design system, final report." },
+  ]}
+/>
+
 ## Listening before designing
 
 None of us were astronomers. Designing a real-time controller without that
@@ -171,6 +206,40 @@ remaining sprint.
   ]}
 />
 
+
+## Built for an open-source handoff
+
+pyRTC is community maintained. Anything we shipped had to be re-implementable
+by a grad-student volunteer with no design tooling, so the system leans
+entirely on things that are free and already documented. Every variable maps
+cleanly to a line of CSS.
+
+<ChangeList
+  items={[
+    { title: "Colour, pulled from the optical-table lens", text: "The accent palette comes from a photograph taken through a lens on the Dunlap optical table, the same indigo and teal flares that appear when light passes through stacked optics. We rebuilt them as Tailwind indigo and teal ramps so developers can reference shades by name. Indigo carries headings, links and focus; teal carries success and active states." },
+    { title: "Type, Geist and Geist Mono", text: "Geist for headings and body, Geist Mono for telemetry, code, and any value a researcher might read off a sensor. Both are Google Fonts, so there is no licensing friction for a volunteer picking the project up." },
+    { title: "Components, the data block", text: "The atomic unit of the dashboard. Built on Figma's slots beta so a developer can swap the inner visualisation, PSF, WFS, DM or Strehl, without rebuilding the chrome around it. Three states: default, focused and paused." },
+    { title: "Icons", text: "The Lucide library plus a handful of custom adaptive optics icons drawn to match Lucide's stroke weight, so the set reads as one family." },
+  ]}
+/>
+
+<Figure
+  src=""
+  alt="TODO: design system sheet, the indigo and teal Tailwind ramps, the Geist type scale, and the data block in its default, focused and paused states"
+  caption="Tailwind v4 colour, Geist and Geist Mono, Lucide icons, a 4px spacing grid, light and dark."
+/>
+
+## Where it landed
+
+<Results
+  note="Capstone client project. These are design and testing outcomes, not live product metrics. The prototype was handed off rather than shipped."
+  items={[
+    { value: "4 → 1", label: "viewer windows collapsed into a single workspace" },
+    { value: "0 → 5", label: "onboarding steps for a first-time user, from none at all" },
+    { value: "4", label: "usability findings shipped as design changes" },
+    { value: "1", label: "design system built for open-source handoff" },
+  ]}
+/>
 
 ## What I would take into the next one
 
