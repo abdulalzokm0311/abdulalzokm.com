@@ -66,6 +66,7 @@ export function Decision({
   src,
   alt,
   aspect = "16/9",
+  imageMaxHeight = 35,
 }: {
   index: string;
   title: string;
@@ -74,13 +75,15 @@ export function Decision({
   src?: string;
   alt: string;
   aspect?: string;
+  /** Cap on image height, in rem. Lower it for a taller screenshot. */
+  imageMaxHeight?: number;
 }) {
-  /* 35rem of image, which leaves room for the heading and the before/after
+  /* Cap the image, which leaves room for the heading and the before/after
      pair inside a 900px viewport. */
   const [w, h] = aspect.split("/").map((part) => Number(part.trim()));
   const maxImageWidth =
     Number.isFinite(w) && Number.isFinite(h) && h > 0
-      ? `${(w / h) * 35}rem`
+      ? `${(w / h) * imageMaxHeight}rem`
       : undefined;
 
   return (
@@ -96,7 +99,7 @@ export function Decision({
           Height cannot be capped directly on an aspect-ratio box without
           collapsing it, so the cap becomes a max-width derived from the
           image's own ratio. Wide exports never reach it. */}
-      <div className="mt-8" style={{ maxWidth: maxImageWidth }}>
+      <div className="mx-auto mt-8" style={{ maxWidth: maxImageWidth }}>
         <ImageSlot
           src={src}
           alt={alt}
