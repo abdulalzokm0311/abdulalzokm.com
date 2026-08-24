@@ -11,10 +11,19 @@ export type Role = {
 
 export const experience: Role[] = [
   {
+    company: "Rocket Innovation Studio",
+    title: "Product Designer",
+    start: "Sep 2026",
+    end: "Present",
+    location: "Windsor, ON",
+    summary:
+      "TODO: replace with what you are actually doing here. This is the first role a hiring team will read, and right now it is the only one without a line of substance under it.",
+  },
+  {
     company: "RBC Royal Bank of Canada",
     title: "Product Designer",
     start: "Jan 2026",
-    end: "Present",
+    end: "Sep 2026",
     location: "Toronto, ON",
     summary:
       "Designed high-traffic public pages across RBC.com for 5M+ monthly visitors, led end-to-end design of a 10-page Partnership Hub, and shipped an award-winning rewards page that grew organic Share of Voice by 12%.",
@@ -34,13 +43,5 @@ export const experience: Role[] = [
     end: "Aug 2024",
     summary:
       "Redesigned the platform to improve navigation and buyer-seller interactions. Introduced intuitive layout changes and refined visual hierarchy, resulting in faster user task completion and increased engagement across key features.",
-  },
-  {
-    company: "Matthew House",
-    title: "Designer",
-    start: "Sep 2023",
-    end: "Mar 2024",
-    summary:
-      "Developed visual materials and spatial layouts to enhance community spaces for refugee housing. Collaborated with staff to create user-centered designs that improved comfort, accessibility, and overall resident experience.",
   },
 ];

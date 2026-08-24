@@ -51,7 +51,7 @@ export default function AboutPage() {
                 <div className="border-t border-rule pt-4">
                   <dt className="eyebrow text-muted">Now</dt>
                   <dd className="mt-2 text-sm text-ink">
-                    Product Designer at RBC
+                    Product Designer at Rocket Innovation Studio
                   </dd>
                 </div>
                 <div className="border-t border-rule pt-4">
