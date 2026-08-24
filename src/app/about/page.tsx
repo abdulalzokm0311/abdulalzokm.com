@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Abdul Alzokm is a product designer who trained as an architect, now designing digital products with a structural mindset.",
+    "Abdul Alzokm is a product designer who studied architecture, now designing digital products with a structural mindset.",
 };
 
 export default function AboutPage() {

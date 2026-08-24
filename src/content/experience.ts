@@ -17,7 +17,7 @@ export const experience: Role[] = [
     end: "Present",
     location: "Windsor, ON",
     summary:
-      "TODO: replace with what you are actually doing here. This is the first role a hiring team will read, and right now it is the only one without a line of substance under it.",
+      "Currently in progress :)",
   },
   {
     company: "RBC Royal Bank of Canada",

@@ -73,7 +73,7 @@ export function ProjectCard({
            only: the card lifts toward the reader and its cover pushes in
            slightly further, so the motion reads as depth rather than a
            colour change. */
-        "group grid overflow-hidden rounded-block bg-surface transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform hover:scale-[1.025] focus-within:scale-[1.025] md:grid-cols-2",
+        "group relative grid overflow-hidden rounded-block bg-surface transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform hover:scale-[1.025] focus-within:scale-[1.025] md:grid-cols-2",
         className,
       )}
     >
@@ -171,6 +171,28 @@ export function ProjectCard({
         </Link>
 
       </div>
+
+      {/* The card rules its own outline on hover, in the study's darker
+          accent so the line reads as a deeper shade of the card rather than a
+          new colour. Inset by a pixel because the article clips its overflow;
+          a stroke centred on the very edge would lose its outer half. */}
+      <svg
+        aria-hidden
+        className="pointer-events-none absolute inset-px h-[calc(100%-2px)] w-[calc(100%-2px)]"
+      >
+        <rect
+          x="0"
+          y="0"
+          width="100%"
+          height="100%"
+          rx="39"
+          ry="39"
+          fill="none"
+          strokeWidth="1.5"
+          pathLength={1}
+          className="stroke-accent-deep [stroke-dasharray:1] [stroke-dashoffset:1] transition-[stroke-dashoffset] duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:[stroke-dashoffset:0] group-focus-within:[stroke-dashoffset:0]"
+        />
+      </svg>
     </article>
   );
 }

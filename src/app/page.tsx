@@ -136,7 +136,7 @@ export default function HomePage() {
         <Reveal>
           <SectionHeading
             eyebrow="Education"
-            title="Where I trained"
+            title="Where I studied"
             align="center"
           />
         </Reveal>
