@@ -50,8 +50,10 @@ theme:
   inkSoft: "#3A4160"
   muted: "#4C5474"
   rule: "#D3DAF3"
-cover: ""
-coverAlt: "pyRTC dashboard, unified telemetry workspace"
+cover: "/projects/pyrtc/cover.png"
+coverAspect: "1536/1024"
+coverChrome: false
+coverAlt: "The pyRTC dashboard on a laptop: live telemetry across the top, and PSF, DM surface, wavefront slopes and interaction matrix as separate blocks"
 ---
 
 ## Listening before designing
@@ -73,8 +75,9 @@ people who use these systems for a living.
 />
 
 <Figure
-  src=""
-  alt="TODO: affinity mapping boards from synthesis"
+  src="/projects/pyrtc/synthesis.png"
+  aspect="1126/403"
+  alt="Seven affinity boards clustering research notes: context and background, environment, competitors, lack of guidance and high learning curve, software workflow, functionality usage and wants, and error prevention and debugging"
   caption="Synthesis: codebooks, affinity mapping, jobs-to-be-done, personas and an impact / effort matrix."
 />
 
@@ -127,8 +130,9 @@ dashboard for live data, and embedded docs for the knowledge gap.
   title="A guided onboarding that respects expertise"
   before="No formal onboarding existed. A new researcher opened a terminal and either had a mentor beside them or did not."
   after="Five short questions, role, AO familiarity, optional institutional sign-on and which data streams matter most, populate the dashboard before the user ever sees it. Junior researchers land on a beginner-safe layout. Senior researchers can skip and configure freely."
-  src=""
-  alt="TODO: onboarding flow, role and data stream selection screens"
+  src="/projects/pyrtc/flow-01-onboarding.png"
+  aspect="1105/346"
+  alt="Two onboarding steps side by side: step one asking whether you are a student or researcher, and step five selecting which data streams matter most"
 />
 
 <Decision
@@ -136,8 +140,9 @@ dashboard for live data, and embedded docs for the knowledge gap.
   title="A bento-box dashboard you can actually rearrange"
   before="Four separate viewer windows of moving dots, with no way to read a value or correlate sensors at the same time slice."
   after="One drag-and-drop workspace. Drag a data block in from the left rail to add it, drag it back out to remove it. Top-bar telemetry stays visible, and clicking any block opens the live code terminal scoped to that data stream."
-  src=""
-  alt="TODO: bento-box dashboard with telemetry blocks"
+  src="/projects/pyrtc/flow-02-dashboard.png"
+  aspect="1512/982"
+  alt="The bento-box workspace: Strehl ratio, loop rate, wavefront error and DM status along the top, with PSF, DM surface, wavefront slopes, Strehl, interaction matrix and camera as rearrangeable blocks"
 />
 
 <Decision
@@ -145,8 +150,9 @@ dashboard for live data, and embedded docs for the knowledge gap.
   title="Documentation that lives inside the workspace"
   before="Our first idea was an adaptive optics concept glossary, on the assumption that new users needed the vocabulary."
   after="A test participant pointed out that pyRTC users already know AO. What they need is the API. We replaced the glossary with the project's actual function reference, searchable from any data block's overflow menu, and kept the glossary as a secondary tab."
-  src=""
-  alt="TODO: embedded API reference panel"
+  src="/projects/pyrtc/flow-03-api.png"
+  aspect="604/407"
+  alt="The API reference open inside the workspace, showing the ImageSHM class with its methods listed and linked to source"
 />
 
 ## Three sessions, four shipped fixes
@@ -165,13 +171,6 @@ remaining sprint.
   ]}
 />
 
-<Figure
-  wide
-  src=""
-  alt="TODO: before and after, dashboard with per-block controls"
-  aspect="21/9"
-  caption="Before and after the testing round. Per-block controls, visible menus, and telemetry that stays readable."
-/>
 
 ## What I would take into the next one
 
