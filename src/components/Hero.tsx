@@ -1,7 +1,7 @@
 import { Icon } from "@/components/Icon";
 import { Reveal } from "@/components/Reveal";
-import { RotatingHeadline } from "@/components/RotatingHeadline";
-import { headlines, links, site } from "@/content/site";
+import { HeroStatement } from "@/components/HeroStatement";
+import { links, site } from "@/content/site";
 
 /**
  * Full bleed and full screen.
@@ -21,12 +21,11 @@ export function Hero() {
           y={16}
           className="shell flex flex-1 flex-col justify-center py-16 text-center"
         >
-          <p className="text-sub text-ink">Welcome, I&rsquo;m Abdul</p>
+          <p className="text-sub mb-10 text-ink sm:mb-14">
+            Welcome, I&rsquo;m Abdul
+          </p>
 
-          {/* 11px, measured off the reference. */}
-          <div className="mt-[11px]">
-            <RotatingHeadline phrases={headlines} />
-          </div>
+          <HeroStatement />
         </Reveal>
 
         <Reveal

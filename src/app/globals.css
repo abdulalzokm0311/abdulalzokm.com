@@ -26,8 +26,9 @@
 
   /* Typefaces, injected by next/font in src/app/layout.tsx.
      Afacad carries every heading. Rubik carries everything else. */
-  --font-display: var(--font-afacad), ui-serif, Georgia, serif;
-  --font-sans: var(--font-rubik), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-averia), ui-serif, Georgia, serif;
+  --font-sans: var(--font-inclusive), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-script: var(--font-caveat), ui-rounded, cursive;
 
   /* Corner radii. Soft, generous, consistent. */
   --radius-card: 1.5rem;

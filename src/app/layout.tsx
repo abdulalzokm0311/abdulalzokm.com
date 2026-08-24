@@ -1,5 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Afacad, Rubik } from "next/font/google";
+import {
+  Averia_Serif_Libre,
+  Caveat,
+  Inclusive_Sans,
+} from "next/font/google";
 
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -10,20 +14,29 @@ import { site } from "@/content/site";
 
 import "./globals.css";
 
-/* Headings. Afacad is a warm humanist face that holds up at 56px in the hero
-   and at 20px on a card, which is why it carries every heading on the site. */
-const afacad = Afacad({
+/* Headings and the hero statement. Averia Serif Libre only ships 300/400/700;
+   the display voice here is 400, set very tight, so nothing heavier is needed. */
+const averia = Averia_Serif_Libre({
   subsets: ["latin"],
-  variable: "--font-afacad",
+  weight: ["300", "400", "700"],
+  variable: "--font-averia",
   display: "swap",
 });
 
-/* Everything else. Rubik runs light (300) as body copy and steps up to 500
-   for eyebrows, tags and UI. */
-const rubik = Rubik({
+/* Everything else. Inclusive Sans carries body copy at 400 and the small
+   uppercase labels at 600. */
+const inclusive = Inclusive_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  variable: "--font-rubik",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-inclusive",
+  display: "swap",
+});
+
+/* The handwritten word in the hero, and nothing else. */
+const caveat = Caveat({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  variable: "--font-caveat",
   display: "swap",
 });
 
@@ -78,7 +91,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${afacad.variable} ${rubik.variable}`}
+      className={`${averia.variable} ${inclusive.variable} ${caveat.variable}`}
     >
       <body className="min-h-dvh bg-paper antialiased">
         <a

@@ -68,10 +68,40 @@ export const greetings = ["HI", "BONJOUR"] as const;
  * when motion is reduced, so keep the strongest line first.
  * TODO (Abdul): reword these in your own voice, they set the tone of the site.
  */
-export const headlines = [
-  "I am a product designer",
-  "I turn complex flows into clear ones",
-  "I was previously an architect",
-  "I love video games and anime",
-  "I play volleyball and tennis",
+/**
+ * The hero's switchable statements. Each tab swaps the statement and the
+ * handwritten word beneath it. Content is drawn from what Abdul has actually
+ * said about himself, not invented to fill five slots.
+ */
+export const heroTabs = [
+  {
+    label: "Who I am",
+    script: "who i am",
+    statement:
+      "A product designer who blends creativity and strategy to design products people love.",
+  },
+  {
+    label: "What I care about",
+    script: "what i care about",
+    statement:
+      "How people move through a product, where their attention lands, and what makes an experience feel effortless.",
+  },
+  {
+    label: "How I got here",
+    script: "how i got here",
+    statement:
+      "I studied architecture before I designed products. I approach screens the way I approached space.",
+  },
+  {
+    label: "Off the clock",
+    script: "off the clock",
+    statement:
+      "Padel, volleyball and tennis. Video games and anime. Snowboarding at Blue Mountain when there is snow.",
+  },
+  {
+    label: "What's next",
+    script: "what's next",
+    statement:
+      "Joining Rocket Innovation Studio as a product designer, starting September 2026.",
+  },
 ] as const;
