@@ -69,19 +69,26 @@ export function ProjectCard({
     <article
       style={cardThemeVars(project.theme)}
       className={cn(
-        "theme-hover group grid overflow-hidden rounded-block bg-surface md:grid-cols-2",
+        /* The study's palette is the card's resting state. Hover is scale
+           only: the card lifts toward the reader and its cover pushes in
+           slightly further, so the motion reads as depth rather than a
+           colour change. */
+        "group grid overflow-hidden rounded-block bg-surface transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform hover:scale-[1.025] focus-within:scale-[1.025] md:grid-cols-2",
         className,
       )}
     >
       <div className={cn("p-4 md:p-6", flip && "md:order-2")}>
-        {/* TODO: set `cover` in the MDX frontmatter to replace this slot. */}
-        <ImageSlot
-          src={project.cover}
-          alt={project.coverAlt}
-          aspect="4/3"
-          sizes="(min-width: 768px) 46vw, 92vw"
-          className="rounded-card"
-        />
+        {/* Clipped so the cover can push past its own frame on hover without
+            spilling over the card's rounded corner. */}
+        <div className="overflow-hidden rounded-card">
+          <ImageSlot
+            src={project.cover}
+            alt={project.coverAlt}
+            aspect="4/3"
+            sizes="(min-width: 768px) 46vw, 92vw"
+            className="rounded-card transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06] group-focus-within:scale-[1.06]"
+          />
+        </div>
       </div>
 
       <div className="flex flex-col justify-center p-6 md:p-10">

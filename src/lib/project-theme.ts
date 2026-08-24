@@ -98,8 +98,11 @@ const SITE_DEFAULTS: Required<ProjectTheme> = {
 };
 
 /**
- * The project's palette as --t-* custom properties, for a card that adopts its
- * case study's colours on hover. Read by the theme-hover utility.
+ * The project's palette as CSS custom properties, for a card that carries its
+ * case study's colours at rest.
+ *
+ * These land on --color-* directly rather than a --t-* shadow set, because the
+ * theme is the card's normal state now, not something hover swaps in.
  */
 export function cardThemeVars(theme: ProjectTheme): Record<string, string> {
   const merged = { ...SITE_DEFAULTS, ...theme };
@@ -108,7 +111,7 @@ export function cardThemeVars(theme: ProjectTheme): Record<string, string> {
   for (const [key, variable] of Object.entries(THEME_VARS)) {
     const value = merged[key as keyof ProjectTheme];
     if (value && HEX.test(value)) {
-      vars[variable.replace("--color-", "--t-")] = value;
+      vars[variable] = value;
     }
   }
 

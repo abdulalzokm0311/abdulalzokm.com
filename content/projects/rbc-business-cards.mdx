@@ -42,8 +42,10 @@ theme:
   inkSoft: "#3B4757"
   muted: "#45515F"
   rule: "#CFE0EF"
-cover: ""
-coverAlt: "Redesigned RBC business credit cards home page, white-labeled"
+cover: "/projects/rbc-business-cards/cover.png"
+coverAspect: "1536/1024"
+coverChrome: false
+coverAlt: "The RBC app on a phone against a blue Toronto skyline, showing the RBC lion crest"
 ---
 
 <Note>
@@ -86,10 +88,12 @@ large intro paragraph almost nobody would read, then who the card was for,
 then a long block of feature text, then a call to action at the bottom. The
 features were worth knowing. They were just buried in prose.
 
-<Figure
-  src=""
-  alt="TODO: white-labeled current home page and product page, annotated with the old priority order"
-  caption="The current pages, annotated with the order they ran in."
+<FigureGrid
+  columns={2}
+  items={[
+    { aspect: "3740/7019", src: "/projects/rbc-business-cards/before-home.png", alt: "The current business credit cards home page, full length, annotated with its running order: awareness at the top, lower-priority tools next, then the cards, then FAQs and the apply block", caption: "The home page. The cards sit third, below the tools." },
+    { aspect: "3120/6535", src: "/projects/rbc-business-cards/before-product.png", alt: "The current WestJet card product page, full length, annotated: awareness, then who it is for, then a long feature breakdown, then the apply block", caption: "A product page. The feature breakdown runs on well past where most readers stop." },
+  ]}
 />
 
 ## What everyone else was doing
@@ -162,8 +166,9 @@ cards.
   title="Lead with the offer, then get out of the way"
   before="An opening wall of copy, with no immediate reason to keep reading."
   after="A lifestyle image of a business owner, a headline leading with the card's welcome offer, and two actions: Apply Now straight to the application, View Details through to the product page."
-  src=""
-  alt="TODO: white-labeled redesigned home page hero, desktop and mobile"
+  src="/projects/rbc-business-cards/home-01-hero.png"
+  aspect="2508/916"
+  alt="The redesigned hero, white-labeled: card art, a headline leading with the points offer, Apply Now and View Details, and a business owner at an airport with callouts for silver status and combined points"
 />
 
 <Decision
@@ -171,8 +176,9 @@ cards.
   title="Are you in the right place?"
   before="Business and commercial audiences shared one path, and the distinction was buried far down the page."
   after="A short section near the top that separates the two. Business credit cards are for businesses under $3 million in revenue, and anyone above that is pointed to the commercial page before they waste time on the wrong content."
-  src=""
-  alt="TODO: white-labeled audience split section"
+  src="/projects/rbc-business-cards/home-02-audience-split.png"
+  aspect="2504/738"
+  alt="The audience split, white-labeled. Why Business Credit Card, with two panels: business cards for under ten employees and under $3 million revenue, and commercial cards for above that"
 />
 
 <Decision
@@ -180,8 +186,9 @@ cards.
   title="Show the range, early"
   before="The cards sat below secondary tools, so exploration came after content most people did not need yet."
   after="The full lineup of RBC business credit cards, together and high on the page. Exploration now happens where people are looking for it."
-  src=""
-  alt="TODO: white-labeled card lineup section"
+  src="/projects/rbc-business-cards/home-03-card-lineup.png"
+  aspect="1350/1516"
+  alt="The full card lineup, white-labeled. Six cards in a grid, each with annual fee, who it is best for, three benefits, rates, and Apply Now"
 />
 
 The rest of the page follows the same logic. Benefits of being an RBC business
@@ -191,12 +198,9 @@ reads as helpful rather than as clutter. The page closes on one more chance to
 apply, with a gradient pulled from the card art so the section ties back to
 the product.
 
-<Figure
-  wide
-  src=""
-  alt="TODO: white-labeled redesigned home page, full flow, desktop and mobile"
-  aspect="21/9"
-  caption="The redesigned home page. TODO: replace with your final screens."
+<Video
+  src="/projects/rbc-business-cards/home-full.mp4"
+  caption="The redesigned home page end to end. Hero, audience split, the lineup, benefits, tools, and the closing apply block."
 />
 
 ## The product pages
@@ -228,8 +232,9 @@ Mastercard for Business and the RBC Avion Visa Infinite Business Credit Card.
   title="Decide from the top of the page"
   before="A large intro paragraph almost nobody would read, before any of the detail that matters."
   after="The card and its main features in one section above the fold, enough to make a call on its own. Cleaner hierarchy, scannable in a few seconds."
-  src=""
-  alt="TODO: white-labeled redesigned product page summary section"
+  src="/projects/rbc-business-cards/product-01-summary.png"
+  aspect="2160/1204"
+  alt="The above-the-fold summary, white-labeled: card art, the points headline, key rates and Apply Now, all readable without scrolling"
 />
 
 <Decision
@@ -237,8 +242,9 @@ Mastercard for Business and the RBC Avion Visa Infinite Business Credit Card.
   title="Say who it is not for"
   before="The old page had the idea of fit, but hid it inside body text."
   after="Best for you if, and may not be ideal for you if, made visual and easy to parse. It lets people self-select quickly and sets honest expectations about who the card suits."
-  src=""
-  alt="TODO: white-labeled ideal and not ideal section"
+  src="/projects/rbc-business-cards/product-02-ideal.png"
+  aspect="2162/792"
+  alt="The ideal and not ideal section, white-labeled, laying out who the card suits and who it does not"
 />
 
 <Decision
@@ -256,12 +262,9 @@ and DoorDash DashPass on the WestJet card, and the Avion Collection and
 business owner offers on Avion. The page then closes on a final call to
 action.
 
-<Figure
-  wide
-  src=""
-  alt="TODO: white-labeled redesigned WestJet and Avion product pages, desktop and mobile"
-  aspect="21/9"
-  caption="Both redesigned product pages. TODO: replace with your final screens."
+<Video
+  src="/projects/rbc-business-cards/product-full.mp4"
+  caption="A redesigned product page end to end, from the above-the-fold summary through the chunked features to the closing action."
 />
 
 ## Where it stands

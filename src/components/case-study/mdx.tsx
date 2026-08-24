@@ -457,7 +457,8 @@ export function FigureGrid({
   aspect = "16/9",
   columns = 3,
 }: {
-  items: { src?: string; alt: string; caption?: string }[];
+  items: { src?: string; alt: string; caption?: string; aspect?: string }[];
+  /** Fallback ratio. An item may override it when the set is not uniform. */
   aspect?: string;
   columns?: 2 | 3;
 }) {
@@ -474,7 +475,7 @@ export function FigureGrid({
             <ImageSlot
               src={item.src}
               alt={item.alt}
-              aspect={aspect}
+              aspect={item.aspect ?? aspect}
               sizes="(min-width: 1024px) 32vw, (min-width: 640px) 46vw, 92vw"
               fit="contain"
               compact
