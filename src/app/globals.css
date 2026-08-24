@@ -155,6 +155,31 @@
   }
 }
 
+/* About page photographs: a slow bob, and motes drifting up off each one. */
+@keyframes photo-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes particle-rise {
+  0% {
+    transform: translateY(0) scale(0.5);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateY(-80px) scale(1);
+    opacity: 0;
+  }
+}
+
 /* ---------------------------------------------------------------------------
    Reduced motion. Framer Motion components also check useReducedMotion()
    in JS, but this is the backstop that catches CSS animation too.

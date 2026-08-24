@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { ImageSlot } from "@/components/ImageSlot";
-import { Reveal } from "@/components/Reveal";
+import { PhotoScatter } from "@/components/PhotoScatter";
 import { SectionHeading } from "@/components/SectionHeading";
 import { about } from "@/content/about";
 import { links, site } from "@/content/site";
@@ -65,30 +64,7 @@ export default function AboutPage() {
           description="I play tennis, padel and volleyball. I watch just about everything else. And I am a serious foodie, which the last picture will confirm."
         />
 
-        {/* Offset column so the set reads as a sequence rather than a grid. */}
-        <div className="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2">
-          {about.life.map((photo, index) => (
-            <Reveal
-              key={photo.src}
-              delay={index % 2 === 1 ? 0.06 : 0}
-              className={cn(index % 2 === 1 && "sm:mt-16")}
-            >
-              <figure>
-                <ImageSlot
-                  src={photo.src}
-                  alt={photo.alt}
-                  aspect={photo.aspect}
-                  sizes="(min-width: 640px) 46vw, 92vw"
-                  fit="contain"
-                  className="rounded-card"
-                />
-                <figcaption className="mt-4 text-sm text-ink-soft">
-                  {photo.caption}
-                </figcaption>
-              </figure>
-            </Reveal>
-          ))}
-        </div>
+        <PhotoScatter />
 
         <div className="mt-20 border-t border-rule pt-8">
           <p className="max-w-xl text-lead text-ink">
