@@ -14,7 +14,11 @@ import { links, site } from "@/content/site";
  */
 export function Hero() {
   return (
-    <section className="bg-surface">
+    /* Clipped: the script word is deliberately wider than its column and
+       nudged right, which otherwise pushes the document past the viewport and
+       produces a sideways scrollbar. Its glyphs stop short of the edge, so
+       nothing readable is lost. */
+    <section className="overflow-hidden bg-surface">
       <div className="flex min-h-[calc(100dvh-4rem)] flex-col md:min-h-[calc(100dvh-5rem)]">
         <Reveal
           immediate

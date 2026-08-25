@@ -66,13 +66,17 @@ export function HeroStatement() {
 
           {/* Sized and angled off the reference, where the word is far larger
               than the statement's own type and overlaps its last line rather
-              than sitting politely beneath it. The negative margin pulls it up
-              into the statement; the rotation is what stops it reading as a
-              caption. */}
+              than sitting politely beneath it.
+
+              Sized off the reference by ratio rather than absolute px: there
+              the script runs about three times the statement's own size, so
+              15.5vw against the statement's 5.2vw holds that relationship at
+              every width. The negative margin pulls it up into the last line,
+              and the rotation is what stops it reading as a caption. */}
           <p
             aria-hidden
-            className="pointer-events-none -mt-3 select-none text-center font-script text-[clamp(4rem,11vw,9rem)] leading-[0.9] text-accent sm:-mt-6 sm:translate-x-[6%]"
-            style={{ rotate: "-8deg" }}
+            className="pointer-events-none -mt-4 select-none text-center font-script text-[clamp(5rem,15.5vw,13rem)] leading-[0.85] text-accent sm:-mt-12 sm:translate-x-[9%]"
+            style={{ rotate: "-10deg" }}
           >
             {tab.script}
           </p>
