@@ -60,7 +60,7 @@ export function HeroStatement() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="mx-auto max-w-4xl font-display text-[clamp(2rem,5.2vw,3.6rem)] font-normal leading-[0.92] tracking-[-0.03em] text-ink">
+          <p className="mx-auto flex min-h-[2.9em] max-w-4xl items-center justify-center font-display text-[clamp(2rem,5.2vw,3.6rem)] font-normal leading-[0.92] tracking-[-0.03em] text-ink">
             {tab.statement}
           </p>
 
@@ -75,7 +75,7 @@ export function HeroStatement() {
               and the rotation is what stops it reading as a caption. */}
           <p
             aria-hidden
-            className="pointer-events-none -mt-4 select-none text-center font-script text-[clamp(5rem,15.5vw,13rem)] leading-[0.85] text-accent sm:-mt-12 sm:translate-x-[9%]"
+            className="pointer-events-none -mt-4 select-none whitespace-nowrap text-center font-script text-[clamp(3.25rem,12.5vw,10.5rem)] leading-[0.85] text-accent sm:-mt-10 sm:translate-x-[3%]"
             style={{ rotate: "-10deg" }}
           >
             {tab.script}

@@ -77,8 +77,8 @@ export const heroTabs = [
       "A product designer who takes dense, complicated things and makes them scannable.",
   },
   {
-    label: "What I care about",
-    script: "what i care about",
+    label: "What drives me",
+    script: "what drives me",
     statement:
       "How people move through a product, where their attention lands, and what makes an experience feel effortless.",
   },
