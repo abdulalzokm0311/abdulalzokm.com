@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { Icon } from "@/components/Icon";
+import { Wordmark } from "@/components/Wordmark";
 import { footerExternal, footerNav, links, site } from "@/content/site";
 
 export function SiteFooter() {
@@ -15,9 +16,10 @@ export function SiteFooter() {
           <div className="md:col-span-5">
             <Link
               href="/"
-              className="font-display text-3xl leading-none text-paper transition-opacity hover:opacity-80"
+              className="inline-flex items-center text-paper transition-opacity hover:opacity-80"
             >
-              {site.name}
+              <Wordmark className="h-10" />
+              <span className="sr-only">{site.name}</span>
             </Link>
 
             <p className="mt-5 max-w-xs text-sm text-accent-pale">
