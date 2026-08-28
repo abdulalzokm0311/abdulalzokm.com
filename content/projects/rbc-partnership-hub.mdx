@@ -1,0 +1,374 @@
+---
+title: "Designing RBC's Partnership Hub"
+headline: "An RBC system built to sell cards and link to partners"
+shortTitle: "RBC"
+client: "RBC"
+slug: "rbc-partnership-hub"
+order: 0
+year: "2026"
+published: true
+summary: "A seven-page hub built to do two things: get people to apply for an RBC credit card, and get them to link it to a partner. I designed every page end to end, plus the template the next phase builds from."
+role: "Sole lead designer, end to end"
+team: "Cross-functional: marketing managers, the partnership teams, the Avion team, copywriters"
+timeline: ""
+context: "RBC, card partnerships"
+tools: ["Figma"]
+tags: ["7-Page Hub", "Loyalty & Rewards", "Design Systems"]
+metrics:
+  - value: "3"
+    label: "hub pages, each with a distinct job"
+  - value: "4"
+    label: "partner pages in phase one"
+  - value: "1"
+    label: "template the rest are built from"
+brief:
+  problem: "RBC's partnership ecosystem is a real edge, and almost none of it showed up in the digital experience. Information sat across separate pages, so nobody got the full picture. The pages that existed only spoke to people ready to apply, and the path into Avion Rewards, where the loyalty relationship actually lives, was weak."
+  approach: "I was handed a big empty space, two goals that could easily fight each other, three audiences, a partner model that confuses almost everyone, and no research. I designed a template rather than a set of pages, and a flow that gives each person one thing at a time."
+# Same palette as the business cards study, because it is the same brand. RBC
+# blue #006AC3 and yellow #FEDF01 are both unusable as small text, at 5.46:1
+# and 1.33:1 on white, so accent sits darker at #00468F. Worst contrast across
+# every stop and surface is 5.15:1.
+theme:
+  paper: "#FFFFFF"
+  gradientFrom: "#FFEFA3"
+  gradientVia: "#DDE9F6"
+  gradientTo: "#B2D2EF"
+  accent: "#00468F"
+  accentDeep: "#003468"
+  surface: "#F2F7FC"
+  surfaceDeep: "#E1EDF8"
+  ink: "#17212E"
+  inkSoft: "#3B4757"
+  muted: "#45515F"
+  rule: "#CFE0EF"
+cover: "/projects/rbc-partnership-hub/cover.webp"
+device: "/projects/rbc-partnership-hub/device.webp"
+deviceRatio: 1.65
+coverAspect: "1536/1024"
+coverChrome: false
+coverAlt: "A laptop showing the Partnership Hub opening screen: overlapping cards with a link icon, ringed by the partner brand colours, over RBC blue"
+---
+
+<Note>
+  Every screen here is white-labeled. Partner logos and brand assets have been
+  removed because the work is internal and in pre-launch. The design is
+  complete and handed over. It has not shipped yet, so there is no live data
+  and I have not attached numbers to it that do not exist.
+</Note>
+
+## The problem I was handed
+
+RBC's partnership ecosystem is a real edge. It is hard for other banks to copy,
+and the people who engage with it stay more loyal and spend more over time. The
+problem was that almost none of that showed up in the digital experience. Four
+things were going wrong at once.
+
+<ChangeList
+  items={[
+    {
+      title: "The value was scattered",
+      text: "Partnership information lived across different pages, so nobody got the full picture.",
+    },
+    {
+      title: "Partnerships sat in the background",
+      text: "Card decisions were being made on points and welcome offers, while partnerships, the stickier reason to pick RBC, went unmentioned.",
+    },
+    {
+      title: "Only one audience was served",
+      text: "The existing pages spoke to people ready to apply, with nothing for the much larger group still researching.",
+    },
+    {
+      title: "The path into Avion was weak",
+      text: "Avion Rewards is where the loyalty relationship actually lives, and almost nothing led there.",
+    },
+  ]}
+/>
+
+So the business case was clear. What was not clear was how to build it. I was
+given a big, empty space, two goals that could easily fight each other, a
+partner model that confuses almost everyone, three different audiences, and a
+stack of brand rules. No research came with it.
+
+Five months, one designer, from nothing.
+
+## Making sense of it
+
+I came into this with no prior knowledge of any of it, which turned out to be
+useful. I kept asking the dumb version of the question. If I landed here knowing
+nothing, what would I actually need to see, and in what order?
+
+Nothing was handed to me, so I wrote the framing myself: the goals, who this is
+for, what each of them should feel and do, and the questions worth designing
+against. It is the closest thing this project had to a brief, and everything
+after it came out of this board.
+
+<Figure
+  src="/projects/rbc-partnership-hub/framing.webp"
+  alt="A framing board in four columns: goals, three target audiences with jobs-to-be-done, what each should feel and do, and a set of how-might-we questions"
+  aspect="1600/768"
+  caption="Written by me rather than handed over. The jobs-to-be-done are my articulation of each audience from stakeholder conversations and the partner model, not quotes from user research. There was none."
+/>
+
+It named three audiences: people new to the bank, existing RBC customers
+without a credit card, and current cardholders. Three audiences, but not three
+paths, and working out which of them collapse together is most of what the page
+design ended up being.
+
+The first thing I had to untangle was the two goals. The Hub exists to do two
+things, and they are not equal.
+
+<Steps
+  items={[
+    {
+      label: "Apply for a card",
+      text: "Acquisition. This is the priority, and it is what the order of every page is built around.",
+    },
+    {
+      label: "Link it to a partner",
+      text: "Where the rewards actually start. It matters, but it comes second, and designing it as though it were equal is what breaks the page.",
+    },
+  ]}
+/>
+
+The obvious move is to put both in front of everyone. I talked myself out of it
+fast. Two goals competing for attention on one page is how you lose both. So I
+set a rule for the whole design and stuck to it.
+
+<Principle>Give the user one thing at a time.</Principle>
+
+## The flow
+
+Three audiences, two paths. The first two both need the card runway, whether
+they are new to RBC or already bank there without a card, so on the page they
+are one person: someone with no RBC card yet. The third already has the card
+and just wants to link it. Same page, completely different needs. Push both
+down one path and neither gets served.
+
+So I let them self-identify in the banner, with two CTAs.
+
+<ChangeList
+  items={[
+    {
+      title: "No RBC card yet",
+      text: "Anchors them to the top of the page, into the cards. They get walked through the whole runway, because acquisition is the priority.",
+    },
+    {
+      title: "Already an RBC client",
+      text: "Jumps them straight down to linking, past the card content they do not need. One click skips the entire first stretch.",
+    },
+  ]}
+/>
+
+Under that, the page runs in a deliberate order. Cards and card benefits first,
+because acquisition is the priority. Then linking follows naturally: why to
+link, what you get, more about the partner. One page, two clean paths, nobody's
+attention split.
+
+<Figure
+  src="/projects/rbc-partnership-hub/flow.webp"
+  alt="The partner page as six stacked sections, with two paths running down beside them: a solid line from the No RBC card yet button touching every section, and a dashed line from the Already an RBC client button entering at section four"
+  aspect="1600/923"
+  caption="Drawn for this write-up rather than taken from the file. No original flow diagram exists, so treat it as a portfolio explainer, not a process artifact."
+/>
+
+## When I realized it had to be a system
+
+Somewhere in the wireframes it clicked that I was not designing pages. This is
+a multi-year roadmap. Whoever comes after me adds more partners. If I designed
+four nice one-off pages, they would start from scratch, and the whole thing
+would drift out of consistency within a phase.
+
+So I stopped designing pages and designed a template. It defines the sections a
+partner page has, the information architecture, the hierarchy, and the flow.
+Every partner page is built from it. It flexes in one main way, by partner type.
+
+<ChangeList
+  items={[
+    {
+      title: "Co-brand partners",
+      text: "There is an actual RBC card branded with the partner, so the page leads with everything about the card first: cards, points, calculator. Linking comes after.",
+    },
+    {
+      title: "Linked loyalty partners",
+      text: "You link an existing card to earn in the partner's program, so the page goes from cards to linking right away, without the long card runway.",
+    },
+  ]}
+/>
+
+To pull this off I had to extend RBC's design system to cover things it did not
+have yet. Then I brought those additions into RBC's visual language so they
+became part of the system itself. The Hub did not just consume the design
+system. It grew it.
+
+## Where my first instinct was wrong
+
+The hardest thing in this whole space is the difference between a co-brand and
+a linked loyalty partner. It is the single most confusing idea here, and if a
+user does not get it, they do not understand what they are being offered.
+
+<Decision
+  index="01"
+  title="The distinction has to be seen, not read"
+  before="My first version just listed the brands cleanly. It had all the right information, and I assumed a clear list would do the job. Reviewing it, the page technically told you everything and communicated nothing. You could not tell a co-brand from a linked loyalty partner by looking."
+  beforeSrc="/projects/rbc-partnership-hub/category-before.webp"
+  beforeAlt="The category section as a row of four identical placeholder logo tiles under the heading Choose a card with the brands you love"
+  beforeAspect="1195/363"
+  after="The co-brand section now leads with the actual card art for each partner-branded card, with a short explanation. Linked loyalty partners have no branded card, so the absence of card art becomes the signal. The distinction went from something you had to read and decode to something you catch at a glance."
+  afterSrc="/projects/rbc-partnership-hub/category-after.webp"
+  afterAlt="The same section rebuilt as four cards, each naming a partner with a paragraph on what you earn and the card art for that partner-branded card below it"
+  afterAspect="1210/584"
+/>
+
+I had underestimated how invisible that distinction is when you only describe
+it in words. That one change did more for comprehension than any amount of copy
+would have.
+
+## Working across a dozen brands at once
+
+This project had more brand rules than anything I had touched. Which assets I
+could use shifted depending on what I was saying and which page I was on.
+
+<ChangeList
+  items={[
+    {
+      title: "RBC",
+      text: "Always the base. Whatever else a page is doing, it has to read as an RBC page.",
+    },
+    {
+      title: "Avion",
+      text: "Avion's own assets, inside Avion's guidelines, so the Hub matches how Avion shows up everywhere else.",
+    },
+    {
+      title: "The partner",
+      text: "The partner's assets, so a partner page feels like that brand rather than a bank page with a logo dropped in.",
+    },
+  ]}
+/>
+
+Avion was the temptation. Their palette is colourful and genuinely cool, and it
+would have been easy to lean on it too hard and let the Hub start looking like
+an Avion site instead of an RBC one. Keeping RBC as the anchor while still
+letting Avion feel like Avion was a constant small negotiation, and getting that
+balance right is a lot of what makes the pages hold together.
+
+## The three hub pages
+
+These are the spine of the experience. Three pages, because each has a distinct
+job.
+
+<Steps
+  items={[
+    {
+      label: "Home",
+      text: "The storyteller, and the first page most people land on. It makes the case that RBC has partners worth caring about, sets up that you access them by linking to Avion, and lays out the two paths up front.",
+    },
+    {
+      label: "Category",
+      text: "The detail layer. Where the co-brand versus linked loyalty difference gets made clear, where every partner shows up with what you earn and how, and where tools help someone pick what fits.",
+    },
+    {
+      label: "All Partners",
+      text: "The index, built mainly for AEO. Every partner, the brands under each, short blurbs, categories and the main offers. The page that helps the Hub get found.",
+    },
+  ]}
+/>
+
+<VideoCarousel
+  label="Hub pages"
+  aspect="1440/830"
+  clips={[
+    {
+      src: "/projects/rbc-partnership-hub/home.mp4",
+      poster: "/projects/rbc-partnership-hub/home-poster.jpg",
+      label: "Home",
+      alt: "Screen recording scrolling the Home page, white-labeled, from the banner through the three steps to start earning and the card sections",
+    },
+    {
+      src: "/projects/rbc-partnership-hub/category.mp4",
+      poster: "/projects/rbc-partnership-hub/category-poster.jpg",
+      label: "Category",
+      alt: "Screen recording scrolling the Category page, white-labeled, through the co-brand cards and the linked loyalty partners",
+    },
+    {
+      src: "/projects/rbc-partnership-hub/all-partners.mp4",
+      poster: "/projects/rbc-partnership-hub/all-partners-poster.jpg",
+      label: "All Partners",
+      alt: "Screen recording scrolling the All Partners index, white-labeled, through the full list of partners and their offers",
+    },
+  ]}
+  caption="Each page recorded end to end rather than flattened into a screenshot. These run metres tall, and the order you meet things in is the design."
+/>
+
+## The partner pages
+
+Phase one covered Petro-Canada, Moi Rewards, More Rewards and Triangle Rewards.
+All four are built from the same template, so the interesting thing is not any
+one of them. It is that you can move between them and the page keeps its shape
+while the brand changes underneath it. That is the whole point of a template.
+They should read as siblings, not as one-offs.
+
+Petro-Canada and Moi are co-brand partners, so they lead with the card. More
+Rewards and Triangle are linked loyalty, so they get to linking sooner. Same
+sections, same hierarchy, different runway.
+
+<VideoCarousel
+  label="Partner pages"
+  aspect="1440/788"
+  clips={[
+    {
+      src: "/projects/rbc-partnership-hub/petro.mp4",
+      poster: "/projects/rbc-partnership-hub/petro-poster.jpg",
+      label: "Petro-Canada",
+      alt: "Screen recording scrolling the Petro-Canada partner page, white-labeled, from the banner through the co-brand card sections to linking",
+    },
+    {
+      src: "/projects/rbc-partnership-hub/moi.mp4",
+      poster: "/projects/rbc-partnership-hub/moi-poster.jpg",
+      label: "Moi",
+      alt: "Screen recording scrolling the Moi Rewards partner page, white-labeled, from the banner through the co-brand card sections to linking",
+    },
+    {
+      src: "/projects/rbc-partnership-hub/more-rewards.mp4",
+      poster: "/projects/rbc-partnership-hub/more-rewards-poster.jpg",
+      label: "More Rewards",
+      alt: "Screen recording scrolling the More Rewards partner page, white-labeled, from the banner through to the linking sections",
+    },
+    {
+      src: "/projects/rbc-partnership-hub/triangle.mp4",
+      poster: "/projects/rbc-partnership-hub/triangle-poster.jpg",
+      label: "Triangle Rewards",
+      alt: "Screen recording scrolling the Triangle Rewards partner page, white-labeled, from the banner through to the linking sections",
+    },
+  ]}
+  caption="Four partners, one template. Switch between them and the sections stay in the same order; what changes is the brand and how long the card runway runs."
+/>
+
+
+## Where it landed
+
+At the end of my time at RBC, phase one was essentially done and handed over,
+with only minor edits left, mostly visual assets I was waiting on from Avion and
+small copy changes.
+
+What I can say honestly is what I left behind. Not four pages, but a template
+that is now part of RBC's design system, a flow that gives each user one thing
+at a time, and a way to make a genuinely confusing partner model easy to see.
+The next phase builds on that instead of starting over.
+
+Once it is live, the goals give me clear things to watch, and honestly the
+things I would most want to pressure-test.
+
+- **Card applications through the Hub.** The acquisition goal, and the one the whole page order is built around.
+- **Card-to-partner linking.** The secondary goal. Worth watching against applications rather than on its own, since the design deliberately puts it second.
+- **Whether the CTAs route people.** The self-identification banner only works if the two audiences actually take the paths I built for them.
+- **Whether the card art reads.** The category page fix made the co-brand distinction obvious to me. That is not the same as obvious to a first-time visitor.
+
+## What I would take from this
+
+I was handed ambiguity, two competing goals, a confusing model, three audiences,
+a wall of brand rules, and no research. The work was turning that into something
+a person could move through without thinking. I did it by building a system
+instead of pages, a flow that never splits attention, and a design choice that
+made the hardest idea visible.
+
+Phase one is what I designed. The system is what I left.

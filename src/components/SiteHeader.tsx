@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
+import { Wordmark } from "@/components/Wordmark";
 import { externalNav, nav, site } from "@/content/site";
 import { cn } from "@/lib/utils";
 
@@ -56,25 +57,35 @@ export function SiteHeader() {
     };
   }, [open]);
 
+  /* A case study opens on its own gradient, and the title block is pulled up
+     underneath this bar. Painting anything here would cut a flat band across
+     that gradient, so at the top of a study the bar carries no colour of its
+     own and the gradient runs straight through it. */
+  const overTitleBlock = /^\/projects\/.+/.test(pathname);
+
   return (
     <header
-      /* At the top the bar carries the hero's tint so the two read as one
-         surface. Once the page scrolls onto white content it turns white and
-         picks up a hairline, so the nav stays legible over the work. Solid
-         rather than translucent: nothing needs to show through it. */
+      /* Everywhere else the bar carries the hero's tint at the top so the two
+         read as one surface. Once the page scrolls onto white content it turns
+         white and picks up a hairline, so the nav stays legible over the work.
+         Solid rather than translucent: nothing needs to show through it. */
       className={cn(
         "sticky top-0 z-50 transition-colors duration-300",
         scrolled
           ? "border-b border-rule bg-paper"
-          : "border-b border-transparent bg-surface",
+          : cn(
+              "border-b border-transparent",
+              overTitleBlock ? "bg-transparent" : "bg-surface",
+            ),
       )}
     >
       <div className="shell flex h-16 items-center justify-between gap-6 md:h-20">
         <Link
           href="/"
-          className="font-display text-2xl leading-none text-ink transition-colors hover:text-accent"
+          className="-my-1 inline-flex items-center text-ink transition-colors hover:text-accent"
         >
-          {site.name}
+          <Wordmark className="h-7 md:h-8" />
+          <span className="sr-only">{site.name}</span>
         </Link>
 
         {/* Desktop nav */}

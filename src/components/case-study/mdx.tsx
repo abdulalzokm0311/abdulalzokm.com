@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 
 import { AutoVideo } from "@/components/case-study/AutoVideo";
 import { ScreenCarousel } from "@/components/case-study/ScreenCarousel";
+import { VideoCarousel } from "@/components/case-study/VideoCarousel";
 import { SectionCarousel } from "@/components/case-study/SectionCarousel";
 import { ImageSlot } from "@/components/ImageSlot";
 import { cn } from "@/lib/utils";
@@ -68,6 +69,12 @@ export function Decision({
   alt,
   aspect = "16/9",
   imageMaxHeight = 35,
+  beforeSrc,
+  beforeAlt,
+  beforeAspect = "16/9",
+  afterSrc,
+  afterAlt,
+  afterAspect = "16/9",
 }: {
   index: string;
   title: string;
@@ -78,7 +85,18 @@ export function Decision({
   aspect?: string;
   /** Cap on image height, in rem. Lower it for a taller screenshot. */
   imageMaxHeight?: number;
+  /* Pass these instead of `src` when the two states are separate exports.
+     The block then stacks them, each under its own label, rather than putting
+     one combined image above the pair of paragraphs. */
+  beforeSrc?: string;
+  beforeAlt?: string;
+  beforeAspect?: string;
+  afterSrc?: string;
+  afterAlt?: string;
+  afterAspect?: string;
 }) {
+  const paired = Boolean(beforeAlt || afterAlt);
+
   /* Cap the image, which leaves room for the heading and the before/after
      pair inside a 900px viewport. */
   const [w, h] = aspect.split("/").map((part) => Number(part.trim()));
@@ -102,29 +120,69 @@ export function Decision({
           Height cannot be capped directly on an aspect-ratio box without
           collapsing it, so the cap becomes a max-width derived from the
           image's own ratio. Wide exports never reach it. */}
-      {alt ? (
-        <div className="mx-auto mt-8" style={{ maxWidth: maxImageWidth }}>
-          <ImageSlot
-            src={src}
-            alt={alt}
-            aspect={aspect}
-            sizes="100vw"
-            fit="contain"
-            className="rounded-sm"
-          />
-        </div>
-      ) : null}
+      {paired ? (
+        /* Side by side from md up, so both states are on screen together. A
+           before and after you have to scroll between is one you compare from
+           memory, which is the thing the pair exists to avoid. They stack only
+           where the column would be too narrow to read. */
+        <div className="mt-8 grid gap-8 md:grid-cols-2 md:gap-10">
+          <div>
+            <p className="eyebrow text-muted">Before</p>
+            <p className="mt-3 text-sm">{before}</p>
+            <div className="mt-5">
+              <ImageSlot
+                src={beforeSrc}
+                alt={beforeAlt ?? ""}
+                aspect={beforeAspect}
+                sizes="(min-width: 768px) 46vw, 92vw"
+                fit="contain"
+                className="rounded-sm"
+              />
+            </div>
+          </div>
 
-      <div className="mt-8 grid gap-8 sm:grid-cols-2">
-        <div>
-          <p className="eyebrow text-muted">Before</p>
-          <p className="mt-3 text-sm">{before}</p>
+          <div>
+            <p className="eyebrow text-accent">After</p>
+            <p className="mt-3 text-sm text-ink">{after}</p>
+            <div className="mt-5">
+              <ImageSlot
+                src={afterSrc}
+                alt={afterAlt ?? ""}
+                aspect={afterAspect}
+                sizes="(min-width: 768px) 46vw, 92vw"
+                fit="contain"
+                className="rounded-sm"
+              />
+            </div>
+          </div>
         </div>
-        <div>
-          <p className="eyebrow text-accent">After</p>
-          <p className="mt-3 text-sm text-ink">{after}</p>
-        </div>
-      </div>
+      ) : (
+        <>
+          {alt ? (
+            <div className="mx-auto mt-8" style={{ maxWidth: maxImageWidth }}>
+              <ImageSlot
+                src={src}
+                alt={alt}
+                aspect={aspect}
+                sizes="100vw"
+                fit="contain"
+                className="rounded-sm"
+              />
+            </div>
+          ) : null}
+
+          <div className="mt-8 grid gap-8 sm:grid-cols-2">
+            <div>
+              <p className="eyebrow text-muted">Before</p>
+              <p className="mt-3 text-sm">{before}</p>
+            </div>
+            <div>
+              <p className="eyebrow text-accent">After</p>
+              <p className="mt-3 text-sm text-ink">{after}</p>
+            </div>
+          </div>
+        </>
+      )}
     </section>
   );
 }
@@ -542,6 +600,22 @@ export function Results({
   );
 }
 
+/**
+ * The one rule a project was designed around, set large between hairlines.
+ *
+ * Not a quote and not a caveat, so it borrows neither the Note's muted aside
+ * nor a card. It is there to be the sentence a reader still has in mind three
+ * sections later, and to give the eye somewhere to land in a long stretch of
+ * argument.
+ */
+export function Principle({ children }: { children: ReactNode }) {
+  return (
+    <p className="my-12 max-w-3xl border-y border-rule py-8 font-display text-[clamp(1.45rem,3vw,2.1rem)] font-normal leading-[1.2] tracking-[-0.02em] text-ink">
+      {children}
+    </p>
+  );
+}
+
 /** An honest caveat. Used where a number could be mistaken for something bigger. */
 export function Note({ children }: { children: ReactNode }) {
   return (
@@ -567,7 +641,9 @@ export const mdxComponents = {
   FigureGrid,
   ScreenCarousel,
   SectionCarousel,
+  VideoCarousel,
   Results,
+  Principle,
   Note,
 
   h2: (props: React.ComponentProps<"h2">) => (

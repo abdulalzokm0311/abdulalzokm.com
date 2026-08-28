@@ -76,8 +76,16 @@ export default async function CaseStudyPage({ params }: Params) {
       ) : null}
       {/* Title block. Carries the hero tint so the study opens on a surface
           rather than starting cold on white. */}
-      {/* Falls back to the flat themed surface when a study sets no stops. */}
-      <header className="bg-surface" style={{ backgroundImage: gradient }}>
+      {/* Falls back to the flat themed surface when a study sets no stops.
+
+          Pulled up by the height of the site header and given that height back
+          as padding, so the gradient runs behind the nav rather than starting
+          under it. The nav goes transparent over this block, so the two read as
+          one surface with no band across the top. */}
+      <header
+        className="-mt-16 bg-surface pt-16 md:-mt-20 md:pt-20"
+        style={{ backgroundImage: gradient }}
+      >
         <div className="shell py-16 md:py-24">
           <Link
             href="/projects"
