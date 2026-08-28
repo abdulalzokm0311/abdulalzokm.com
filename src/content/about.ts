@@ -62,7 +62,7 @@ export const about = {
     },
     {
       src: "/about/04-padel-district.webp",
-      aspect: "852/1846",
+      aspect: "738/984",
       alt: "Waiting on the return at an indoor padel court, boards around the court reading The District",
       caption: "Playing pickleball with my brother.",
       left: 82,
