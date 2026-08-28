@@ -76,14 +76,18 @@ export function HeroStatement() {
         </p>
 
         {/* Sized and angled off the reference, where the word is far larger
-            than the statement's own type and overlaps its last line rather
-            than sitting politely beneath it. Sized by ratio rather than
-            absolute px so that relationship holds at every width. The
-            negative margin pulls it up into the last line, and the rotation
-            is what stops it reading as a caption. */}
+            than the statement's own type and sits into its last line rather
+            than politely beneath it. Sized by ratio rather than absolute px
+            so that relationship holds at every width, and the rotation is
+            what stops it reading as a caption.
+
+            The pull-up is only from sm. Narrow enough and the statement wraps
+            to three lines, and the rotation lifts the right of the word, so
+            -mt-4 put the ascenders through "simple even more." It sits at 0
+            on a phone: still tucked against the line, no longer over it. */}
         <p
           aria-hidden
-          className="pointer-events-none -mt-4 select-none whitespace-nowrap text-center font-script text-[clamp(3.25rem,12.5vw,10.5rem)] leading-[0.85] text-accent sm:-mt-10 sm:translate-x-[3%]"
+          className="pointer-events-none mt-0 select-none whitespace-nowrap text-center font-script text-[clamp(3.25rem,12.5vw,10.5rem)] leading-[0.85] text-accent sm:-mt-10 sm:translate-x-[3%]"
           style={{ rotate: "-10deg" }}
         >
           {tab.script}
