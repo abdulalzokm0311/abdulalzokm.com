@@ -10,8 +10,10 @@ import { cn } from "@/lib/utils";
  * around a perimeter is the same vocabulary as the hairlines already dividing
  * the page, and it reads as a drafting gesture rather than a lighting effect.
  *
- * It also leaves the content completely alone. Nothing dims, tints or moves
- * behind the copy, so the card is exactly as readable hovered as at rest.
+ * It leaves the copy completely alone. Nothing dims or tints behind the text,
+ * so the card is exactly as readable hovered as at rest. It is a hover group,
+ * so a child can hang its own hover off the whole card rather than off itself
+ * — the portrait does exactly that.
  *
  * pathLength normalises the perimeter to 1 regardless of the card's size, so
  * one dash offset animates the whole outline whatever the breakpoint.

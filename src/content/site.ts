@@ -48,12 +48,26 @@ export const footerExternal = [
   { label: "LinkedIn", href: links.linkedin },
 ] as const;
 
-/** Feeds the tools ticker on the home page and the experience page. */
+/**
+ * Feeds the tools ticker on the home page.
+ *
+ * `ratio` is each mark's own width over height, so the ticker reserves the
+ * right width before the file loads and nothing shifts.
+ *
+ * `boxed` flags the marks that ship inside a filled rounded square. Set
+ * against open marks at the same height they read noticeably heavier, so they
+ * are drawn a little smaller to even the row out.
+ *
+ * `wordmark` flags a logo that already spells the name. Those drop the label
+ * beside them rather than saying it twice.
+ */
 export const tools = [
-  { name: "Figma", logo: "/tools/figma.svg" },
-  { name: "Photoshop", logo: "" },
-  { name: "FigJam", logo: "" },
-  { name: "Illustrator", logo: "" },
+  { name: "Figma", logo: "/tools/figma.svg", ratio: 38 / 57 },
+  { name: "Photoshop", logo: "/tools/photoshop.png", ratio: 1.023, boxed: true },
+  { name: "Illustrator", logo: "/tools/illustrator.png", ratio: 1.023, boxed: true },
+  { name: "Jira", logo: "/tools/jira.png", ratio: 1.031 },
+  { name: "Mural", logo: "/tools/mural.png", ratio: 3.484, wordmark: true },
+  { name: "Asana", logo: "/tools/asana.svg", ratio: 1.082 },
 ] as const;
 
 /** Feeds the greeting ticker. */

@@ -5,21 +5,20 @@ name as text when it does not. So a missing file degrades to what the strip
 used to be rather than to a gap.
 
 Present:
-  figma.svg
+  figma.svg          drawn from the published mark
+  photoshop.png      supplied, trimmed to the icon
+  illustrator.png    supplied, trimmed to the icon
+  jira.png           supplied as the full lockup, cropped to the symbol
+  mural.png          supplied as a wordmark, kept whole
+  asana.svg          supplied as a lockup, symbol path extracted
 
-Still needed, as .svg:
-  photoshop.svg
-  figjam.svg
-  illustrator.svg
+Everything except Mural is a symbol shown beside the tool's name. Mural was
+supplied as a wordmark with no separable symbol, so its entry is flagged
+`wordmark` and drops the label rather than saying the name twice.
 
-Official sources:
-  Figma and FigJam   figma.com/for-press  (brand assets)
-  Adobe CC app icons developer.adobe.com brand guidelines, or the app's own
-                     About screen export
+The PNGs are exported at 128px tall, which is over 4x what the marquee draws
+them at. Replace any of them with an official SVG if you get hold of one.
 
-I drew figma.svg from the published mark. If you want it byte-exact, drop the
-official file over it. I deliberately did not attempt the other three: an
-approximated Adobe icon on a designer's portfolio is the kind of thing your
-audience notices immediately.
-
-After adding a file, set its path in `tools` in src/content/site.ts.
+To add or change one, set its path, `ratio` (width over height) and any flags
+in `tools` in src/content/site.ts. The ratio is what stops the row shifting as
+the files load.

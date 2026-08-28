@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { Hero } from "@/components/Hero";
 import { Icon } from "@/components/Icon";
-import { SlatPortrait } from "@/components/SlatPortrait";
+import { Portrait } from "@/components/Portrait";
 import { ToolMark } from "@/components/ToolMark";
 import { TracedCard } from "@/components/TracedCard";
 import { Marquee } from "@/components/Marquee";
@@ -59,7 +59,7 @@ export default function HomePage() {
         <TracedCard className="rounded-block bg-surface">
           <div className="grid items-center gap-10 p-6 md:grid-cols-12 md:p-10">
           <Reveal className="md:col-span-5">
-<SlatPortrait
+            <Portrait
               src={about.portrait}
               alt={about.portraitAlt}
               aspect={about.portraitAspect}
@@ -125,7 +125,7 @@ export default function HomePage() {
             <Marquee
               items={[...tools, ...tools, ...tools, ...tools].map(
                 (tool, index) => (
-                  <ToolMark key={index} name={tool.name} logo={tool.logo} />
+                  <ToolMark key={index} {...tool} />
                 ),
               )}
               duration={28}
