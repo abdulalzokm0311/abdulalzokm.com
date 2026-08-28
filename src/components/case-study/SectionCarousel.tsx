@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { mustSkipOptimizer } from "@/lib/case-study-lock";
 import { cn } from "@/lib/utils";
 
 type Section = {
@@ -120,6 +121,7 @@ export function SectionCarousel({ sections }: { sections: Section[] }) {
                 sizes="100vw"
                 className="object-contain"
                 priority={index === 0}
+                unoptimized={mustSkipOptimizer(section.src)}
               />
             </div>
           ))}

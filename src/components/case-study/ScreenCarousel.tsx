@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { mustSkipOptimizer } from "@/lib/case-study-lock";
 import { cn } from "@/lib/utils";
 
 type Screen = { src: string; alt: string; label: string };
@@ -134,6 +135,7 @@ export function ScreenCarousel({ screens }: { screens: Screen[] }) {
                   sizes="(min-width: 640px) 15rem, 12rem"
                   className="block h-auto w-48 sm:w-60"
                   priority={index < 2}
+                  unoptimized={mustSkipOptimizer(screen.src)}
                 />
               </button>
             </motion.div>

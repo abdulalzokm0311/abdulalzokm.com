@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { mustSkipOptimizer } from "@/lib/case-study-lock";
 import { cn } from "@/lib/utils";
 
 type ImageSlotProps = {
@@ -98,6 +99,9 @@ export function ImageSlot({
         sizes={sizes}
         priority={priority}
         draggable={draggable}
+        // Password-gated artwork cannot go through the optimiser. See
+        // mustSkipOptimizer for why.
+        unoptimized={mustSkipOptimizer(src)}
         className={fit === "contain" ? "object-contain" : "object-cover"}
       />
     </div>
