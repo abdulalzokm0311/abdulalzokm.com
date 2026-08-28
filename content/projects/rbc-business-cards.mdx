@@ -4,16 +4,16 @@ headline: "Making a wall of text into something you can scan"
 shortTitle: "RBC"
 client: "RBC"
 slug: "rbc-business-cards"
-order: 0
+order: 1
 year: "2025"
 published: true
-summary: "A dense, outdated set of business credit card pages, reordered around the decision a business owner is actually trying to make."
+summary: "A dense, outdated set of business credit card pages, redesigned around the decision a business owner is actually trying to make."
 role: "Product Designer, end to end from competitive analysis to hi-fi"
 team: "Two designers"
 timeline: ""
 context: "RBC, business credit cards"
 tools: ["Figma"]
-tags: ["Product Design", "Information Architecture", "Financial Services", "Design Systems"]
+tags: ["Business Banking", "Website Redesign", "Financial Services"]
 metrics:
   - value: "3"
     label: "pages redesigned, desktop and mobile"
@@ -23,7 +23,7 @@ metrics:
     label: "delivered and in development"
 brief:
   problem: "The pages made you read instead of letting you scan, and the order worked against the visitor. To reach the cards, the thing people came for, you had to scroll past secondary tools first. One page also served two different audiences at once, so neither got a clean path."
-  approach: "I worked end to end with one other designer, from competitive analysis through hi-fi. We reordered the home page around the decision a business owner is making, split the business audience from the commercial one, and replaced feature prose with image-led sections."
+  approach: "I worked end to end with one other designer, from competitive analysis through hi-fi. We redesigned the home page around the decision a business owner is making, split the business audience from the commercial one, and replaced feature prose with image-led sections."
 # RBC's own palette, sampled from rbcroyalbank.com: blue #006AC3, deeper blue
 # #0051A5, yellow #FEDF01. The title block sweeps yellow into blue so the
 # brand reads immediately. Both brand values are unusable as small text, blue
@@ -42,7 +42,9 @@ theme:
   inkSoft: "#3B4757"
   muted: "#45515F"
   rule: "#CFE0EF"
-cover: "/projects/rbc-business-cards/cover.png"
+cover: "/projects/rbc-business-cards/cover.webp"
+device: "/projects/rbc-business-cards/device.webp"
+deviceRatio: 0.483
 coverAspect: "1536/1024"
 coverChrome: false
 coverAlt: "The RBC app on a phone, centred against a Toronto skyline that fades from gold on the left into deep blue on the right, with a plane tracing an arc behind it"
@@ -91,8 +93,8 @@ features were worth knowing. They were just buried in prose.
 <FigureGrid
   columns={2}
   items={[
-    { aspect: "3740/7019", src: "/projects/rbc-business-cards/before-home.png", alt: "The current business credit cards home page, full length, annotated with its running order: awareness at the top, lower-priority tools next, then the cards, then FAQs and the apply block", caption: "The home page. The cards sit third, below the tools." },
-    { aspect: "3120/6535", src: "/projects/rbc-business-cards/before-product.png", alt: "The current WestJet card product page, full length, annotated: awareness, then who it is for, then a long feature breakdown, then the apply block", caption: "A product page. The feature breakdown runs on well past where most readers stop." },
+    { aspect: "3740/7019", src: "/projects/rbc-business-cards/before-home.webp", alt: "The current business credit cards home page, full length, annotated with its running order: awareness at the top, lower-priority tools next, then the cards, then FAQs and the apply block", caption: "The home page. The cards sit third, below the tools." },
+    { aspect: "3120/6535", src: "/projects/rbc-business-cards/before-product.webp", alt: "The current WestJet card product page, full length, annotated: awareness, then who it is for, then a long feature breakdown, then the apply block", caption: "A product page. The feature breakdown runs on well past where most readers stop." },
   ]}
 />
 
@@ -166,7 +168,7 @@ cards.
   title="Lead with the offer, then get out of the way"
   before="An opening wall of copy, with no immediate reason to keep reading."
   after="A lifestyle image of a business owner, a headline leading with the card's welcome offer, and two actions: Apply Now straight to the application, View Details through to the product page."
-  src="/projects/rbc-business-cards/home-01-hero.png"
+  src="/projects/rbc-business-cards/home-01-hero.webp"
   aspect="2508/916"
   alt="The redesigned hero, white-labeled: card art, a headline leading with the points offer, Apply Now and View Details, and a business owner at an airport with callouts for silver status and combined points"
 />
@@ -176,7 +178,7 @@ cards.
   title="Are you in the right place?"
   before="Business and commercial audiences shared one path, and the distinction was buried far down the page."
   after="A short section near the top that separates the two. Business credit cards are for businesses under $3 million in revenue, and anyone above that is pointed to the commercial page before they waste time on the wrong content."
-  src="/projects/rbc-business-cards/home-02-audience-split.png"
+  src="/projects/rbc-business-cards/home-02-audience-split.webp"
   aspect="2504/738"
   alt="The audience split, white-labeled. Why Business Credit Card, with two panels: business cards for under ten employees and under $3 million revenue, and commercial cards for above that"
 />
@@ -186,7 +188,7 @@ cards.
   title="Show the range, early"
   before="The cards sat below secondary tools, so exploration came after content most people did not need yet."
   after="The full lineup of RBC business credit cards, together and high on the page. Exploration now happens where people are looking for it."
-  src="/projects/rbc-business-cards/home-03-card-lineup.png"
+  src="/projects/rbc-business-cards/home-03-card-lineup.webp"
   aspect="1350/1516"
   alt="The full card lineup, white-labeled. Six cards in a grid, each with annual fee, who it is best for, three benefits, rates, and Apply Now"
 />
@@ -232,7 +234,7 @@ Mastercard for Business and the RBC Avion Visa Infinite Business Credit Card.
   title="Decide from the top of the page"
   before="A large intro paragraph almost nobody would read, before any of the detail that matters."
   after="The card and its main features in one section above the fold, enough to make a call on its own. Cleaner hierarchy, scannable in a few seconds."
-  src="/projects/rbc-business-cards/product-01-summary.png"
+  src="/projects/rbc-business-cards/product-01-summary.webp"
   aspect="2160/1204"
   alt="The above-the-fold summary, white-labeled: card art, the points headline, key rates and Apply Now, all readable without scrolling"
 />
@@ -242,7 +244,7 @@ Mastercard for Business and the RBC Avion Visa Infinite Business Credit Card.
   title="Say who it is not for"
   before="The old page had the idea of fit, but hid it inside body text."
   after="Best for you if, and may not be ideal for you if, made visual and easy to parse. It lets people self-select quickly and sets honest expectations about who the card suits."
-  src="/projects/rbc-business-cards/product-02-ideal.png"
+  src="/projects/rbc-business-cards/product-02-ideal.webp"
   aspect="2162/792"
   alt="The ideal and not ideal section, white-labeled, laying out who the card suits and who it does not"
 />
@@ -256,14 +258,14 @@ Mastercard for Business and the RBC Avion Visa Infinite Business Credit Card.
 
 <SectionCarousel
   sections={[
-    { src: "/projects/rbc-business-cards/features/01-earning.png", aspect: "1920/828", label: "Earning", alt: "Fastest way to earn points. A traveller with a suitcase, tagged with flights, vacations, every purchase and electronics, beside four earn rates" },
-    { src: "/projects/rbc-business-cards/features/02-silver-status.png", aspect: "1920/896", label: "Silver status", alt: "First year silver status valued at $980 plus, with three illustrated cards: lounge passes at $354, priority check-in at $414, and two free checked bags at $180" },
-    { src: "/projects/rbc-business-cards/features/03-status-lift.png", aspect: "1922/868", label: "Status lift", alt: "Reach higher with status lift, a full-bleed banner explaining that every $5,000 in everyday purchases earns 200 CAD in tier qualifying spend" },
-    { src: "/projects/rbc-business-cards/features/04-combining.png", aspect: "1920/828", label: "Combining", alt: "Combine points. Three checked statements about business, personal and secondary cardholder points pooling automatically, beside a phone showing the three account types" },
-    { src: "/projects/rbc-business-cards/features/05-redeeming.png", aspect: "1920/860", label: "Redeeming", alt: "Redeem points for rewards, listing travel, seat selection and baggage, and gift cards through the rewards store" },
-    { src: "/projects/rbc-business-cards/features/06-exclusive-fares.png", aspect: "1920/739", label: "Exclusive fares", alt: "Exclusive fares and savings on a dark ground, as four stacked cards: fly for less with points, points that never expire, member exclusive fares, and business perks" },
-    { src: "/projects/rbc-business-cards/features/07-insurance.png", aspect: "1920/848", label: "Insurance", alt: "Insurance and protection as an accordion over a photograph, with trip cancellation expanded and emergency medical, auto rental, purchase security and mobile device protection collapsed beneath" },
-    { src: "/projects/rbc-business-cards/features/08-partners.png", aspect: "1920/505", label: "Partners", alt: "Even more rewards when you link your card. Three partner tiles offering fuel savings, five times points on essentials, and zero delivery fees" },
+    { src: "/projects/rbc-business-cards/features/01-earning.webp", aspect: "1920/828", label: "Earning", alt: "Fastest way to earn points. A traveller with a suitcase, tagged with flights, vacations, every purchase and electronics, beside four earn rates" },
+    { src: "/projects/rbc-business-cards/features/02-silver-status.webp", aspect: "1920/896", label: "Silver status", alt: "First year silver status valued at $980 plus, with three illustrated cards: lounge passes at $354, priority check-in at $414, and two free checked bags at $180" },
+    { src: "/projects/rbc-business-cards/features/03-status-lift.webp", aspect: "1922/868", label: "Status lift", alt: "Reach higher with status lift, a full-bleed banner explaining that every $5,000 in everyday purchases earns 200 CAD in tier qualifying spend" },
+    { src: "/projects/rbc-business-cards/features/04-combining.webp", aspect: "1920/828", label: "Combining", alt: "Combine points. Three checked statements about business, personal and secondary cardholder points pooling automatically, beside a phone showing the three account types" },
+    { src: "/projects/rbc-business-cards/features/05-redeeming.webp", aspect: "1920/860", label: "Redeeming", alt: "Redeem points for rewards, listing travel, seat selection and baggage, and gift cards through the rewards store" },
+    { src: "/projects/rbc-business-cards/features/06-exclusive-fares.webp", aspect: "1920/739", label: "Exclusive fares", alt: "Exclusive fares and savings on a dark ground, as four stacked cards: fly for less with points, points that never expire, member exclusive fares, and business perks" },
+    { src: "/projects/rbc-business-cards/features/07-insurance.webp", aspect: "1920/848", label: "Insurance", alt: "Insurance and protection as an accordion over a photograph, with trip cancellation expanded and emergency medical, auto rental, purchase security and mobile device protection collapsed beneath" },
+    { src: "/projects/rbc-business-cards/features/08-partners.webp", aspect: "1920/505", label: "Partners", alt: "Even more rewards when you link your card. Three partner tiles offering fuel savings, five times points on essentials, and zero delivery fees" },
   ]}
 />
 

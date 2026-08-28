@@ -15,7 +15,7 @@ export const about = {
     "I hold a Bachelor of Architecture from the University of Toronto and a Master of Information in User Experience Design from the same institution, a foundation that lets me balance aesthetics, usability, and intent in everything I build.",
   ],
   /** TODO: replace with a real photo. See public/README.md. */
-  portrait: "/about/me.png",
+  portrait: "/about/me.webp",
   portraitAspect: "2448/3264",
   portraitAlt: "Abdul on a lit deck at night, one arm along the railing, looking off to the side",
 
@@ -31,7 +31,7 @@ export const about = {
    */
   life: [
     {
-      src: "/about/01-volleyball.png",
+      src: "/about/01-volleyball.webp",
       aspect: "1392/1868",
       alt: "Mid-air at the top of a volleyball serve, ball above an indoor court",
       caption: "Playing a volleyball tournament.",
@@ -41,7 +41,7 @@ export const about = {
       tilt: -4,
     },
     {
-      src: "/about/02-padel-tournament.png",
+      src: "/about/02-padel-tournament.webp",
       aspect: "1340/1174",
       alt: "Following through on a padel shot on an indoor court, looking back over the shoulder",
       caption: "Playing a padel tournament.",
@@ -51,7 +51,7 @@ export const about = {
       tilt: 3,
     },
     {
-      src: "/about/03-padel.png",
+      src: "/about/03-padel.webp",
       aspect: "1254/1254",
       alt: "Setting up a padel shot with the ball in the air, glass-walled court behind",
       caption: "More padel.",
@@ -61,7 +61,7 @@ export const about = {
       tilt: -2,
     },
     {
-      src: "/about/04-padel-district.png",
+      src: "/about/04-padel-district.webp",
       aspect: "852/1846",
       alt: "Waiting on the return at an indoor padel court, boards around the court reading The District",
       caption: "Playing pickleball with my brother.",
@@ -71,7 +71,7 @@ export const about = {
       tilt: 5,
     },
     {
-      src: "/about/05-tennis.png",
+      src: "/about/05-tennis.webp",
       aspect: "1069/1471",
       alt: "Winding up a tennis backhand on an outdoor court at dusk, treeline behind",
       caption: "Playing tennis with my dad.",
@@ -81,7 +81,7 @@ export const about = {
       tilt: 3,
     },
     {
-      src: "/about/06-snowboarding.png",
+      src: "/about/06-snowboarding.webp",
       aspect: "853/1844",
       alt: "Riding a snowboard down a quiet groomed slope, pines along the treeline",
       caption: "Snowboarding in Blue Mountain.",
@@ -91,7 +91,7 @@ export const about = {
       tilt: 4,
     },
     {
-      src: "/about/07-egypt.png",
+      src: "/about/07-egypt.webp",
       aspect: "3000/4000",
       alt: "Wearing an Egypt number 10 shirt beside a giant football sculpture at night",
       caption: "Watching Egypt win their first ever World Cup game.",
@@ -101,7 +101,7 @@ export const about = {
       tilt: -3,
     },
     {
-      src: "/about/08-pizza.png",
+      src: "/about/08-pizza.webp",
       aspect: "2448/3264",
       alt: "Grinning behind an enormous pizza that fills the whole table",
       caption: "Eating pizza in the Bahamas.",
