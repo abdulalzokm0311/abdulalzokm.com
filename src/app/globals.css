@@ -209,4 +209,12 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
+  /* The card tag tiles hide behind the cover and come out on hover. With the
+     transition gone that would leave them tucked away for good, so they rest
+     in the open instead. */
+  [data-tag-tile] {
+    transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty)))
+      rotate(var(--rot)) !important;
+  }
 }

@@ -61,6 +61,10 @@ export type ProjectMeta = {
   metrics: Metric[];
   /** Path under /public, or "" while still a placeholder. */
   cover: string;
+  /** Transparent device mockup shown on the card. */
+  device: string;
+  /** The mockup's width over its height, so the card can lay it out. */
+  deviceRatio: number;
   /** True ratio of the cover file, e.g. "1440/1031". */
   coverAspect: string;
   /** Address shown in the hero's browser chrome. */
@@ -111,6 +115,8 @@ function parseFile(filename: string): Project {
     tags: (data.tags as string[]) ?? [],
     metrics: (data.metrics as Metric[]) ?? [],
     cover: String(data.cover ?? ""),
+    device: String(data.device ?? ""),
+    deviceRatio: Number(data.deviceRatio ?? 0) || 0,
     coverAspect: String(data.coverAspect ?? ""),
     coverUrl: String(data.coverUrl ?? ""),
     coverChrome: data.coverChrome !== false,

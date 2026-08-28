@@ -15,14 +15,37 @@ import { cn } from "@/lib/utils";
  * One case study as a full-width card: media on one side, the story and the
  * numbers on the other. Cards alternate sides down the page.
  *
- * The card is not one big link. The title and the explicit "View case study"
- * action are the links, so the tags and metrics stay selectable and the tab
- * order stays predictable.
+ * The whole card is clickable. It is one link, stretched over the card by a
+ * pseudo element on the title, rather than a wrapper around everything: that
+ * keeps the card to a single tab stop and keeps what a screen reader reads
+ * out to the study's title.
  *
- * On hover it adopts the study's own palette. On click a panel in that study's
- * title gradient swipes across the screen and the route changes underneath it,
- * so the two pages read as continuous.
+ * On click a panel in the study's title gradient zooms up to fill the screen
+ * and the route changes underneath it, so the two pages read as continuous.
  */
+/**
+ * Where each tag lands when the card is hovered, measured from the middle of
+ * the tray. The units are container units, so the whole arrangement scales
+ * with the card instead of drifting at other widths.
+ *
+ * There are two sets because the two device shapes leave room in different
+ * places. A laptop is wide and low, so its free space is the band above it. A
+ * phone is narrow and tall, so its free space is down both sides.
+ *
+ * Three is the cap. The full list is set out of sight for screen readers.
+ */
+const LANDSCAPE_SPOTS = [
+  { tx: "-27cqw", ty: "-38cqh", rotate: -8 },
+  { tx: "1cqw", ty: "-44cqh", rotate: 4 },
+  { tx: "29cqw", ty: "-37cqh", rotate: -5 },
+];
+
+const PORTRAIT_SPOTS = [
+  { tx: "-34cqw", ty: "-25cqh", rotate: -9 },
+  { tx: "34cqw", ty: "-11cqh", rotate: 7 },
+  { tx: "-35cqw", ty: "15cqh", rotate: -4 },
+];
+
 export function ProjectCard({
   project,
   flip = false,
@@ -35,11 +58,19 @@ export function ProjectCard({
 }) {
   const href = `/projects/${project.slug}`;
   const reduceMotion = useReducedMotion();
-  const { swipeTo } = useRouteTransition();
+  const { zoomTo } = useRouteTransition();
+
+  /* Phones and laptops get laid out differently, and a study with no mockup
+     falls back to its cover art in the laptop's slot. */
+  const landscape = (project.deviceRatio || 1.6) >= 1;
+  const spots = landscape ? LANDSCAPE_SPOTS : PORTRAIT_SPOTS;
+  const tiles = project.tags.slice(0, spots.length);
+  const artwork = project.device || project.cover;
 
   const gradient =
     heroGradient(project.theme) ??
     (project.theme.accent ? `linear-gradient(158deg, ${project.theme.accent}, ${project.theme.accent})` : "");
+
 
   /**
    * Hand off to the layout-level swipe. With reduced motion the click is left
@@ -60,9 +91,9 @@ export function ProjectCard({
       }
 
       event.preventDefault();
-      swipeTo(href, gradient);
+      zoomTo(href, gradient);
     },
-    [gradient, href, reduceMotion, swipeTo],
+    [gradient, href, reduceMotion, zoomTo],
   );
 
   return (
@@ -77,28 +108,99 @@ export function ProjectCard({
         className,
       )}
     >
-      <div className={cn("p-4 md:p-6", flip && "md:order-2")}>
-        {/* Clipped so the cover can push past its own frame on hover without
-            spilling over the card's rounded corner. */}
-        <div className="overflow-hidden rounded-card">
-          <ImageSlot
-            src={project.cover}
-            alt={project.coverAlt}
-            aspect="4/3"
-            sizes="(min-width: 768px) 46vw, 92vw"
-            className="rounded-card transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06] group-focus-within:scale-[1.06]"
+      <div className={cn("p-4 pb-1 md:p-6", flip && "md:order-2")}>
+        {/* A flat tray in the study's own tint with the device standing in
+            it. The tags sit hidden behind the device and fly out to their own
+            corners on hover, while the device grows up out of the pocket
+            along the bottom.
+
+            The tray is a size container, so the tags' travel and the device's
+            proportions are all expressed against the tray itself and hold at
+            any card width. */}
+        <div
+          className={cn(
+            "relative overflow-hidden rounded-block bg-surface-deep",
+            /* A phone needs a squarer tray on mobile to stand up in at any
+               size worth looking at. On a laptop the 4:3 tray is right at
+               every width. */
+            landscape ? "aspect-[4/3]" : "aspect-square sm:aspect-[4/3]",
+          )}
+          style={{ containerType: "size" }}
+        >
+          {/* Behind the device at rest, so no fade is needed to hide them.
+
+              Dropped on a phone, where the tray is half the width and the
+              longer tags would run off it, and where there is no hover to
+              bring them out in the first place. */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 z-0 hidden sm:block"
+          >
+            {tiles.map((tag, index) => (
+              <span
+                key={tag}
+                data-tag-tile
+                style={
+                  {
+                    "--rot": `${spots[index].rotate}deg`,
+                    "--tx": spots[index].tx,
+                    "--ty": spots[index].ty,
+                    transitionDelay: `${index * 70}ms`,
+                  } as React.CSSProperties
+                }
+                className={cn(
+                  "absolute left-1/2 top-1/2 whitespace-nowrap rounded-[0.7rem] bg-accent px-2 py-1.5 text-[0.54rem] font-semibold uppercase leading-none tracking-[0.05em] text-paper",
+                  "[transform:translate(-50%,-50%)_scale(0.35)_rotate(var(--rot))] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
+                  "group-hover:[transform:translate(calc(-50%+var(--tx)),calc(-50%+var(--ty)))_rotate(var(--rot))] group-focus-within:[transform:translate(calc(-50%+var(--tx)),calc(-50%+var(--ty)))_rotate(var(--rot))]",
+                )}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <p className="sr-only">{project.tags.join(", ")}</p>
+
+          {/* Grows from its own base, so it rises out of the pocket rather
+              than swelling in place. */}
+          <div
+            className={cn(
+              "absolute left-1/2 z-10 -translate-x-1/2 origin-bottom transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
+              "group-hover:scale-[1.06] group-focus-within:scale-[1.06]",
+                            /* Bigger on a phone. There is no hover there, so the tags
+                 never come out and the device can have the whole tray. */
+              landscape
+                ? "bottom-[13cqh] w-[86cqw] sm:w-[72cqw]"
+                : "bottom-[-11cqh] w-[50cqw] sm:w-[34cqw]",
+            )}
+          >
+            <ImageSlot
+              src={artwork}
+              alt={project.coverAlt}
+              aspect={project.deviceRatio ? String(project.deviceRatio) : "16/9"}
+              fit="contain"
+              sizes="(min-width: 768px) 34vw, 70vw"
+              className="drop-shadow-[0_18px_28px_rgba(0,0,0,0.16)]"
+            />
+          </div>
+
+          {/* The pocket the device stands in. */}
+          <div
+            aria-hidden
+            className="absolute inset-x-0 bottom-0 z-20 h-[12cqh] rounded-t-[1.25rem] bg-surface md:h-[22cqh] md:rounded-t-[2rem]"
           />
         </div>
       </div>
 
-      <div className="flex flex-col justify-center p-6 md:p-10">
-        <p className="eyebrow text-accent">{project.shortTitle}</p>
-
-        <h3 className="text-card mt-3">
+      <div className="flex flex-col justify-center p-5 pt-2 md:p-10">
+        {/* The title's overlay is what makes the whole card clickable. One
+            link rather than a wrapper around everything, so the card is a
+            single tab stop and still announces as the study's title. */}
+        <h3 className="text-card">
           <Link
             href={href}
             onClick={handleNavigate}
-            className="transition-colors hover:text-accent focus-visible:text-accent"
+            className="transition-colors after:absolute after:inset-0 after:z-30 after:content-[''] hover:text-accent focus-visible:text-accent"
           >
             {project.title}
           </Link>
@@ -106,25 +208,24 @@ export function ProjectCard({
 
         <p className="mt-4 text-sm">{project.summary}</p>
 
-        <ul className="mt-6 flex flex-wrap gap-2">
-          {project.tags.map((tag) => (
-            <li
-              key={tag}
-              className="eyebrow rounded-full bg-paper px-3 py-2 text-accent"
-            >
-              {tag}
-            </li>
-          ))}
-        </ul>
 
         {/* Three across on one row. Labels stay sentence case, because these
             are phrases rather than the two-word stats a card usually carries. */}
-        <dl className="mt-8 grid grid-cols-3 gap-x-5 gap-y-4 border-t border-rule pt-6">
+        <dl className="mt-6 grid grid-cols-3 gap-x-5 gap-y-4 border-t border-rule pt-6 md:mt-8">
           {project.metrics.map((metric) => (
             <div key={metric.label}>
               <dt className="sr-only">{metric.label}</dt>
               <dd>
-                <span className="block font-display text-2xl leading-none text-accent">
+                {/* A worded value like "In build" is set a step down from a
+                    figure. Its ascenders then land at about the height of the
+                    digits beside it, where matching the point size would make
+                    the phrase read as the loudest thing on the card. */}
+                <span
+                  className={cn(
+                    "block font-display leading-none text-accent",
+                    /[A-Za-z]/.test(metric.value) ? "text-xl" : "text-2xl",
+                  )}
+                >
                   {metric.value}
                 </span>
                 <span
@@ -144,7 +245,7 @@ export function ProjectCard({
         <Link
           href={href}
           onClick={handleNavigate}
-          className="group/cta relative mt-8 inline-flex w-fit items-center gap-2.5 overflow-hidden rounded-full border border-rule px-6 py-3.5 transition-[padding,border-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:px-9 hover:border-accent focus-visible:px-9 focus-visible:border-accent"
+          className="group/cta relative z-40 mt-8 hidden w-fit items-center gap-2.5 md:inline-flex overflow-hidden rounded-full border border-rule px-6 py-3.5 transition-[padding,border-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:px-9 hover:border-accent focus-visible:px-9 focus-visible:border-accent"
         >
           <span
             aria-hidden

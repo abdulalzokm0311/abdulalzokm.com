@@ -13,30 +13,37 @@ import {
 } from "react";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
-const COVER_MS = 450;
-const REVEAL_MS = 500;
+
+/** How long the panel has to fill the screen before the route is pushed. */
+const COVER_MS = 460;
+const REVEAL_MS = 420;
 
 type Panel = { href: string; background: string };
 type Phase = "covering" | "revealing";
 
 type TransitionContext = {
   /**
-   * Sweep a panel across the screen, navigate under it, then sweep it off.
-   * Falls back to a plain push when the visitor prefers reduced motion.
+   * Zoom a panel in the study's gradient up to fill the screen, navigate
+   * under it, then fade through to the page. Falls back to a plain push when
+   * the visitor prefers reduced motion.
    */
-  swipeTo: (href: string, background: string) => void;
+  zoomTo: (href: string, background: string) => void;
 };
 
-const Ctx = createContext<TransitionContext>({ swipeTo: () => {} });
+const Ctx = createContext<TransitionContext>({ zoomTo: () => {} });
 
 export const useRouteTransition = () => useContext(Ctx);
 
 /**
- * A full-screen panel that swipes in from the left, holds while the next route
- * renders underneath, then swipes off to the right.
+ * The case study transition: a zoom in.
  *
- * It lives in the root layout rather than in the card, because the panel has
- * to outlive the route change. Anything rendered inside the page tree is
+ * A panel in the study's own title gradient scales up from the middle of the
+ * screen until it fills it, the route commits while it is covered, and it
+ * fades through to the page. Because the panel is the same gradient the case
+ * study's title block is painted in, the two join up.
+ *
+ * It lives in the root layout rather than in the card, because it has to
+ * outlive the route change. Anything rendered inside the page tree is
  * unmounted the moment the navigation commits, which would cut the animation
  * in half.
  */
@@ -56,7 +63,7 @@ export function RouteTransitionProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => clearTimers, [clearTimers]);
 
-  const swipeTo = useCallback(
+  const zoomTo = useCallback(
     (href: string, background: string) => {
       if (reduceMotion) {
         router.push(href);
@@ -80,7 +87,7 @@ export function RouteTransitionProvider({ children }: { children: ReactNode }) {
     [clearTimers, pathname, reduceMotion, router],
   );
 
-  /* Once the new route has committed, uncover it. */
+  /* Once the new route has committed, fade through to it. */
   useEffect(() => {
     if (!panel) return;
     if (pathname === startedAt.current) return;
@@ -95,19 +102,29 @@ export function RouteTransitionProvider({ children }: { children: ReactNode }) {
     );
   }, [clearTimers, panel, pathname]);
 
+  const covering = phase === "covering";
+
   return (
-    <Ctx.Provider value={{ swipeTo }}>
+    <Ctx.Provider value={{ zoomTo }}>
       {children}
 
       <AnimatePresence>
         {panel ? (
           <motion.div
             aria-hidden
-            initial={{ x: "-100%" }}
-            animate={{ x: phase === "covering" ? "0%" : "100%" }}
+            initial={{ scale: 0.45, opacity: 0, borderRadius: 48 }}
+            animate={{
+              scale: 1,
+              opacity: covering ? 1 : 0,
+              borderRadius: 0,
+            }}
             transition={{
-              duration: (phase === "covering" ? COVER_MS : REVEAL_MS) / 1000,
-              ease: EASE,
+              scale: { duration: COVER_MS / 1000, ease: EASE },
+              borderRadius: { duration: COVER_MS / 1000, ease: EASE },
+              opacity: {
+                duration: (covering ? COVER_MS * 0.4 : REVEAL_MS) / 1000,
+                ease: "linear",
+              },
             }}
             style={{
               position: "fixed",
@@ -115,6 +132,7 @@ export function RouteTransitionProvider({ children }: { children: ReactNode }) {
               zIndex: 70,
               backgroundImage: panel.background,
               pointerEvents: "none",
+              willChange: "transform",
             }}
           />
         ) : null}
