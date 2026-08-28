@@ -1,10 +1,12 @@
 "use client";
 
 import { motion, useReducedMotion, type PanInfo } from "motion/react";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import type { CSSProperties } from "react";
 
 import { ImageSlot } from "@/components/ImageSlot";
 import { about } from "@/content/about";
+import { cn } from "@/lib/utils";
 
 /** Deterministic per-particle values, so server and browser render alike. */
 const PARTICLES = [
@@ -22,6 +24,28 @@ const DUST_LIFE = 900;
 type Mote = { id: number; x: number; y: number; drift: number; size: number };
 
 /**
+ * Whether the scatter is live.
+ *
+ * Below lg the photos are a plain two-column grid, so there is no coordinate
+ * space to drag around in. It also matters for scrolling: dragging needs
+ * touch-action: none, and on a phone that turns every photo into a dead spot
+ * the page will not scroll from.
+ */
+function useScatterEnabled() {
+  const [enabled, setEnabled] = useState(false);
+
+  useEffect(() => {
+    const query = window.matchMedia("(min-width: 1024px)");
+    const sync = () => setEnabled(query.matches);
+    sync();
+    query.addEventListener("change", sync);
+    return () => query.removeEventListener("change", sync);
+  }, []);
+
+  return enabled;
+}
+
+/**
  * The photographs, scattered and draggable.
  *
  * From lg up the list is a coordinate space: every photo carries its own left,
@@ -36,10 +60,13 @@ type Mote = { id: number; x: number; y: number; drift: number; size: number };
  *
  * All of the motion is decoration and says so: aria-hidden throughout, and
  * prefers-reduced-motion stops the bob, the ambient particles and the dust.
- * Dragging still works, because that is the reader's own doing.
+ * Dragging still works, because that is the reader's own doing. Below lg
+ * there is no dragging at all: the photos are a straight two-column grid
+ * there, and holding touch events would only block the page from scrolling.
  */
 export function PhotoScatter() {
   const reduceMotion = useReducedMotion();
+  const scatter = useScatterEnabled();
   const containerRef = useRef<HTMLUListElement>(null);
   const [dust, setDust] = useState<Mote[]>([]);
   const lastSpawn = useRef(0);
@@ -83,25 +110,32 @@ export function PhotoScatter() {
       {about.life.map((photo, index) => (
         <li
           key={photo.caption}
-          className="lg:absolute"
-          style={{
-            left: `${photo.left}%`,
-            top: `${photo.top}%`,
-            width: `${photo.w}%`,
-          }}
+          /* The coordinates are the lg canvas's, so they are handed over as
+             custom properties and only read from lg up. Set as plain inline
+             styles they applied at every width, squeezing each photo to a
+             fraction of its grid cell on a phone: 13% of a half-width column
+             is about 20px, which is what they were rendering at. */
+          className="lg:absolute lg:left-[var(--x)] lg:top-[var(--y)] lg:w-[var(--w)]"
+          style={
+            {
+              "--x": `${photo.left}%`,
+              "--y": `${photo.top}%`,
+              "--w": `${photo.w}%`,
+            } as CSSProperties
+          }
         >
           {/* Drag sets transform on this wrapper, the bob sets it on the one
               inside, and the tilt uses the separate rotate property. Three
               layers so none of them overwrite each other. */}
           <motion.div
-            drag
+            drag={scatter}
             dragConstraints={containerRef}
             dragElastic={0.12}
             dragMomentum={false}
             onDrag={(_, info) => spawnDust(info)}
             whileDrag={{ scale: 1.06, zIndex: 40 }}
             style={{ rotate: `${photo.tilt}deg` }}
-            className="relative touch-none"
+            className={cn("relative", scatter && "touch-none")}
           >
             <div
               className="relative"
