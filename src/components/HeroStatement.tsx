@@ -71,7 +71,10 @@ export function HeroStatement() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
       >
-        <p className="mx-auto flex min-h-[2.9em] max-w-4xl items-center justify-center font-display text-[clamp(2rem,5.2vw,3.6rem)] font-normal leading-[0.92] tracking-[-0.03em] text-ink">
+        {/* Positioned and lifted so the statement paints over the script word
+            rather than under it. Where the two meet, the sentence is the thing
+            that has to stay readable; the script is decoration. */}
+        <p className="relative z-10 mx-auto flex min-h-[2.9em] max-w-4xl items-center justify-center font-display text-[clamp(2rem,5.2vw,3.6rem)] font-normal leading-[0.92] tracking-[-0.03em] text-ink">
           {tab.statement}
         </p>
 
