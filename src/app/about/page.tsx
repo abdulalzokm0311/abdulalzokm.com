@@ -35,6 +35,7 @@ export default function AboutPage() {
                 aspect={about.portraitAspect}
                 sizes="(min-width: 768px) 30vw, 92vw"
                 fit="contain"
+                backdrop
                 priority
                 className="rounded-card"
               />

@@ -154,6 +154,7 @@ export function PhotoScatter() {
                 sizes="(min-width: 1024px) 22vw, 44vw"
                 fit="contain"
                 compact
+                backdrop
                 draggable={false}
                 className="rounded-card"
               />

@@ -30,6 +30,17 @@ type ImageSlotProps = {
   draggable?: boolean;
   /** Drop the descriptive text in the placeholder. For slots too small to fit it. */
   compact?: boolean;
+  /**
+   * Paint a panel behind the image, so the slot reads as a photograph that has
+   * not arrived rather than one that is missing. Every image here is lazy, and
+   * an empty box on a slow connection is indistinguishable from a broken one.
+   *
+   * Opt-in, and only safe where `aspect` matches the file's real ratio: with
+   * object-contain a wrong ratio letterboxes, and the panel would show through
+   * as coloured bars down the sides. That is the reason there is no panel by
+   * default.
+   */
+  backdrop?: boolean;
   className?: string;
 };
 
@@ -47,6 +58,7 @@ export function ImageSlot({
   sizes = "100vw",
   priority = false,
   compact = false,
+  backdrop = false,
   fit = "cover",
   draggable,
   className,
@@ -85,10 +97,12 @@ export function ImageSlot({
     <div
       style={{ aspectRatio: aspect }}
       className={cn(
-        // No fill. With object-contain the letterbox would otherwise show a
-        // themed panel behind every screenshot that is not exactly the slot's
-        // ratio, which reads as a coloured border nobody asked for.
+        // No fill by default. With object-contain the letterbox would otherwise
+        // show a themed panel behind every screenshot that is not exactly the
+        // slot's ratio, which reads as a coloured border nobody asked for.
+        // `backdrop` opts in where the ratio is known to be exact.
         "relative w-full overflow-hidden rounded-card",
+        backdrop && "bg-surface-deep",
         className,
       )}
     >
