@@ -88,7 +88,7 @@ export const heroTabs = [
     label: "Who I am",
     script: "who i am",
     statement:
-      "A product designer who takes dense, complicated things and makes them scannable.",
+      "I like complex problems, I like making them feel simple even more.",
   },
   {
     label: "What drives me",
