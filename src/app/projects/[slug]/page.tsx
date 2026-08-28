@@ -149,7 +149,22 @@ export default async function CaseStudyPage({ params }: Params) {
 
         {/* The story. */}
         <div className="pb-8">
-          <MDXRemote source={project.content} components={mdxComponents} />
+          {/* blockJS is on by default from next-mdx-remote 6, which strips
+              every {expression} in the MDX. Our components are fed their data
+              through expression props, e.g. <ChangeList items={[...]} />, so
+              with it on they receive nothing and render undefined.
+
+              Turning it off is safe here in a way it would not be on a site
+              that renders submitted MDX: these files are written by hand and
+              committed to this repo, so the "untrusted content" the default
+              guards against does not exist. blockDangerousJS is deliberately
+              left at its default, so eval, Function, process and require stay
+              blocked either way. */}
+          <MDXRemote
+            source={project.content}
+            components={mdxComponents}
+            options={{ blockJS: false }}
+          />
         </div>
 
         {/* Measured outcomes, read as a table because that is what they are. */}
