@@ -82,7 +82,7 @@ export const about = {
     },
     {
       src: "/about/06-snowboarding.webp",
-      aspect: "853/1844",
+      aspect: "740/987",
       alt: "Riding a snowboard down a quiet groomed slope, pines along the treeline",
       caption: "Snowboarding in Blue Mountain.",
       left: 3,
