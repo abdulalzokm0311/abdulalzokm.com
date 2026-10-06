@@ -4,10 +4,10 @@ import { useEffect, useRef } from "react";
 
 /** How much of the remaining distance to close each frame. 1 would be instant. */
 const FOLLOW = 0.22;
-const BASE = 24;
+const BASE = 26;
 
 /**
- * An arrowhead cursor that inverts against whatever it sits on.
+ * A drawn arrow cursor that inverts against whatever it sits on.
  *
  * The inversion is mix-blend-mode: difference over a white fill, which
  * computes 1 - backdrop. Black on the cream page, white on a case study's
@@ -118,29 +118,21 @@ export function CustomCursor() {
       className="pointer-events-none fixed left-0 top-0 z-[200] opacity-0 mix-blend-difference"
       style={{ width: BASE, height: BASE, willChange: "transform" }}
     >
-      <svg viewBox="0 0 24 24" width={BASE} height={BASE} fill="none">
-        <defs>
-          {/* The knocked-out dots let the backdrop through unblended, which
-              reads as the stippled flint texture at this size. */}
-          <mask id="cursor-stipple">
-            <path
-              d="M2 2 Q7 12 9.5 21 Q10.9 16.4 12.3 14.6 Q16.4 13 21 12.2 Q11 6.6 2 2 Z"
-              fill="white"
-            />
-            <circle cx="7.4" cy="9.6" r="0.75" fill="black" />
-            <circle cx="9.4" cy="14.2" r="0.7" fill="black" />
-            <circle cx="6.2" cy="6.4" r="0.55" fill="black" />
-            <circle cx="11.6" cy="11.4" r="0.6" fill="black" />
-            <circle cx="14.8" cy="12.2" r="0.5" fill="black" />
-            <circle cx="8.9" cy="18" r="0.5" fill="black" />
-          </mask>
-        </defs>
-
-        <path
-          d="M2 2 Q7 12 9.5 21 Q10.9 16.4 12.3 14.6 Q16.4 13 21 12.2 Q11 6.6 2 2 Z"
-          fill="white"
-          mask="url(#cursor-stipple)"
-        />
+      <svg viewBox="0 0 26 26" width={BASE} height={BASE} fill="none">
+        {/* Three separate strokes rather than one closed outline: a shaft and
+            two barbs, each bowed a little and neither quite mirroring the
+            other, so it reads as drawn in a pass rather than constructed.
+            Round caps are what sell it as a pen rather than a vector. */}
+        <g
+          stroke="white"
+          strokeWidth={2.1}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M3 3 C7.2 8.6 11.6 13.4 18.4 18.8" />
+          <path d="M3 3 C2.6 6.4 3.1 9.3 3.8 12.2" />
+          <path d="M3 3 C6.3 2.6 9.1 3.2 12.1 3.9" />
+        </g>
       </svg>
     </div>
   );
